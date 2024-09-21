@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { url_img, size } = defineProps({
+const props_avatar = defineProps({
   url_img: {
     type: String,
     required: true
@@ -12,7 +12,7 @@ const { url_img, size } = defineProps({
 </script>
 
 <template>
-  <img :src="url_img" :alt="'avatar'" :class="'avatar'" :style="{ width: size + 'px', height: size + 'px' }">
+  <img :src="props_avatar.url_img" :alt="'avatar'" :class="'avatar'" :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }">
 </template>
 
 <style scoped>

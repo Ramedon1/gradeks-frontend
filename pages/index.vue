@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <h1>Home</h1>
+  <MoleculeGreeting/>
 </template>
 
 <style scoped>

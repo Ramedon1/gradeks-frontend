@@ -6,7 +6,9 @@
   <div id="view">
     <NuxtPage/>
   </div>
-  <MoleculeNavbar/>
+  <div id="nav">
+    <MoleculeNavbar/>
+  </div>
 </template>
 
 <style scoped>
