@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'PFEncoreSansPro-Black';
+    src: url('/assets/fonts/PFEncoreSansPro-Black.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PFEncoreSansPro-Regular';
+    src: url('/assets/fonts/PFEncoreSansPro-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+
+.primary-text {
+    color: #11241C;
+    font-family: "PFEncoreSansPro-Black", serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.third-text {
+    color: rgba(17, 36, 28, 0.65);
+    font-family: "PFEncoreSansPro-Regular", serif;
+    font-size: 12px;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+}
