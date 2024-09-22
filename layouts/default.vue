@@ -30,6 +30,8 @@
   flex-grow: 1;
   overflow-x: hidden;
   box-sizing: border-box;
+  z-index: 1;
+  position: relative;
 }
 
 #nav {
@@ -37,6 +39,10 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Ensures it stays on top of other content */
+  z-index: 2;
+}
+
+#view {
+  padding-bottom: 5rem;
 }
 </style>
