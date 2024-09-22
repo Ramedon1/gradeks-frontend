@@ -58,7 +58,8 @@ watch(() => route.path, (newRoute) => {
   display: flex;
   flex-direction: row;
   height: 100%;
-  padding: 8px 20px;
+  background-color: #F4F8F6;
+  padding: 8px 20px 15px 20px;
   border-top: 2px solid #EBF2EF;
   justify-content: center;
   align-items: center;

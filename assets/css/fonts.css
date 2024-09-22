@@ -10,6 +10,12 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'date-grades';
+    src: url('/assets/fonts/DMSans_24pt-Black.ttf') format('truetype');
+    font-style: normal;
+}
+
 .primary-text {
     color: #11241C;
     font-family: "PFEncoreSansPro-Black", serif;
@@ -30,4 +36,22 @@
     font-weight: 400;
     line-height: normal;
     text-transform: capitalize;
+}
+
+.subheading {
+    color: #11241C;
+    font-family: "PFEncoreSansPro-Black", serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.subject-grade {
+    color: rgba(17, 36, 28, 0.80);
+    text-align: center;
+    font-family: "PFEncoreSansPro-Black", serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 900;
 }
