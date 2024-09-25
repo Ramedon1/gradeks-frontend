@@ -1,16 +1,10 @@
-<script setup lang="ts">
-import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+<script lang="ts" setup>
+import {useRoute} from 'vue-router';
+import {computed} from 'vue';
 
 const props_nav_button = defineProps({
-  url_to: {
-    type: String,
-    required: true
-  },
-  text_button: {
-    type: String,
-    required: true
-  }
+  url_to: String,
+  text_button: String,
 });
 
 const route = useRoute();

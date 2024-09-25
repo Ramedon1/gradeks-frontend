@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
-  date: {
-    type: String,
-    required: true
-  }
+  date: String
 });
 
 </script>
@@ -20,9 +17,7 @@ const props = defineProps({
   text-align: center;
   font-family: "date-grades", serif;
   font-size: 14px;
-  font-style: normal;
   margin: 0;
-  font-weight: 900;
   line-height: 20px;
 }
 

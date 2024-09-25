@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const props_avatar = defineProps({
-  url_img: {
-    type: String,
-    required: true
-  },
+  url_img: String,
   size: {
     type: Number,
     default: 40

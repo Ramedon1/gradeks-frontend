@@ -1,12 +1,12 @@
 <script setup lang="ts">
 
 const props = defineProps({
-  text: String,
+  name: String,
 });
 </script>
 
 <template>
-  <p class="primary-text-greeting">{{ props.text }}</p>
+  <p class="primary-text-greeting">Привет, {{ props.name }}! 👋</p>
 </template>
 
 <style scoped>

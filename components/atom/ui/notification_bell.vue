@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const bell = defineProps({
-  active: {
-    type: Boolean,
-    required: true
-  }
+  active: Boolean,
 });
 </script>
 

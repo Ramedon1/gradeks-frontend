@@ -1,10 +1,7 @@
 <script setup>
-import {defineProps} from 'vue';
-
 const props = defineProps({
   position: {
     type: Number,
-    required: true,
     default: 0
   }
 });

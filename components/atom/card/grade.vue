@@ -1,13 +1,7 @@
 <script setup lang="ts">
 const props = defineProps({
-  new_grade: {
-    type: Number,
-    required: true
-  },
-  old_grade: {
-    type: Number,
-    required: false
-  }
+  new_grade: Number,
+  old_grade: Number
 });
 
 const newGradeColor = computed(() => {
@@ -43,8 +37,6 @@ const newGradeColor = computed(() => {
   text-align: left;
   font-family: "date-grades", serif;
   font-size: 17px;
-  font-style: normal;
-  font-weight: 900;
   line-height: 20px;
 }
 </style>

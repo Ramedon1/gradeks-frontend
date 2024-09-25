@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
-  subject: {
-    type: String,
-    required: true
-  }
+  subject: String,
 });
 </script>
 

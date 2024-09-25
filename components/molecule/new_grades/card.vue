@@ -1,21 +1,9 @@
 <script setup lang="ts">
 const card_info = defineProps({
-  date: {
-    type: String,
-    required: true
-  },
-  subject: {
-    type: String,
-    required: true
-  },
-  new_grade: {
-    type: Number,
-    required: true
-  },
-  old_grade: {
-    type: Number,
-    required: false
-  }
+  date: String,
+  subject: String,
+  new_grade: Number,
+  old_grade: Number,
 });
 
 </script>
