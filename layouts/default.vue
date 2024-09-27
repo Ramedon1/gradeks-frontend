@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+
+const route = useRoute();
+const hideNavbar = computed(() => {
+  const pathsToHideNavbar = ['/report', '/rules', '/privacy-policy', '/deactivate'];
+  return pathsToHideNavbar.includes(route.path);
+});
 </script>
 
 <template>
@@ -6,7 +14,7 @@
     <div id="view">
       <NuxtPage/>
     </div>
-    <div id="nav">
+    <div id="nav" v-if="!hideNavbar">
       <MoleculeNavbar/>
     </div>
   </div>

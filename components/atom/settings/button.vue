@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, defineAsyncComponent, defineProps } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 
 const props = defineProps({
   iconName: String,
@@ -11,7 +11,7 @@ const props = defineProps({
 const iconComponent = computed(() => {
   if (props.iconName) {
     return defineAsyncComponent(() =>
-      import(`@/components/atom/icons/${props.iconName}.vue`)
+        import(`@/components/atom/icons/${props.iconName}.vue`)
     );
   }
   return null;
@@ -26,7 +26,7 @@ function styleText() {
 </script>
 
 <template>
-  <div class="button-container">
+  <NuxtLink :to="props.href" class="button-container">
     <div class="info-container">
       <component :is="iconComponent" v-if="iconComponent"/>
       <p :style="{ color: styleText() }" class="button-text">{{ text }}</p>
@@ -35,7 +35,7 @@ function styleText() {
     <div v-else>
       <AtomIconsArrowRight/>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <style scoped>
@@ -54,6 +54,7 @@ function styleText() {
 }
 
 .button-container {
+  text-decoration: none;
   border-radius: 16px;
   display: flex;
   padding: 8px 0;

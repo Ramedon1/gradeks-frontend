@@ -10,10 +10,17 @@
       <MoleculeSettingsList/>
       <MoleculeSettingsAdvancedSettings/>
     </div>
+    <AtomUiAuthor/>
   </div>
 </template>
 
 <style scoped>
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .settings-container {
   display: flex;
   flex-direction: column;
@@ -21,9 +28,4 @@
   gap: 32px;
 }
 
-.profile-content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 </style>

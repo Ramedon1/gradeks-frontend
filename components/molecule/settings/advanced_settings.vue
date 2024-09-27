@@ -6,8 +6,8 @@
   <div class="advanced-settings">
     <AtomSettingsSubheading text="Дополнительные настройки"/>
     <div class="advanced-buttons">
-      <AtomSettingsButton text="Политика конфиденциальности"/>
-      <AtomSettingsButton text="Правила и условия пользования"/>
+      <AtomSettingsButton href="/privacy-policy" text="Политика конфиденциальности"/>
+      <AtomSettingsButton href="/rules" text="Правила и условия пользования"/>
     </div>
   </div>
 </template>
