@@ -45,7 +45,7 @@ watch(() => route.path, (newRoute) => {
       </AtomNavbarButton>
       <AtomNavbarButton class="navbar-button" url_to="/profile" text_button="Профиль">
         <template #default="{ isActive }">
-          <AtomAvatar :size="30" url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
+          <AtomUiAvatar :size="30" url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
         </template>
       </AtomNavbarButton>
       <AtomNavbarActiveDot :position="activeDotPosition"/>

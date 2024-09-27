@@ -10,7 +10,10 @@ const props = defineProps({
 <template>
   <div class="item_subject">
     <AtomQuarterGradesSubjectName :subject="props.subject"/>
-    <AtomQuarterGradesAverageGrade :new_type_grade="props.new_type_grade" :old_type_grade="props.old_type_grade" :type_grade="props.type_grade"/>
+    <AtomQuarterGradesAverageGrade :new_type_grade="props.new_type_grade"
+                                   :old_type_grade="props.old_type_grade"
+                                   :type_grade="props.type_grade"
+    />
   </div>
 </template>
 

@@ -19,9 +19,9 @@ const oldGradeColor = computed(() =>
 
 <template>
   <div class="grade-container">
-    <p :style="{ color: newGradeColor }" class="average-grade">{{ props.new_type_grade }}</p>
+    <p :style="{ color: newGradeColor }" class="average-grade">{{ props.new_type_grade ?? '__' }}</p>
     <p class="average-grade" style="color: #9D9D9D">/</p>
-    <p :style="{ color: oldGradeColor }" class="average-grade">{{ props.old_type_grade }}</p>
+    <p :style="{ color: oldGradeColor }" class="average-grade">{{ props.old_type_grade ?? '__' }}</p>
   </div>
 </template>
 

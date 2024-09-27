@@ -5,7 +5,7 @@
 <template>
   <div class="greeting-bar">
     <div class="top-bar">
-      <AtomAvatar :size="40" url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
+      <AtomUiAvatar :size="40" url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
       <AtomUiNotificationBell :active="true"/>
     </div>
     <AtomTextsGreetingText name="Алиса"/>

@@ -22,16 +22,22 @@
 #container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
 }
 
 #view {
   padding: 4.5rem 1.25rem 1rem;
   flex-grow: 1;
+  width: 100%;
+  min-width: 200px;
+  max-width: 600px;
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 1;
   position: relative;
+  margin: auto;
 }
 
 #nav {

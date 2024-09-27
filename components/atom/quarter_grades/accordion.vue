@@ -32,7 +32,7 @@ const leave = (el: HTMLElement) => {
 </script>
 
 <template>
-  <button :class="['accordion', { active: isActive }]" @click="toggleAccordion">
+  <button v-if="subject" :class="['accordion', { active: isActive }]" @click="toggleAccordion">
     <span class="quarter-name">{{ props.quarter_name }}</span>
     <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
     <AtomQuarterGradesChevronArrow :isActive="isActive"/>

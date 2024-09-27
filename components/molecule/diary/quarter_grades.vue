@@ -32,7 +32,16 @@ const quarterDate = getRandomDate();
       :old_type_grade="2.2"
       :new_type_grade="3"
     />
-
+    <AtomQuarterGradesAccordion
+        :quarter_name="quarterName"
+        :quarter_date="quarterDate"
+        :grades="grades"
+        subject="Информатика"
+        type_grade="new"
+        :old_type_grade="2.2"
+        :new_type_grade="3"
+        :open="false"
+    />
   </div>
 </template>
 

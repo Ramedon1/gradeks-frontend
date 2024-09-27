@@ -4,7 +4,7 @@
 
 <template>
   <div class="diary-content">
-    <MoleculeDiaryTopBar :active_bell="true" text_header="Успеваемость"/>
+    <MoleculeDiaryTopBar :active_bell="true"/>
     <MoleculeDiaryQuarterGrades/>
   </div>
 
