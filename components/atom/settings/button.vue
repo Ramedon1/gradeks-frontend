@@ -6,6 +6,7 @@ const props = defineProps({
   text: String,
   switch: Boolean,
   href: String,
+  redirect: String,
 });
 
 const iconComponent = computed(() => {
@@ -23,10 +24,19 @@ function styleText() {
   }
   return '#11241C';
 }
+
+function handleRedirect() {
+  if (props.redirect) {
+    return props.redirect;
+  }
+  else {
+    return props.href;
+  }
+}
 </script>
 
 <template>
-  <NuxtLink :to="props.href" class="button-container">
+  <NuxtLink :to="handleRedirect()" class="button-container">
     <div class="info-container">
       <component :is="iconComponent" v-if="iconComponent"/>
       <p :style="{ color: styleText() }" class="button-text">{{ text }}</p>
