@@ -65,9 +65,9 @@ function handleRedirect() {
 
 .button-container {
   text-decoration: none;
-  border-radius: 16px;
+  border-bottom: 1px solid rgba(43, 43, 43, 0.05);
   display: flex;
-  padding: 8px 0;
+  padding: 4px 0 10px 0;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;

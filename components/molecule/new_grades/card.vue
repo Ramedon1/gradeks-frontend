@@ -22,7 +22,7 @@ const card_info = defineProps({
 <style scoped>
 .card {
   display: flex;
-  width: 180px;
+  width: 150px;
   background-color: #EDF1EF;
   border-radius: 10px;
   height: 126.333px;
@@ -35,5 +35,15 @@ const card_info = defineProps({
 
 .spacer {
   flex-grow: 1;
+}
+
+@media (max-width: 374px) {
+  .card {
+    width: 100px;
+    height: 196.333px;
+  }
+  .grade-change {
+    width: 80%;
+  }
 }
 </style>

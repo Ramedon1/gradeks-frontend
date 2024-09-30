@@ -40,4 +40,10 @@ const props = defineProps({
   outline: none;
   box-shadow: 0 0 20px rgb(30, 128, 94);
 }
+@media (max-width: 381px) {
+  .submit-button {
+    font-size: 17px;
+  }
+}
+
 </style>

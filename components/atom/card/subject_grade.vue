@@ -12,7 +12,8 @@ const props = defineProps({
 .subject {
   margin: 0;
   display: -webkit-box;
+  word-wrap: break-word;
   -webkit-box-orient: vertical;
-
+  text-align: left;
 }
 </style>

@@ -6,7 +6,7 @@
   <div class="settings-list">
     <AtomSettingsButton :switch="true" icon-name="bell" text="Оповещение о новых оценках"/>
     <AtomSettingsButton redirect="https://t.me/ramedon" icon-name="alert" text="Сообщить о проблеме"/>
-    <AtomSettingsButton icon-name="trash" text="Удаление аккаунта"/>
+    <AtomSettingsButton href="/deactivate" icon-name="trash" text="Удаление аккаунта"/>
   </div>
 </template>
 
