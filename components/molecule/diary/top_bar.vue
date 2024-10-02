@@ -7,8 +7,8 @@ const props = defineProps({
 
 
 const notifications = ref([
-  {headline: 'New Message', message: 'You have received a new message.'},
-  {headline: 'Update Available', message: 'A new update is available for download.'}
+  { headline: 'New Message', message: 'You have received a new message.' },
+  { headline: 'Update Available', message: 'A new update is available for download.' }
 ]);
 </script>
 

@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import {computed} from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 
 const props = defineProps<{
   notifications: {
@@ -8,12 +8,12 @@ const props = defineProps<{
   }[]
 }>()
 
-const hasNotifications = computed(() => notifications.value.length > 0);
+const hasNotifications = computed(() => props.notifications.length > 0);
 </script>
 
 <template>
   <AtomUiNotificationsBell :active="hasNotifications">
-    <MoleculeNotificationBottomContainer :notifications="notifications" header="Notifications"/>
+    <MoleculeNotificationBottomContainer :notifications="props.notifications" header="Notifications"/>
   </AtomUiNotificationsBell>
 </template>
 
