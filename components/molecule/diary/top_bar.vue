@@ -8,7 +8,7 @@ const props = defineProps({
   <div class="top-bar-container">
     <div class="top-bar">
       <AtomTextsHeaderText text="Успеваемость"/>
-      <AtomUiNotificationBell :active="props.active_bell"/>
+      <AtomUiNotificationsBell :active="props.active_bell"/>
     </div>
     <AtomTextsDiaryPraiseText/>
   </div>

@@ -43,7 +43,6 @@ const hideNavbar = computed(() => {
   max-width: 600px;
   overflow-x: hidden;
   box-sizing: border-box;
-  z-index: 1;
   position: relative;
   margin: auto;
 }
@@ -53,7 +52,6 @@ const hideNavbar = computed(() => {
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 2;
 }
 
 #view {

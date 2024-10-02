@@ -1,20 +1,17 @@
 <script setup lang="ts">
 const props = defineProps({
-  id: String,
-  name: String,
   label: String,
   href: String,
 });
 </script>
 
 <template>
-  <a
+  <NuxtLink
       class="submit-button third-text"
-      :id="props.id"
-      :href="props.href"
+      :to="props.href"
   >
     {{ props.label }}
-  </a>
+  </NuxtLink>
 </template>
 
 <style scoped>

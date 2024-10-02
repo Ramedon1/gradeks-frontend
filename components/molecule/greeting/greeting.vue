@@ -6,7 +6,9 @@
   <div class="greeting-bar">
     <div class="top-bar">
       <AtomUiAvatar :size="40" url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
-      <AtomUiNotificationBell :active="true"/>
+      <AtomUiNotificationsBell :active="true">
+        <AtomUiNotificationsNotificationBadge text="У вас новые оценки"/>
+      </AtomUiNotificationsBell>
     </div>
     <AtomTextsGreetingText name="Алиса"/>
   </div>

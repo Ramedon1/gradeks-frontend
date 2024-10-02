@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@webzlodimir/vue-bottom-sheet": "^3.0.5",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
     "vue": "latest",
