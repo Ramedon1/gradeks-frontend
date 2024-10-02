@@ -9,16 +9,17 @@ const props = defineProps<{
 
 <template>
   <div class="notification-container">
-    <div class="con" v-for="notification in props.notifications">
+    <div v-for="notification in props.notifications" class="container">
       <AtomUiNotificationsNotificationBadge :headline="notification.headline" :message="notification.message"/>
     </div>
   </div>
 </template>
 
 <style scoped>
-.con {
+.container {
   width: 100%;
 }
+
 .notification-container {
   display: flex;
   flex-direction: column;

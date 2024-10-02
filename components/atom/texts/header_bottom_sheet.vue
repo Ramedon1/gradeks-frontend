@@ -16,6 +16,7 @@ const props = defineProps({
   height: 36px;
   align-items: center;
   margin-bottom: 20px;
+  color: black;
   justify-content: center;
   align-self: stretch;
 }
