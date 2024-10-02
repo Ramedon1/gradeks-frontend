@@ -9,18 +9,18 @@ const card_info = defineProps({
 </script>
 
 <template>
-  <div class="card">
-    <AtomCardDate class="date-grade" :date="card_info.date"/>
+  <div class="plate">
+    <AtomPlateDate class="date-grade" :date="card_info.date"/>
     <div class="spacer"></div>
     <div class="grade-change">
-      <AtomCardSubjectGrade :subject="card_info.subject"/>
-      <AtomCardGrade :old_grade="card_info.old_grade" :new_grade="card_info.new_grade" />
+      <AtomPlateSubjectGrade :subject="card_info.subject"/>
+      <AtomGradesGrade :old_grade="card_info.old_grade" :new_grade="card_info.new_grade" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.card {
+.plate {
   display: flex;
   width: 150px;
   background-color: #EDF1EF;
@@ -38,7 +38,7 @@ const card_info = defineProps({
 }
 
 @media (max-width: 374px) {
-  .card {
+  .plate {
     width: 100px;
     height: 196.333px;
   }

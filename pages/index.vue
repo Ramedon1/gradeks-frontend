@@ -5,7 +5,7 @@
 <template>
   <div class="main-content">
     <MoleculeGreeting/>
-    <MoleculeNewGradesGradeContainer/>
+    <OrganismPlatesGrid/>
   </div>
 
 </template>
