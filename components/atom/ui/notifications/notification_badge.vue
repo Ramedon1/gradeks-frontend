@@ -20,7 +20,6 @@ const props = defineProps<{
   padding: 16px 23px;
   flex-direction: column;
   justify-content: left;
-  align-items: flex-end;
   text-align: left;
   gap: 8px;
   align-self: stretch;

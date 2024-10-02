@@ -18,7 +18,7 @@ const props = defineProps<{
 }
 .headline-container {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 10px;
   align-self: stretch;
