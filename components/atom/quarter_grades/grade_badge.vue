@@ -18,8 +18,8 @@ const toggleExpand = () => {
 
 watch(isExpanded, (newVal) => {
   if (gradeBadgeRef.value && coffGradeRef.value) {
-    gradeBadgeRef.value.style.width = newVal ? '150px' : '50px';
-    coffGradeRef.value.style.left = newVal ? '135px' : '35px';
+    gradeBadgeRef.value.style.width = newVal ? '120px' : '50px';
+    coffGradeRef.value.style.left = newVal ? '105px' : '35px';
   }
 });
 </script>

@@ -1,22 +1,17 @@
 <script lang="ts" setup>
-import {ref} from "vue";
-
 const props = defineProps({
-  active_bell: Boolean,
+  notifications: {
+    headline: String,
+    message: String
+  }
 });
-
-
-const notifications = ref([
-  { headline: 'New Message', message: 'You have received a new message.' },
-  { headline: 'Update Available', message: 'A new update is available for download.' }
-]);
 </script>
 
 <template>
   <div class="top-bar-container">
     <div class="top-bar">
       <AtomTextsHeaderText text="Успеваемость"/>
-      <MoleculeNotificationBellDropdown :notifications="notifications"/>
+      <OrganismNotificationBellBottomSheet :notifications="notifications" header="Оповещения"/>
     </div>
     <AtomTextsDiaryPraiseText/>
   </div>

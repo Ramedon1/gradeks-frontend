@@ -2,15 +2,22 @@
 import {nextTick, ref} from 'vue';
 
 const props = defineProps({
-  subject: String,
-  grades: {type: Array, default: () => []},
-  quarter_name: String,
   quarter_date: String,
-  type_grade: String,
-  new_type_grade: Number,
-  old_type_grade: Number
+  quarter_name: String,
+  subjects: [{
+    subject_name: String,
+    grades: [{
+      coff: Number,
+      grade: Number,
+      date: String
+    }],
+    type_grade: String,
+    new_type_grade: Number,
+    old_type_grade: Number
+  }]
 });
 
+// Проблема в том, что если isActive true, то при клике на аккордион, он закрывается но с лагами, фиксануть
 const isActive = ref(false);
 
 const toggleAccordion = () => {
@@ -32,7 +39,7 @@ const leave = (el: HTMLElement) => {
 </script>
 
 <template>
-  <button v-if="subject" :class="['accordion', { active: isActive }]" @click="toggleAccordion">
+  <button v-if="props.subjects" :class="['accordion', { active: isActive }]" @click="toggleAccordion">
     <span class="quarter-name">{{ props.quarter_name }}</span>
     <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
     <AtomQuarterGradesChevronArrow :isActive="isActive"/>
@@ -40,13 +47,15 @@ const leave = (el: HTMLElement) => {
   <transition name="accordion-transition"
               @enter="enter" @leave="leave" @before-enter="beforeEnter">
     <div v-if="isActive" class="panel">
-      <MoleculeDiaryItemSubject
-          :new_type_grade="props.new_type_grade"
-          :old_type_grade="props.old_type_grade"
-          :subject="props.subject"
-          :type_grade="props.type_grade"
+      <OrganismDiaryPanel
+          v-for="(subject, index) in props.subjects"
+          :key="index"
+          :new_type_grade="subject.new_type_grade"
+          :old_type_grade="subject.old_type_grade"
+          :subject_name="subject.subject_name"
+          :type_grade="subject.type_grade"
+          :grades="subject.grades"
       />
-      <MoleculeDiaryGradeList :grades="props.grades"/>
     </div>
   </transition>
 </template>

@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 
 const props = defineProps({
-  grades: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
+  grades: [{
+    coff: Number,
+    grade: Number,
+    date: String
+  }]
 });
+
 </script>
 
 <template>
@@ -15,8 +16,8 @@ const props = defineProps({
         v-for="(grade, index) in props.grades"
         :key="index"
         :coff="grade.coff"
-        :grade="grade.grade"
         :date="grade.date"
+        :grade="grade.grade"
     />
   </div>
 </template>
@@ -39,6 +40,5 @@ const props = defineProps({
 .grade-list::-webkit-scrollbar {
   display: none;
 }
-
 
 </style>
