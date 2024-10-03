@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-
+const props = defineProps({
+  name: String,
+  url_img: String
+});
 </script>
 
 <template>
   <div class="profile-container">
     <div class="profile-content">
       <div class="profile-info">
-        <AtomUiProfileAvatar :size="65" url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg" />
-        <AtomTextsProfileName name="Алиса"/>
+        <AtomUiProfileAvatar :size="65" :url_img="props.url_img" />
+        <AtomTextsProfileName :name="props.name"/>
       </div>
     </div>
   </div>

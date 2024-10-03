@@ -5,7 +5,6 @@
 <template>
   <div class="top-bar-profile">
     <AtomTextsHeaderText text="Профиль"/>
-    <LazyAtomUiLogout/>
   </div>
 </template>
 

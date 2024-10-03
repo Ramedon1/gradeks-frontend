@@ -4,13 +4,14 @@
 
 <template>
   <div class="profile-content">
-    <MoleculeProfileTopBar/>
-    <MoleculeProfileContainer/>
+    <OrganismProfileTopBar/>
+    <MoleculeProfileContainer name="Алиса"
+                              url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
     <div class="settings-container">
       <MoleculeSettingsList/>
       <MoleculeSettingsAdvancedSettings/>
     </div>
-    <AtomUiAuthor/>
+    <AtomUiProfileAuthor/>
   </div>
 </template>
 
