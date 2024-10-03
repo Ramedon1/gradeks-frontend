@@ -17,7 +17,7 @@ const props = defineProps({
   }]
 });
 
-// Проблема в том, что если isActive true, то при клике на аккордион, он закрывается но с лагами, фиксануть
+// TODO Проблема в том, что если isActive true, то при клике на аккордион, он закрывается но с лагами, фиксануть
 const isActive = ref(false);
 
 const toggleAccordion = () => {
