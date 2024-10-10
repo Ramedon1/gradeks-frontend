@@ -1,28 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
-const switchState = ref(false);
-const debounceTimeout = ref<number | null>(null);
+const props = defineProps({
+  switchState: Boolean,
+});
 
-const handleSwitchChange = () => {
-  if (debounceTimeout.value) {
-    clearTimeout(debounceTimeout.value);
+const debouncedSwitchState = ref(props.switchState);
+let debounceTimeout: ReturnType<typeof setTimeout> | null = null;
+
+watch(() => props.switchState, (newVal) => {
+
+  if (debounceTimeout) {
+    clearTimeout(debounceTimeout);
   }
-  debounceTimeout.value = setTimeout(() => {
 
-  }, 300); // Тут детект будет
-};
+  debounceTimeout = setTimeout(() => {
+    debouncedSwitchState.value = newVal;
+    // TODO отработка запроса свитча
+  }, 300);
+});
 </script>
 
 <template>
   <label class="switch">
-    <input type="checkbox" v-model="switchState" @change="handleSwitchChange">
+    <input type="checkbox" v-model="props.switchState" :disabled="debouncedSwitchState !== props.switchState">
     <span class="slider round"></span>
   </label>
 </template>
 
 <style scoped>
-
 .switch {
   position: relative;
   display: inline-block;

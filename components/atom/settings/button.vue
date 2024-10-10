@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import { computed, defineAsyncComponent } from 'vue';
 
+const {
+  active: activeSwitch,
+  activate: activateSwitch,
+  deactivate: deactivateSwitch,
+  toggle: toggleSwitch,
+} = useSwitch()
+
 const props = defineProps({
   iconName: String,
   text: String,
@@ -29,19 +36,24 @@ function handleRedirect() {
   if (props.redirect) {
     return props.redirect;
   }
-  else {
-    return props.href;
+}
+
+function handleClick(event: Event) {
+  if (props.switch) {
+    event.preventDefault();
+    toggleSwitch();
   }
 }
+
 </script>
 
 <template>
-  <NuxtLink :to="handleRedirect()" class="button-container">
+  <NuxtLink :to="handleRedirect()" class="button-container" @click="handleClick">
     <div class="info-container">
       <component :is="iconComponent" v-if="iconComponent"/>
       <p :style="{ color: styleText() }" class="button-text">{{ text }}</p>
     </div>
-    <AtomUiSwitch v-if="props.switch"/>
+    <AtomUiSwitch v-if="props.switch" :switch-state="activeSwitch"/>
     <div v-else>
       <AtomIconsArrowRight/>
     </div>
