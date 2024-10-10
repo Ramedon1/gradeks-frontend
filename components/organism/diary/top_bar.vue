@@ -11,7 +11,7 @@ const props = defineProps({
   <div class="top-bar-container">
     <div class="top-bar">
       <AtomTextsHeaderText text="Успеваемость"/>
-      <OrganismNotificationBellBottomSheet :notifications="notifications" header="Оповещения"/>
+      <!-- <OrganismNotificationBellBottomSheet :notifications="notifications" header="Оповещения"/> -->
     </div>
     <AtomTextsDiaryPraiseText/>
   </div>
