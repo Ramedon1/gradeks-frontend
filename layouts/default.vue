@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+import {useRoute} from 'vue-router';
+import {computed} from 'vue';
 
 const route = useRoute();
 const hideNavbar = computed(() => {
@@ -11,10 +11,8 @@ const hideNavbar = computed(() => {
 
 <template>
   <div id="container">
-    <div id="view" key="$route.path">
-      <transition mode="out-in" name="page">
-        <NuxtPage/>
-      </transition>
+    <div id="view">
+      <NuxtPage/>
     </div>
     <div v-if="!hideNavbar" id="nav">
       <MoleculeNavbar/>
@@ -64,6 +62,7 @@ const hideNavbar = computed(() => {
 .page-leave-active {
   transition: all 0.3s;
 }
+
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
