@@ -3,21 +3,22 @@
 </script>
 
 <template>
-  <div class="deactivate">
-    <MoleculeAccountAnimation/>
-    <div class="text-alert">
-      <AtomTextsHeaderText text="Удаление аккаунта"/>
-      <div class="subtitle">
-        <AtomSettingsSubheading text="Вы точно хотите удалить аккаунт?"/>
-        <AtomSettingsSubheading text="Ваши данные будут, а оценки больше не будут приходить"/>
+  <div>
+    <div class="deactivate">
+      <MoleculeAccountAnimation/>
+      <div class="text-alert">
+        <AtomTextsHeaderText text="Удаление аккаунта"/>
+        <div class="subtitle">
+          <AtomSettingsSubheading text="Вы точно хотите удалить аккаунт?"/>
+          <AtomSettingsSubheading text="Ваши данные будут, а оценки больше не будут приходить"/>
+        </div>
       </div>
     </div>
+    <div class="buttons-container">
+      <AtomUiSubmitButton id="deactivate" label="Удалить аккаунт" name="deactivate"/>
+      <AtomUiRedirectButton href="/profile" label="Отмена"/>
+    </div>
   </div>
-  <div class="buttons-container">
-    <AtomUiSubmitButton label="Удалить аккаунт" name="deactivate" id="deactivate"/>
-    <AtomUiRedirectButton label="Отмена" href="/profile"/>
-  </div>
-
 </template>
 
 <style scoped>
