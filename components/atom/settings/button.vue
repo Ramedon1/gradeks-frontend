@@ -36,6 +36,9 @@ function handleRedirect() {
   if (props.redirect) {
     return props.redirect;
   }
+  else {
+    return props.href;
+  }
 }
 
 function handleClick(event: Event) {
