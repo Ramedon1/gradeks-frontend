@@ -1,5 +1,27 @@
 <script lang="ts" setup>
-import {nextTick, ref} from 'vue';
+import {ref} from 'vue';
+
+
+const isActive = ref(false);
+const panel = ref(null);
+
+const toggleAccordion = () => {
+  const el = panel.value;
+  console.log('el', el);
+  if (isActive.value) {
+    el.style.height = el.scrollHeight + 'px';
+    requestAnimationFrame(() => {
+      el.style.height = '0';
+    });
+  } else {
+    el.style.height = '0';
+    requestAnimationFrame(() => {
+      el.style.height = el.scrollHeight + 'px';
+    });
+  }
+
+  isActive.value = !isActive.value;
+};
 
 const props = defineProps({
   quarter_date: String,
@@ -17,50 +39,38 @@ const props = defineProps({
   }]
 });
 
-// TODO Проблема в том, что если isActive true, то при клике на аккордион, он закрывается но с лагами, фиксануть
-const isActive = ref(false);
-
-const toggleAccordion = () => {
-  isActive.value = !isActive.value;
-};
-
-const beforeEnter = (el: HTMLElement) => {
-  Object.assign(el.style, {height: '0', opacity: '0', padding: '0 12px'});
-};
-
-const enter = (el: HTMLElement) => {
-  Object.assign(el.style, {height: `${el.scrollHeight}px`, opacity: '1', padding: '12px'});
-};
-
-const leave = (el: HTMLElement) => {
-  el.style.height = `${el.scrollHeight}px`;
-  nextTick(() => Object.assign(el.style, {height: '0', opacity: '0', padding: '0 12px'}));
-};
 </script>
 
 <template>
-  <button v-if="props.subjects" :class="['accordion', { active: isActive }]" @click="toggleAccordion">
+  <button :class="['accordion', { active: isActive, 'padding-active': isActive }]" @click="toggleAccordion">
     <span class="quarter-name">{{ props.quarter_name }}</span>
     <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
     <AtomQuarterGradesChevronArrow :isActive="isActive"/>
   </button>
-  <transition name="accordion-transition"
-              @enter="enter" @leave="leave" @before-enter="beforeEnter">
-    <div v-if="isActive" class="panel">
-      <OrganismDiaryPanel
-          v-for="(subject, index) in props.subjects"
-          :key="index"
-          :new_type_grade="subject.new_type_grade"
-          :old_type_grade="subject.old_type_grade"
-          :subject_name="subject.subject_name"
-          :type_grade="subject.type_grade"
-          :grades="subject.grades"
-      />
-    </div>
-  </transition>
+
+  <div ref="panel" :class="['panel', { open: isActive }]">
+    <transition name="fade">
+      <div v-if="isActive" class="panel-content">
+        <OrganismDiaryPanel
+            v-for="(subject, index) in props.subjects"
+            :key="index"
+            :grades="subject.grades"
+            :new_type_grade="subject.new_type_grade"
+            :old_type_grade="subject.old_type_grade"
+            :subject_name="subject.subject_name"
+            :type_grade="subject.type_grade"
+        />
+      </div>
+    </transition>
+  </div>
 </template>
 
+
 <style scoped>
+.panel-content {
+  padding: 10px 12px;
+}
+
 .accordion {
   display: flex;
   padding: 12px;
@@ -86,18 +96,19 @@ const leave = (el: HTMLElement) => {
 
 .panel {
   overflow: hidden;
-  transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
-}
-
-.accordion-transition-enter-active,
-.accordion-transition-leave-active {
-  transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
-}
-
-.accordion-transition-enter,
-.accordion-transition-leave-to {
   height: 0;
+  transition: height 0.4s ease;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
-  padding: 0;
+}
+
+.panel.open {
+  height: auto;
 }
 </style>

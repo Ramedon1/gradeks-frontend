@@ -21,6 +21,6 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 10px;
+  gap: 5px;
 }
 </style>
