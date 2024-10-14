@@ -49,7 +49,7 @@ function chooseGradeType() {
         </div>
         <div class="buttons-container">
           <AtomUiButtonsCancel @click="closeBottomSheet"/>
-          <AtomUiEditButton @click="chooseGradeType"/>
+          <AtomUiButtonsEdit @click="chooseGradeType"/>
         </div>
       </div>
     </AtomUiBottomSheet>

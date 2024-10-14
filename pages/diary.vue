@@ -1,5 +1,14 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
+import {Vue3Lottie} from 'vue3-lottie'
+import duckJSON from '@/public/animations/duck-link.json'
+
+const {
+  isVisible: isBottomSheetVisible,
+  open: openBottomSheet,
+  close: closeBottomSheet
+} = useBottomSheet()
+
 
 const notifications = ref([
   {headline: 'New Message', message: 'You have received a new message.'},
@@ -93,15 +102,62 @@ const data = ref([
 ]);
 </script>
 
+
 <template>
-  <div class="diary-content">
+  <div v-if="data" class="diary-content">
     <OrganismDiaryTopBar :notifications="notifications"
-                             avatar_url="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
+                         avatar_url="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
     <OrganismDiaryQuarterGrades :quarters="data"/>
+  </div>
+  <div v-else class="none-link">
+    <p class="primary-text none-link-text">Кажется вы не подключили ваш электронный дневник к нашей системе</p>
+    <Vue3Lottie :animation-data="duckJSON"
+                :height="200"
+                :width="200"
+    />
+    <AtomUiButtonsEdit class="button-edit" style="width: 70%" text="Настроить" @click="openBottomSheet"/>
+    <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event">
+      <AtomTextsHeaderBottomSheet header="Редактирование профиля"/>
+      <div class="edit-content-container">
+        <AtomUiInput id="student_id" placeholder="Ссылка на список оценок"/>
+        <AtomUiButtonsSubmit style="width: 100%" text="Сохранить" @click="closeBottomSheet"/>
+      </div>
+    </AtomUiBottomSheet>
   </div>
 </template>
 
 <style scoped>
+.button-edit {
+  margin: 20px auto 0;
+}
+
+.none-link-text {
+  font-size: 25px;
+  text-align: center;
+  margin: 0;
+}
+
+
+.none-link {
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 30px auto auto;
+}
+.edit-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 .diary-content {
   display: flex;
   flex-direction: column;

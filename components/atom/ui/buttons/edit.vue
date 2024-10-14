@@ -1,10 +1,14 @@
 <script setup lang="ts">
+const props = defineProps({
+  text: String
+});
+
 </script>
 
 <template>
   <div class="edit-button-container">
     <AtomIconsPen color="#EDF1EF"/>
-    <p class="primary-text edit-text">Изменить</p>
+    <p class="primary-text edit-text">{{ props.text ?? 'Изменить'}}</p>
   </div>
 </template>
 
