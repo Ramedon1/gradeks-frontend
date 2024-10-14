@@ -17,7 +17,7 @@ const {
       <AtomTextsHeaderBottomSheet header="Редактирование профиля"/>
       <div class="edit-content-container">
         <AtomUiInput placeholder="Ссылка на список оценок" id="student_id" />
-        <AtomUiSubmitButton style="width: 100%" @click="closeBottomSheet" text="Сохранить"/>
+        <AtomUiButtonsSubmit style="width: 100%" @click="closeBottomSheet" text="Сохранить"/>
       </div>
     </AtomUiBottomSheet>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="top-bar">
-      <AtomUiButtonBack url_back="/profile"/>
+      <AtomUiButtonsBack url_back="/profile"/>
       <AtomTextsHeaderText text="Правила использования"/>
     </div>
     <ContentRules/>

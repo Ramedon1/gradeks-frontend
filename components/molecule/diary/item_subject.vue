@@ -48,7 +48,7 @@ function chooseGradeType() {
                                    @gradeSelected="handleGradeSelected"/>
         </div>
         <div class="buttons-container">
-          <AtomUiButtonCancel @click="closeBottomSheet"/>
+          <AtomUiButtonsCancel @click="closeBottomSheet"/>
           <AtomUiEditButton @click="chooseGradeType"/>
         </div>
       </div>
