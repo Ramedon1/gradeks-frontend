@@ -35,12 +35,12 @@ watch(() => route.path, (newRoute) => {
     <div class="navbar-buttons">
       <AtomNavbarButton class="navbar-button" url_to="/" text_button="Главная">
         <template #default="{ isActive }">
-          <AtomNavbarIconHome :isActive="isActive"/>
+          <AtomIconsHome :isActive="isActive"/>
         </template>
       </AtomNavbarButton>
       <AtomNavbarButton class="navbar-button" url_to="/diary" text_button="Успеваемость">
         <template #default="{ isActive }">
-          <AtomNavbarIconDiary/>
+          <AtomIconsDiary/>
         </template>
       </AtomNavbarButton>
       <AtomNavbarButton class="navbar-button" url_to="/profile" text_button="Профиль">

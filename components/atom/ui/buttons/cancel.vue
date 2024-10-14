@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <div class="button-cancel-container">
     <p class="primary-text cancel-text">Отмена</p>

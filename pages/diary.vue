@@ -9,7 +9,6 @@ const {
   close: closeBottomSheet
 } = useBottomSheet()
 
-
 const notifications = ref([
   {headline: 'New Message', message: 'You have received a new message.'},
   {headline: 'Update Available', message: 'A new update is available for download.'}
@@ -137,7 +136,6 @@ const data = ref([
   margin: 0;
 }
 
-
 .none-link {
   justify-content: center;
   align-items: center;
@@ -148,6 +146,7 @@ const data = ref([
   gap: 40px;
   margin: 30px auto auto;
 }
+
 .edit-content-container {
   display: flex;
   flex-direction: column;
@@ -155,8 +154,6 @@ const data = ref([
   justify-content: center;
   align-items: center;
 }
-
-
 
 .diary-content {
   display: flex;

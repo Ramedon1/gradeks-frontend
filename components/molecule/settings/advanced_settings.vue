@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <div class="advanced-settings">
     <AtomSettingsSubheading text="Дополнительные настройки"/>

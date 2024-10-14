@@ -3,8 +3,6 @@ import { computed, defineAsyncComponent } from 'vue';
 
 const {
   active: activeSwitch,
-  activate: activateSwitch,
-  deactivate: deactivateSwitch,
   toggle: toggleSwitch,
 } = useSwitch()
 
@@ -47,7 +45,6 @@ function handleClick(event: Event) {
     toggleSwitch();
   }
 }
-
 </script>
 
 <template>

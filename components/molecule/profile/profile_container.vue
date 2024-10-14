@@ -9,7 +9,7 @@ const props = defineProps({
   <div class="profile-container">
     <div class="profile-content">
       <div class="profile-info">
-        <AtomUiProfileAvatar :size="65" :url_img="props.url_img" />
+        <AtomUiProfileAvatar :size="65" :url_img="props.url_img"/>
         <AtomTextsProfileName :name="props.name"/>
       </div>
       <MoleculeProfileEditProfile/>

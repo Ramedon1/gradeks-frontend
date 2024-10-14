@@ -23,7 +23,6 @@ const props = defineProps({
 </template>
 
 <style scoped>
-
 .grade-list {
   display: flex;
   overflow-x: auto;
@@ -40,5 +39,4 @@ const props = defineProps({
 .grade-list::-webkit-scrollbar {
   display: none;
 }
-
 </style>

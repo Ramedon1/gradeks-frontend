@@ -23,7 +23,6 @@ function toggleGrade(gradeType: 'new' | 'old') {
 
 const newGradeColor = computed(() => (is_new_type_grade.value ? getGradeColor(props.new_type_grade) : 'gray'));
 const oldGradeColor = computed(() => (!is_new_type_grade.value ? getGradeColor(props.old_type_grade) : 'gray'));
-
 </script>
 
 <template>
@@ -45,7 +44,6 @@ const oldGradeColor = computed(() => (!is_new_type_grade.value ? getGradeColor(p
 </template>
 
 <style scoped>
-
 .grade-container {
   display: flex;
   align-items: center;

@@ -9,7 +9,6 @@
 </template>
 
 <style scoped>
-
 .top-bar {
   display: flex;
   flex-direction: column;

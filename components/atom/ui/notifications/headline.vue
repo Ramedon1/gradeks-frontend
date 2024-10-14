@@ -1,21 +1,21 @@
-<script setup lang="ts">
-const props = defineProps<{
-  text: string
-}>()
+<script lang="ts" setup>
+const props = defineProps({
+  text: String,
+});
 </script>
 
 <template>
-<div class="headline-container">
-  <AtomIconsDot/>
-  <p class="headline-text subheading"> {{ props.text}}</p>
-</div>
+  <div class="headline-container">
+    <AtomIconsDot/>
+    <p class="headline-text subheading"> {{ props.text }}</p>
+  </div>
 </template>
 
 <style scoped>
 .headline-text {
   margin: 0;
-
 }
+
 .headline-container {
   display: flex;
   justify-content: left;

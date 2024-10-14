@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 
-
 const isActive = ref(false);
 const panel = ref(null);
 
@@ -63,7 +62,6 @@ const props = defineProps({
     </transition>
   </div>
 </template>
-
 
 <style scoped>
 .panel-content {

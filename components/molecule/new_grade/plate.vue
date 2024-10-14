@@ -1,20 +1,19 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const card_info = defineProps({
   date: String,
   subject: String,
   new_grade: Number,
   old_grade: Number,
 });
-
 </script>
 
 <template>
   <div class="plate">
-    <AtomPlateDate class="date-grade" :date="card_info.date"/>
+    <AtomPlateDate :date="card_info.date" class="date-grade"/>
     <div class="spacer"></div>
     <div class="grade-change">
       <AtomPlateSubjectGrade :subject="card_info.subject"/>
-      <AtomGradesGrade :old_grade="card_info.old_grade" :new_grade="card_info.new_grade" />
+      <AtomGradesGrade :new_grade="card_info.new_grade" :old_grade="card_info.old_grade"/>
     </div>
   </div>
 </template>
@@ -42,6 +41,7 @@ const card_info = defineProps({
     width: 100px;
     height: 196.333px;
   }
+
   .grade-change {
     width: 80%;
   }

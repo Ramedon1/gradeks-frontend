@@ -4,20 +4,16 @@ const {
   open: openBottomSheet,
   close: closeBottomSheet
 } = useBottomSheet()
-
-
 </script>
-
-
 
 <template>
   <div class="edit-profile-container">
     <AtomIconsPen @click="openBottomSheet"/>
-    <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event" >
+    <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event">
       <AtomTextsHeaderBottomSheet header="Редактирование профиля"/>
       <div class="edit-content-container">
-        <AtomUiInput placeholder="Ссылка на список оценок" id="student_id" />
-        <AtomUiButtonsSubmit style="width: 100%" @click="closeBottomSheet" text="Сохранить"/>
+        <AtomUiInput id="student_id" placeholder="Ссылка на список оценок"/>
+        <AtomUiButtonsSubmit style="width: 100%" text="Сохранить" @click="closeBottomSheet"/>
       </div>
     </AtomUiBottomSheet>
   </div>

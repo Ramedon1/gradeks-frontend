@@ -1,4 +1,3 @@
-
 export function useSwitch() {
     const active = ref(false);
 
@@ -13,6 +12,7 @@ export function useSwitch() {
     function toggle() {
         active.value = !active.value;
     }
+
     return {
         active,
         activate,

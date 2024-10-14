@@ -6,7 +6,6 @@ const bell = defineProps({
 const {
   isVisible: isBottomSheetVisible,
   open: openBottomSheet,
-  close: closeBottomSheet
 } = useBottomSheet()
 </script>
 

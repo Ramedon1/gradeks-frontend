@@ -6,9 +6,7 @@
     </div>
     <ContentPrivacyPolicy/>
   </div>
-
 </template>
-
 
 <style scoped>
 .top-bar {

@@ -6,10 +6,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <NuxtLink
-      class="submit-button third-text"
-      :to="props.href"
-  >
+  <NuxtLink class="submit-button third-text" :to="props.href">
     {{ props.label }}
   </NuxtLink>
 </template>
@@ -30,6 +27,4 @@ const props = defineProps({
   justify-content: center;
   text-decoration: none;
 }
-
-
 </style>

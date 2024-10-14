@@ -60,5 +60,3 @@ ol {
   padding-left: 20px;
 }
 </style>
-<script setup lang="ts">
-</script>

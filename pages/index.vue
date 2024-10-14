@@ -14,7 +14,6 @@ const new_grade_plane = [
   { date: '2021-09-04', subject: 'Физика', new_grade: 3, old_grade: 2 },
   { date: '2021-09-05', subject: 'Химия', new_grade: 4, old_grade: 3 }
 ];
-
 </script>
 
 <template>

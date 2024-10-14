@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <div class="settings-list">
     <AtomSettingsButton :switch="true" icon-name="bell" text="Оповещение о новых оценках"/>

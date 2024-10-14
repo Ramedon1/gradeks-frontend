@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <div>
     <div class="deactivate">
@@ -45,5 +41,4 @@
   text-align: center;
   gap: 10px;
 }
-
 </style>

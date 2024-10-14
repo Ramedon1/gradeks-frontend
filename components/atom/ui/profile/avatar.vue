@@ -9,7 +9,9 @@ const props_avatar = defineProps({
 </script>
 
 <template>
-  <img :src="props_avatar.url_img" :alt="'avatar'" :class="'avatar'" :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }">
+  <img :src="props_avatar.url_img"
+       alt="avatar" class="avatar"
+       :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }">
 </template>
 
 <style scoped>

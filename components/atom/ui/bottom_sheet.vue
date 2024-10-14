@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import {ref, watch} from 'vue';
 
-const props = defineProps<{
-  visible: boolean;
-}>();
+const props = defineProps({
+  visible: Boolean,
+});
 
 const emit = defineEmits<{
   (e: 'update:visible', value: boolean): void;
@@ -146,5 +146,4 @@ watch(() => props.visible, (newVal) => {
     transform: translateY(100%);
   }
 }
-
 </style>

@@ -47,5 +47,4 @@ const props = defineProps({
     outline: none;
   }
 }
-
 </style>

@@ -1,9 +1,6 @@
 <script setup>
 const props = defineProps({
-  position: {
-    type: Number,
-    default: 0
-  }
+  position: Number,
 });
 </script>
 

@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <div class="profile-content">
     <OrganismProfileTopBar/>
@@ -28,5 +24,4 @@
   align-items: center;
   gap: 32px;
 }
-
 </style>

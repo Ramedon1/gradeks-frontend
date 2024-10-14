@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
     <g clip-path="url(#clip0_3_457)">
@@ -14,7 +10,3 @@
     </defs>
   </svg>
 </template>
-
-<style scoped>
-
-</style>

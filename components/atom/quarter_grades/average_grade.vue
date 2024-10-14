@@ -7,7 +7,6 @@ const props = defineProps({
   old_type_grade: Number,
 });
 
-
 const newGradeColor = computed(() =>
     props.type_grade === 'old' ? '#9D9D9D' : getGradeColor(props.new_type_grade ?? 0)
 );
