@@ -7,7 +7,6 @@ const panel = ref(null);
 
 const toggleAccordion = () => {
   const el = panel.value;
-  console.log('el', el);
   if (isActive.value) {
     el.style.height = el.scrollHeight + 'px';
     requestAnimationFrame(() => {

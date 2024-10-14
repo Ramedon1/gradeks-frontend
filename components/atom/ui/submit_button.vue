@@ -2,18 +2,14 @@
 const props = defineProps({
   id: String,
   name: String,
-  label: String,
+  text: String,
 });
 </script>
 
 <template>
-  <button
-      class="submit-button third-text"
-      type="submit"
-      :id="props.id"
-      :name="props.name"
-  >
-    {{ props.label }}
+  <button class="submit-button third-text" type="submit"
+          :id="props.id" :name="props.name">
+    {{ props.text }}
   </button>
 </template>
 
@@ -32,17 +28,23 @@ const props = defineProps({
   cursor: pointer;
 }
 
-.submit-button:hover {
-  background-color: #155942;
-}
-
-.submit-button:focus {
-  outline: none;
-  box-shadow: 0 0 20px rgb(30, 128, 94);
-}
 @media (max-width: 381px) {
   .submit-button {
     font-size: 17px;
+  }
+}
+
+@media (hover: hover) {
+  .submit-button:hover {
+    background-color: #155942;
+  }
+}
+
+@media (hover: none) {
+  .submit-button:active {
+    background-color: #155942;
+    transition: background-color 0.1s ease;
+    outline: none;
   }
 }
 

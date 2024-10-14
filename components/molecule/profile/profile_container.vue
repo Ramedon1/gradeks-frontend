@@ -12,6 +12,7 @@ const props = defineProps({
         <AtomUiProfileAvatar :size="65" :url_img="props.url_img" />
         <AtomTextsProfileName :name="props.name"/>
       </div>
+      <MoleculeProfileEditProfile/>
     </div>
   </div>
 </template>
@@ -36,6 +37,7 @@ const props = defineProps({
 .profile-content {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
+  align-self: stretch;
 }
 </style>

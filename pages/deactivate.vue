@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="buttons-container">
-      <AtomUiSubmitButton id="deactivate" label="Удалить аккаунт" name="deactivate"/>
+      <AtomUiSubmitButton id="deactivate" text="Удалить аккаунт" name="deactivate"/>
       <AtomUiRedirectButton href="/profile" label="Отмена"/>
     </div>
   </div>
