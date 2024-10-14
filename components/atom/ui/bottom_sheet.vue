@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import {ref, watch} from 'vue';
 
 const props = defineProps<{
   visible: boolean;
@@ -80,7 +80,7 @@ watch(() => props.visible, (newVal) => {
              @touchmove="handleTouchMove" @touchstart="handleTouchStart" @click.stop>
           <!-- Indicator -->
           <div class="indicator">
-            <AtomIconsIndicator />
+            <AtomIconsIndicator/>
           </div>
           <!-- Card Content -->
           <slot></slot>
@@ -91,6 +91,23 @@ watch(() => props.visible, (newVal) => {
 </template>
 
 <style scoped>
+.bottom-sheet {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 35px 25px 40px 25px;
+  margin-top: 6rem;
+  min-width: 200px;
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+  flex-direction: column;
+  border-radius: 1.5rem 1.5rem 0 0;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
 .bottom-sheet-overlay {
   visibility: visible;
   position: fixed;
@@ -104,19 +121,6 @@ watch(() => props.visible, (newVal) => {
   display: flex;
   align-items: flex-end;
   transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-.bottom-sheet {
-  position: relative;
-  display: flex;
-  width: 100%;
-  padding: 35px 25px 40px 25px;
-  margin-top: 6rem;
-  flex-direction: column;
-  border-radius: 1.5rem 1.5rem 0 0;
-  background-color: #fff;
-  transition: transform 0.3s ease;
-  will-change: transform;
 }
 
 .indicator {
