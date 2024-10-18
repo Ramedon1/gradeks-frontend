@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed, defineEmits } from 'vue';
+import { ref, computed } from 'vue';
 import getGradeColor from "assets/js/functions";
 
 const props = defineProps({
