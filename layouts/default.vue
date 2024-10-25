@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import {useRoute} from 'vue-router';
 import {computed} from 'vue';
+import {useDiaryState} from "~/state/diary";
+import {storeToRefs} from "pinia";
+import {useAuthStore} from "~/state/auth";
+
+
 
 const route = useRoute();
 const hideNavbar = computed(() => {

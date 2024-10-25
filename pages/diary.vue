@@ -18,6 +18,7 @@ const data = ref([
   {
     quarterName: '1 четверть',
     quarterDate: '24-24-2024 - 12-12-2026',
+    type_grade: 'new',
     subjects: [
       {
         subject_name: 'Математика',
@@ -28,76 +29,11 @@ const data = ref([
           {coff: 2, grade: 2, date: '28-24'},
           {coff: 2, grade: 1, date: '29-24'}
         ],
-        type_grade: 'new',
         new_type_grade: 4.87,
         old_type_grade: 5
       }
     ]
   },
-  {
-    quarterName: '2 четверть',
-    quarterDate: '24-24-2024 - 12-12-2026',
-    subjects: [
-      {
-        subject_name: 'Математика',
-        grades: [
-          {coff: 2, grade: 5, date: '24-24'},
-          {coff: 2, grade: 4, date: '25-24'},
-          {coff: 2, grade: 3, date: '27-24'},
-          {coff: 2, grade: 2, date: '28-24'},
-          {coff: 2, grade: 1, date: '29-24'}
-        ],
-        type_grade: 'new',
-        new_type_grade: 4.87,
-        old_type_grade: 5
-      },
-      {
-        subject_name: 'Физика',
-        grades: [
-          {coff: 2, grade: 5, date: '24-24'},
-          {coff: 2, grade: 4, date: '25-24'},
-          {coff: 2, grade: 3, date: '27-24'},
-          {coff: 2, grade: 2, date: '28-24'},
-          {coff: 2, grade: 1, date: '29-24'}
-        ],
-        type_grade: 'new',
-        new_type_grade: 4.87,
-        old_type_grade: 5
-      },
-      {
-        subject_name: 'Химия',
-        grades: [
-          {coff: 2, grade: 5, date: '24-24'},
-          {coff: 2, grade: 4, date: '25-24'},
-          {coff: 2, grade: 3, date: '27-24'},
-          {coff: 2, grade: 2, date: '28-24'},
-          {coff: 2, grade: 1, date: '29-24'}
-        ],
-        type_grade: 'old',
-        new_type_grade: 4.87,
-        old_type_grade: 5
-      }
-    ]
-  },
-  {
-    quarterName: '3 четверть',
-    quarterDate: '24-24-2024 - 12-12-2026',
-    subjects: [
-      {
-        subject_name: 'Математика',
-        grades: [
-          {coff: 2, grade: 5, date: '24-24'},
-          {coff: 2, grade: 4, date: '25-24'},
-          {coff: 2, grade: 3, date: '27-24'},
-          {coff: 2, grade: 2, date: '28-24'},
-          {coff: 2, grade: 1, date: '29-24'}
-        ],
-        type_grade: 'new',
-        new_type_grade: 4.87,
-        old_type_grade: 5
-      }
-    ]
-  }
 ]);
 </script>
 

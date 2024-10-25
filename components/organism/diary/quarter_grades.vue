@@ -11,6 +11,7 @@ const props = defineProps({
         :key="index"
         :quarter_date="quarter.quarterDate"
         :quarter_name="quarter.quarterName"
+        :type_grade="quarter.type_grade"
         :subjects="quarter.subjects"
     />
   </div>

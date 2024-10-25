@@ -24,6 +24,7 @@ const toggleAccordion = () => {
 const props = defineProps({
   quarter_date: String,
   quarter_name: String,
+  type_grade: String,
   subjects: [{
     subject_name: String,
     grades: [{
@@ -31,7 +32,6 @@ const props = defineProps({
       grade: Number,
       date: String
     }],
-    type_grade: String,
     new_type_grade: Number,
     old_type_grade: Number
   }]
@@ -56,7 +56,7 @@ const props = defineProps({
             :new_type_grade="subject.new_type_grade"
             :old_type_grade="subject.old_type_grade"
             :subject_name="subject.subject_name"
-            :type_grade="subject.type_grade"
+            :type_grade="props.type_grade"
         />
       </div>
     </transition>

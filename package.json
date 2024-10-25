@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@telegram-apps/sdk": "^2.5.1",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
     "vue": "latest",
