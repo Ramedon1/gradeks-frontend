@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import {ref} from "vue";
+import {useDiaryState} from '~/state/diary';
+
+const {newGradeType} = useDiaryState();
 
 const props = defineProps({
   subject: String,
@@ -22,7 +25,7 @@ function handleGradeSelected(grade: number) {
 
 function chooseGradeType() {
   if (selectedGrade.value != props.type_grade) {
-    // TODO тут будет отправка запроса на сервер на изменение оценки
+    newGradeType(selectedGrade.value);
   }
   closeBottomSheet();
 }
@@ -43,9 +46,11 @@ function chooseGradeType() {
           какой системе будет высчитываться оценка для вас.
         </div>
         <div class="grade-content">
-          <MoleculeGradesTypeGrade :new_type_grade="props.new_type_grade"
-                                   :old_type_grade="props.old_type_grade"
-                                   @gradeSelected="handleGradeSelected"/>
+          <MoleculeGradesTypeGrade
+              :new_type_grade="props.new_type_grade"
+              :old_type_grade="props.old_type_grade"
+              @gradeSelected="handleGradeSelected"
+              :type_grade="props.type_grade"/>
         </div>
         <div class="buttons-container">
           <AtomUiButtonsCancel @click="closeBottomSheet"/>

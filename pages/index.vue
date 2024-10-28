@@ -1,35 +1,34 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
-import {Vue3Lottie} from "vue3-lottie";
-import DuckSticker from "@/public/animations/duck-sticker.json";
 
+import {useDiaryState} from '~/state/diary';
+
+const {new_grades, spec_diary} = storeToRefs(useDiaryState());
 const notifications = ref([
   {headline: 'New Message', message: 'You have received a new message.'},
   {headline: 'Update Available', message: 'A new update is available for download.'}
 ]);
-const new_grade_plane = [
-  { date: '2021-09-01', subject: 'Вероятность и статистика', new_grade: 5, old_grade: 4 },
-  { date: '2021-09-02', subject: 'Алгебра', new_grade: 4 },
-  { date: '2021-09-03', subject: 'Геометрия', new_grade: 5 },
-  { date: '2021-09-04', subject: 'Физика', new_grade: 3, old_grade: 2 },
-  { date: '2021-09-05', subject: 'Химия', new_grade: 4, old_grade: 3 }
-];
+
+const new_grade_plane = ref(new_grades);
 </script>
 
 <template>
-  <div v-if="new_grade_plane" class="main-content">
+  <div v-if="(new_grade_plane?.length > 0) && (spec_diary?.diary_link === true)" class="main-content">
     <OrganismDashboardTopBar :avatar_size="40"
                              :notifications="notifications"
                              avatar_url="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
     <OrganismDashboardPlatesGrid :new_grade_plane="new_grade_plane"/>
   </div>
   <div v-else class="none-content">
-    <OrganismDashboardTopBar :avatar_size="40"
-                             :notifications="notifications"
-                             avatar_url="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
-    <div class="none-new-grades">
-      <Vue3Lottie :animation-data="DuckSticker" :height="200" :width="200"/>
-      <p class="none-text subheading">Пока нету новых оценок</p>
+    <div class="none-connect" v-if="spec_diary?.diary_link === false">
+      <AtomBlocksNoneLinkDiary/>
+    </div>
+    <div v-else class="main-content">
+      <OrganismDashboardTopBar :avatar_size="40"
+                               :notifications="notifications"
+                               avatar_url="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
+      <AtomBlocksNoneGrade class="none-new-grades" header_text="Новых оценок - нет"
+                           subheader_text="Постарайся их заработать или подожди когда тебе их выставят :)"/>
     </div>
   </div>
 </template>
@@ -43,16 +42,20 @@ const new_grade_plane = [
   justify-content: center;
 }
 
-.none-new-grades {
-  text-align: center;
-  background-color: rgba(234, 234, 234, 0.57);
-  border-radius: 20px;
-  padding: 30px;
-  margin: 30px auto auto;
+.none-connect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
 }
 
-.none-text {
-  font-size: 25px;
+.none-new-grades {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
 }
 
 .main-content {

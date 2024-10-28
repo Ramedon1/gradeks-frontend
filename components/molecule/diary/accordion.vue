@@ -41,8 +41,10 @@ const props = defineProps({
 
 <template>
   <button :class="['accordion', { active: isActive, 'padding-active': isActive }]" @click="toggleAccordion">
-    <span class="quarter-name">{{ props.quarter_name }}</span>
-    <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
+    <span class="container">
+      <span class="quarter-name">{{ props.quarter_name }}</span>
+      <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
+    </span>
     <AtomQuarterGradesChevronArrow :isActive="isActive"/>
   </button>
 
@@ -64,6 +66,13 @@ const props = defineProps({
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 380px;
+}
+
 .panel-content {
   padding: 10px 12px;
 }
@@ -71,6 +80,7 @@ const props = defineProps({
 .accordion {
   display: flex;
   padding: 12px;
+  flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
   background: #11241c;
@@ -107,5 +117,11 @@ const props = defineProps({
 
 .panel.open {
   height: auto;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 340px;
+  }
 }
 </style>

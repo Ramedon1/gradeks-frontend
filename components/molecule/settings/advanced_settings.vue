@@ -2,8 +2,8 @@
   <div class="advanced-settings">
     <AtomSettingsSubheading text="Дополнительные настройки"/>
     <div class="advanced-buttons">
-      <AtomSettingsButton href="/privacy-policy" text="Политика конфиденциальности"/>
-      <AtomSettingsButton href="/rules" text="Правила и условия пользования"/>
+      <AtomSettingsButton :switch="null"href="/privacy-policy" text="Политика конфиденциальности"/>
+      <AtomSettingsButton :switch="null" href="/rules" text="Правила и условия пользования"/>
     </div>
   </div>
 </template>

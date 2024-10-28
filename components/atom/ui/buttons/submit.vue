@@ -15,7 +15,7 @@ const props = defineProps({
 
 <style scoped>
 .submit-button {
-  width: 55%;
+  width: 100%;
   height: 55px;
   padding: 8px 12px;
   border: none;

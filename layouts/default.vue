@@ -5,7 +5,11 @@ import {useDiaryState} from "~/state/diary";
 import {storeToRefs} from "pinia";
 import {useAuthStore} from "~/state/auth";
 
-
+const {authenticated, error} = storeToRefs(useAuthStore());
+const {diary_loaded} = storeToRefs(useDiaryState());
+import {Vue3Lottie} from "vue3-lottie";
+import Loading from "@/public/animations/loading-gray.json";
+import Unauthorized from "~/pages/unauthorized.vue";
 
 const route = useRoute();
 const hideNavbar = computed(() => {
@@ -16,20 +20,42 @@ const hideNavbar = computed(() => {
 
 <template>
   <div id="container">
-    <div id="view">
+    <div id="view" v-if="((authenticated || error.detail) && diary_loaded) ">
+      <!--      <div class="logo-container">-->
+      <!--        <AtomUiLogo/>-->
+      <!--      </div>-->
       <NuxtPage/>
     </div>
-    <div v-if="!hideNavbar" id="nav">
+    <div v-else>
+      <template v-if="route.path === '/unauthorized'">
+        <Unauthorized error_name="Ой, что то пошло не так"
+                      error_solution="Попробуйте чуть позже, или обратитесь к разработчику"/>
+      </template>
+      <div v-else>
+        <Vue3Lottie :animation-data="Loading"
+                    :height="200"
+                    :width="200"
+        />
+      </div>
+    </div>
+    <div v-if="!hideNavbar && ((authenticated || error.detail) && diary_loaded)" id="nav">
       <MoleculeNavbar/>
     </div>
   </div>
 </template>
 
 <style scoped>
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+
 :global(body) {
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   height: 100vh;
+  background-color: white;
 }
 
 #container {

@@ -1,19 +1,30 @@
 <script lang="ts" setup>
+import {computed} from 'vue';
+
 const props = defineProps({
   quarters: Array
+});
+
+const filteredQuarters = computed(() => {
+  return props.quarters.filter(quarter => quarter.subjects.length > 0);
 });
 </script>
 
 <template>
   <div class="quarter-grades">
-    <MoleculeDiaryAccordion
-        v-for="(quarter, index) in props.quarters"
-        :key="index"
-        :quarter_date="quarter.quarterDate"
-        :quarter_name="quarter.quarterName"
-        :type_grade="quarter.type_grade"
-        :subjects="quarter.subjects"
-    />
+    <template v-if="filteredQuarters.length > 0">
+      <MoleculeDiaryAccordion
+          v-for="(quarter, index) in filteredQuarters"
+          :key="index"
+          :quarter_name="quarter.quarter_name"
+          :quarter_date="quarter.quarter_date"
+          :type_grade="quarter.type_grade"
+          :subjects="quarter.subjects"
+      />
+    </template>
+    <div v-else class="nothing-grades">
+      <AtomUiNothingGrades/>
+    </div>
   </div>
 </template>
 

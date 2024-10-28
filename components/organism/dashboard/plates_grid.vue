@@ -5,14 +5,15 @@ const props = defineProps({
 </script>
 
 <template>
-  <p class="subheading">Новые оценки</p>
+  <p class="subheading">Новые оценки за сегодня</p>
   <div class="grade-container">
     <MoleculeNewGradePlate
         v-for="(grade, index) in props.new_grade_plane"
         :key="index"
         :date="grade.date"
-        :new_grade="grade.new_grade"
-        :old_grade="grade.old_grade"
+        :weight="grade.coff"
+        :new_grade="grade.grade"
+        :old_grade="grade.old_grade !== null ? grade.old_grade : undefined"
         :subject="grade.subject"
     />
   </div>

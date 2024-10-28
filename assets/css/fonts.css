@@ -11,6 +11,13 @@
 }
 
 @font-face {
+    font-family: 'PFEncoreSansPro-Medium';
+    src: url('/assets/fonts/PFEncoreSansPro-Medium.ttf') format('truetype');
+    font-style: normal;
+
+}
+
+@font-face {
     font-family: 'date-grades';
     src: url('/assets/fonts/DMSans_24pt-Black.ttf') format('truetype');
     font-style: normal;

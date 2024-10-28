@@ -15,5 +15,7 @@ const props = defineProps({
   margin: 0;
   text-align: center;
   font-size: 24px;
+  max-width: 370px;
+  overflow: hidden;
 }
 </style>

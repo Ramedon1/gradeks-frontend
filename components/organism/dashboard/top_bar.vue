@@ -8,6 +8,10 @@ const props = defineProps({
   }
 });
 
+import { useAuthStore } from '~/state/auth';
+
+const { userInfo } = storeToRefs(useAuthStore());
+
 </script>
 
 <template>
@@ -16,7 +20,7 @@ const props = defineProps({
       <AtomUiProfileAvatar :size="props.avatar_size" :url_img="props.avatar_url"/>
       <!-- <OrganismNotificationBellBottomSheet :notifications="notifications" header="Оповещения"/> -->
      </div>
-     <AtomTextsWelcome name="Алиса"/>
+     <AtomTextsWelcome :name="userInfo?.first_name"/>
    </div>
  </template>
 

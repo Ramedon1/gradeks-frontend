@@ -1,20 +1,21 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import getGradeColor from "assets/js/functions";
 
 const props = defineProps({
   new_type_grade: Number,
   old_type_grade: Number,
+  type_grade: String,
 });
 
 const emit = defineEmits(['gradeSelected']);
 
-const is_new_type_grade = ref(true);
+const is_new_type_grade = ref(props.type_grade === 'new');
 
 function toggleGrade(gradeType: 'new' | 'old') {
   if (gradeType === 'new') {
     is_new_type_grade.value = true;
-    emit('gradeSelected','new');
+    emit('gradeSelected', 'new');
   } else {
     is_new_type_grade.value = false;
     emit('gradeSelected', 'old');
@@ -23,6 +24,10 @@ function toggleGrade(gradeType: 'new' | 'old') {
 
 const newGradeColor = computed(() => (is_new_type_grade.value ? getGradeColor(props.new_type_grade) : 'gray'));
 const oldGradeColor = computed(() => (!is_new_type_grade.value ? getGradeColor(props.old_type_grade) : 'gray'));
+
+watch(() => props.type_grade, (newTypeGrade) => {
+  is_new_type_grade.value = newTypeGrade === 'new';
+});
 </script>
 
 <template>

@@ -17,6 +17,8 @@ const props = defineProps({
   font-size: 26px;
   font-weight: 600;
   width: 100%;
+  max-width: 560px;
+  overflow: hidden;
   line-height: 26px;
 }
 </style>

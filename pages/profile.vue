@@ -1,7 +1,14 @@
+<script setup lang="ts">
+import { useAuthStore } from '~/state/auth';
+
+const { userInfo } = storeToRefs(useAuthStore());
+
+</script>
+
 <template>
   <div class="profile-content">
     <OrganismProfileTopBar/>
-    <MoleculeProfileContainer name="Алиса"
+    <MoleculeProfileContainer :name="userInfo?.first_name"
                               url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
     <div class="settings-container">
       <MoleculeSettingsList/>

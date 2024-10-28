@@ -10,7 +10,6 @@ const props = defineProps({
     date: String
   }]
 });
-
 </script>
 
 <template>

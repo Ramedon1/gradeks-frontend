@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { useDiaryState } from '~/state/diary';
 
 const props = defineProps({
   switchState: Boolean,
 });
+const { activateDistribution, deactivateDistribution } = useDiaryState();
 
 const debouncedSwitchState = ref(props.switchState);
 let debounceTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -16,7 +18,11 @@ watch(() => props.switchState, (newVal) => {
 
   debounceTimeout = setTimeout(() => {
     debouncedSwitchState.value = newVal;
-    // TODO отработка запроса свитча
+    if (newVal == true) {
+      activateDistribution();
+    } else {
+      deactivateDistribution();
+    }
   }, 300);
 });
 </script>

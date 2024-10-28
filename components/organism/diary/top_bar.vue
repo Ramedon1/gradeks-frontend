@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import {Vue3Lottie} from "vue3-lottie";
+import Duck from "@/public/animations/duck-report.json";
+
 const props = defineProps({
   notifications: {
     headline: String,
@@ -9,11 +12,16 @@ const props = defineProps({
 
 <template>
   <div class="top-bar-container">
+    <Vue3Lottie
+        :animation-data="Duck"
+        :height="150"
+        :width="150"
+    />
     <div class="top-bar">
-      <AtomTextsHeaderText text="Успеваемость"/>
+      <AtomTextsHeaderText style="text-align: center" text="Успеваемость"/>
       <!-- <OrganismNotificationBellBottomSheet :notifications="notifications" header="Оповещения"/> -->
     </div>
-    <AtomTextsDiaryPraiseText/>
+    <AtomTextsDiaryPraiseText style="text-align: center"/>
   </div>
 </template>
 
