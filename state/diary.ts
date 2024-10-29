@@ -55,7 +55,7 @@ export const useDiaryState = defineStore('diary', {
     actions: {
         async loadAllDiary() {
             try {
-                const {data, status, error}: any = await useFetch('http://localhost:8000/user/me', {
+                const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/user/me', {
                     method: 'get',
                     headers: {'Authorization': 'Bearer ' + this.access_token},
                 });
@@ -80,7 +80,7 @@ export const useDiaryState = defineStore('diary', {
         },
         async activateDistribution() {
             try {
-                const {data, status, error}: any = await useFetch('http://localhost:8000/distribution/activate', {
+                const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/distribution/activate', {
                     method: 'post',
                     headers: {'Authorization': 'Bearer ' + this.access_token},
                 });
@@ -98,7 +98,7 @@ export const useDiaryState = defineStore('diary', {
         },
         async deactivateDistribution() {
             try {
-                const {data, status, error}: any = await useFetch('http://localhost:8000/distribution/deactivate', {
+                const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/distribution/deactivate', {
                     method: 'post',
                     headers: {'Authorization': 'Bearer ' + this.access_token},
                 });
@@ -116,7 +116,7 @@ export const useDiaryState = defineStore('diary', {
         },
         async getNewGrades() {
             try {
-                const {data, status, error}: any = await useFetch('http://localhost:8000/grade/new', {
+                const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/grade/new', {
                     method: 'get',
                     headers: {'Authorization': 'Bearer ' + this.access_token},
                 });
@@ -134,7 +134,7 @@ export const useDiaryState = defineStore('diary', {
         },
         async newGradeType(grade_type: string) {
             try {
-                const { data, status, error }: any = await useFetch(`http://localhost:8000/grade/change/${grade_type}`, {
+                const { data, status, error }: any = await useFetch(`https://api.gradeks.xyz/grade/change/${grade_type}`, {
                     method: 'post',
                     headers: { 'Authorization': 'Bearer ' + this.access_token },
                 });
@@ -155,7 +155,7 @@ export const useDiaryState = defineStore('diary', {
         },
         async connectDiary(diary_id: string) {
             try {
-                const { data, status, error }: any = await useFetch(`http://localhost:8000/user/link`, {
+                const { data, status, error }: any = await useFetch(`https://api.gradeks.xyz/user/link`, {
                     method: 'post',
                     headers: { 'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json' },
                     body: {

@@ -39,7 +39,7 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async authenticateUser({telegram_data, version, platform}: UserLoginInterface) {
             try {
-                const {data, status, error}: any = await useFetch('http://localhost:8000/user/login', {
+                const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/user/login', {
                     method: 'post',
                     headers: {'Content-Type': 'application/json'},
                     body: {
