@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
   avatar_size: Number,
-  avatar_url: String,
   notifications: {
     headline: String,
     message: String
@@ -17,7 +16,7 @@ const { userInfo } = storeToRefs(useAuthStore());
 <template>
   <div class="greeting-bar">
     <div class="top-bar">
-      <AtomUiProfileAvatar :size="props.avatar_size" :url_img="props.avatar_url"/>
+      <AtomUiProfileAvatar :size="props.avatar_size"/>
       <!-- <OrganismNotificationBellBottomSheet :notifications="notifications" header="Оповещения"/> -->
      </div>
      <AtomTextsWelcome :name="userInfo?.first_name"/>

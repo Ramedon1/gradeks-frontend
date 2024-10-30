@@ -45,7 +45,7 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
 <template>
   <div class="edit-profile-container">
     <div @click="openBottomSheet">
-      <slot> </slot>
+      <slot></slot>
     </div>
     <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event">
       <AtomTextsHeaderBottomSheet header="Редактирование профиля"/>

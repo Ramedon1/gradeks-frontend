@@ -16,8 +16,7 @@ const data = ref(diary_info.value);
 
 <template>
   <div v-if="spec_diary?.diary_link != false" class="diary-content">
-    <OrganismDiaryTopBar :notifications="notifications"
-                         avatar_url="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
+    <OrganismDiaryTopBar :notifications="notifications"/>
     <OrganismDiaryQuarterGrades :quarters="data"/>
   </div>
   <div v-else class="none-content">
@@ -35,13 +34,6 @@ const data = ref(diary_info.value);
   justify-content: center;
 }
 
-.none-connect {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-}
 
 .diary-content {
   display: flex;

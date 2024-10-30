@@ -8,18 +8,18 @@ import duckJSON from "public/animations/duck-link.json";
     <div class="top-bar">
       <AtomUiLogo style="margin: auto auto 30px;" />
       <Vue3Lottie :animation-data="duckJSON"
-                  :height="200"
-                  :width="200"
+                  :height="150"
+                  :width="150"
       />
     </div>
     <div class="none-link-texts">
       <p class="none-link-text-main">Настройте свой дневник</p>
       <p class="none-link-text">Подключайте электронный дневник Оренбуржья и отслеживайте свои оценки!</p>
     </div>
-      <MoleculeProfileEditProfile>
-        <AtomUiButtonsSubmit style="width: 100%" text="Настроить" />
-      </MoleculeProfileEditProfile>
   </div>
+  <MoleculeProfileEditProfile>
+    <AtomUiButtonsSubmit style="width: 100%" text="Настроить" />
+  </MoleculeProfileEditProfile>
 
 </template>
 

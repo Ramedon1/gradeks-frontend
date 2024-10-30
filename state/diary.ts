@@ -162,7 +162,6 @@ export const useDiaryState = defineStore('diary', {
                         diary_id: diary_id
                     }
                 });
-                console.log(diary_id);
                 if (data.value) {
                     this.spec_diary = data.value;
                     return { status: "ok" };
@@ -176,5 +175,5 @@ export const useDiaryState = defineStore('diary', {
                 return {status: "error", error: errorMessage};
             }
         }
-    },
+    }
 });

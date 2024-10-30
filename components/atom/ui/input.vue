@@ -13,7 +13,7 @@ const pasteFromClipboard = async () => {
       inputElement.value = text;
     }
   } catch (err) {
-    console.error(err);
+
   }
 };
 </script>
