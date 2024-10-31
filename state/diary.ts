@@ -61,8 +61,7 @@ export const useDiaryState = defineStore('diary', {
                 });
 
                 if (data.value) {
-                    this.diary_loaded = true;
-
+                    this.diary_loaded = data.value.is_active === true;
                     this.spec_diary = data.value.spec_diary;
                     this.diary_info = data.value.diary_info;
                     this.distribution = data.value.distribution;
