@@ -92,7 +92,7 @@ function handleClick(event: Event) {
 
 @media (max-width: 320px) {
   .button-text {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 </style>

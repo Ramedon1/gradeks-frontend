@@ -71,7 +71,10 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
     <AtomUiBottomSheet :visible="isBottomSheetVisible" :blocked="loading"
                        @update:visible="isBottomSheetVisible = $event">
       <div v-if="loading == false" class="container-loading">
-        <AtomTextsHeaderBottomSheet header="Редактирование профиля"/>
+        <AtomTextsHeaderBottomSheet style="text-align: center; margin-bottom: 15px" header="Редактирование профиля"/>
+        <NuxtLink class="instruction" to="https://telegra.ph/Instrukciya-po-privyazke-ehlektronnogo-dnevnika-deeduorbru-k-Gradeks-11-02">
+          <p style="  margin-bottom: 15px; margin-top: 0" >Инструкция по привязке дневника к Gradeks</p>
+        </NuxtLink>
         <div class="edit-content-container">
           <AtomUiInput
               id="student_id"
@@ -99,6 +102,17 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
 </template>
 
 <style scoped>
+.instruction {
+  text-align: center;
+  font-family: PFEncoreSansPro-Regular, serif;
+  text-decoration: underline;
+  opacity: 0.5;
+}
+.instruction:visited {
+  color: #000000;
+}
+
+
 .loading-text {
   text-align: center;
   font-family: PFEncoreSansPro-Regular, serif;

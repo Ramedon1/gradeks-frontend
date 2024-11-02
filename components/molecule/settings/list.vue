@@ -6,7 +6,7 @@ const { distribution } = storeToRefs(useDiaryState())
 <template>
   <div class="settings-list">
     <AtomSettingsButton :switch="distribution" icon-name="bell" text="Оповещение о новых оценках"/>
-    <AtomSettingsButton :switch="null" redirect="https://t.me/ramedon" icon-name="alert" text="Сообщить о проблеме"/>
+    <AtomSettingsButton :switch="null" redirect="https://t.me/gradeks_support_bot" icon-name="alert" text="Сообщить о проблеме"/>
   </div>
 </template>
 
