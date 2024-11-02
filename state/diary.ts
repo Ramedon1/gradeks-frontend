@@ -143,13 +143,17 @@ export const useDiaryState = defineStore('diary', {
                         this.diary_info.forEach(diary => {
                             diary.type_grade = data.value.grade_type;
                         });
+
+                        return { status: "ok" };
                     }
                 } else {
                     console.error(`API error: ${error?.statusCode}`);
-                    this.error = data?.value?.detail || 'Unknown error occurred';
+                    const errorMessage = error?._object[error?._key]?.data?.detail || 'Unknown error occurred';
+                    return {status: "error", error: errorMessage};
                 }
             } catch (error: any) {
-                this.error = error?.message || 'Something went wrong. Please try again later.';
+                const errorMessage = error?._object[error?._key]?.data?.detail || 'Something went wrong. Please try again later.';
+                return {status: "error", error: errorMessage};
             }
         },
         async connectDiary(diary_id: string) {

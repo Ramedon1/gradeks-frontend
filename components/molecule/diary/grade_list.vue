@@ -28,7 +28,8 @@ const props = defineProps({
   overflow-x: auto;
   overflow-y: hidden;
   align-items: center;
-  height: 60px;
+  height: 50px;
+  margin-bottom: 20px;
   gap: 8px;
   align-self: stretch;
   white-space: nowrap;

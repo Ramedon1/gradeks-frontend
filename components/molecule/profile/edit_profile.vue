@@ -68,7 +68,8 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
     <div @click="openBottomSheet">
       <slot></slot>
     </div>
-    <AtomUiBottomSheet :visible="isBottomSheetVisible" :blocked="loading" @update:visible="isBottomSheetVisible = $event">
+    <AtomUiBottomSheet :visible="isBottomSheetVisible" :blocked="loading"
+                       @update:visible="isBottomSheetVisible = $event">
       <div v-if="loading == false" class="container-loading">
         <AtomTextsHeaderBottomSheet header="Редактирование профиля"/>
         <div class="edit-content-container">
@@ -91,13 +92,19 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
                     :height="150"
                     :width="150"
         />
-        <p>Этот процесс займет немного времени</p>
+        <p class="loading-text">Этот процесс займет немного времени</p>
       </div>
     </AtomUiBottomSheet>
   </div>
 </template>
 
 <style scoped>
+.loading-text {
+  text-align: center;
+  font-family: PFEncoreSansPro-Regular, serif;
+  opacity: 0.4;
+}
+
 .edit-content-container {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {ref} from "vue";
 import {useDiaryState} from '~/state/diary';
+import {addToast} from "~/composables/toast";
 
 const {newGradeType} = useDiaryState();
 
@@ -19,15 +20,32 @@ const {
 
 const selectedGrade = ref(props.type_grade);
 
+globalThis.addToast = addToast;
+
+const showToast = (text: string, type: 'success' | 'error' | 'info') => {
+  globalThis.addToast(text, type);
+};
+
+
 function handleGradeSelected(grade: number) {
   selectedGrade.value = grade;
 }
 
-function chooseGradeType() {
+async function chooseGradeType() {
   if (selectedGrade.value != props.type_grade) {
-    newGradeType(selectedGrade.value);
+    try {
+      const response = await newGradeType(selectedGrade.value);
+      if (response.status === 'ok') {
+        showToast('Тип оценок успешно изменен', 'success');
+      } else {
+        showToast(response.error, 'error');
+      }
+    } catch (error) {
+      showToast('Ошибка при при изменении типа оценок', 'error');
+    } finally {
+      closeBottomSheet();
+    }
   }
-  closeBottomSheet();
 }
 </script>
 

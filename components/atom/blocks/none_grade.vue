@@ -12,8 +12,8 @@ const props = defineProps({
   <div class="none-grade">
     <div class="top-bar">
       <Vue3Lottie :animation-data="DuckSticker"
-                  :height="200"
-                  :width="200"
+                  :height="180"
+                  :width="180"
       />
     </div>
     <div class="none-grade-texts">
@@ -51,5 +51,17 @@ const props = defineProps({
   justify-content: center;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-height: 650px) {
+  .none-grade{
+    margin-top: 50px;
+  }
+  .none-grade-text-main {
+    font-size: 20px;
+  }
+  .none-grade-text {
+    font-size: 13px;
+  }
 }
 </style>

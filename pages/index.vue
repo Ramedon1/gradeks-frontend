@@ -28,10 +28,12 @@ const new_grade_plane = ref(new_grades);
       <AtomBlocksNoneLinkDiary/>
     </div>
     <div v-else class="main-content">
-      <OrganismDashboardTopBar :avatar_size="40"
-                               :notifications="notifications"/>
-      <AtomBlocksNoneGrade class="none-new-grades" header_text="Новых оценок - нет"
-                           subheader_text="Постарайся их заработать или подожди когда тебе их выставят :)"/>
+      <div class="none-grade">
+        <OrganismDashboardTopBar :avatar_size="40"
+                                 :notifications="notifications"/>
+        <AtomBlocksNoneGrade class="none-new-grades" header_text="Новых оценок - нет"
+                             subheader_text="Постарайся их заработать или подожди когда тебе их выставят :)"/>
+      </div>
     </div>
   </div>
 </template>
