@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Unauthorized from "~/pages/unauthorized.vue";
+const Unauthorized = defineAsyncComponent(() => import("~/pages/unauthorized.vue"));
 </script>
 
 <template>

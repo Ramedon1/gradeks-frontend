@@ -23,12 +23,13 @@ watch(
 );
 
 const iconComponent = computed(() => {
-  if (props.iconName) {
-    return defineAsyncComponent(() =>
-        import(`@/components/atom/icons/${props.iconName}.vue`)
-    );
-  }
-  return null;
+  return defineAsyncComponent(() =>
+      import(
+          props.iconName
+              ? `@/components/atom/icons/${props.iconName}.vue`
+              : '@/components/atom/icons/arrow_right.vue'
+          )
+  );
 });
 
 function styleText() {
@@ -36,12 +37,7 @@ function styleText() {
 }
 
 function handleRedirect() {
-  if (props.redirect) {
-    return props.redirect;
-  }
-  else {
-    return props.href;
-  }
+  return props.redirect || props.href;
 }
 
 function handleClick(event: Event) {
@@ -55,7 +51,7 @@ function handleClick(event: Event) {
 <template>
   <NuxtLink @click="handleClick" :to="handleRedirect()" class="button-container">
     <div class="info-container">
-      <component :is="iconComponent" v-if="iconComponent" />
+      <component :is="iconComponent" v-if="props.iconName != null" />
       <p :style="{ color: styleText() }" class="button-text">{{ text }}</p>
     </div>
     <AtomUiSwitch

@@ -8,8 +8,7 @@ const { userInfo } = storeToRefs(useAuthStore());
 <template>
   <div class="profile-content">
     <OrganismProfileTopBar/>
-    <MoleculeProfileContainer :name="userInfo?.first_name"
-                              url_img="https://ss.sport-express.ru/userfiles/materials/202/2021794/full.jpg"/>
+    <MoleculeProfileContainer :name="userInfo?.first_name"/>
     <div class="settings-container">
       <MoleculeSettingsList/>
       <MoleculeSettingsAdvancedSettings/>

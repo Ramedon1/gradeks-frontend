@@ -11,6 +11,12 @@ const props = defineProps({
 </template>
 
 <style scoped>
+@media (max-width: 374px) {
+  .date-text {
+    font-size: 10px;
+  }
+}
+
 .date-text {
   color: rgba(17, 36, 28, 0.65);
   text-align: center;

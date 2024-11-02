@@ -9,8 +9,14 @@ const props = defineProps({
 </template>
 
 <style scoped>
+@media (max-width: 374px) {
+  .subject-grade {
+    font-size: 16px;
+  }
+}
+
 .subject {
-  margin: 0;
+  margin: 0 0 2%;
   display: -webkit-box;
   word-wrap: break-word;
   -webkit-box-orient: vertical;

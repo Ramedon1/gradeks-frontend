@@ -162,7 +162,9 @@ export const useDiaryState = defineStore('diary', {
                     }
                 });
                 if (data.value) {
-                    this.spec_diary = data.value;
+                    this.spec_diary = data.value.spec_diary;
+                    this.diary_info = data.value.diary_info;
+
                     return { status: "ok" };
                 } else {
                     console.error(`API error: ${error?.statusCode}`);

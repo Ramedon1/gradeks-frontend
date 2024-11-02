@@ -3,6 +3,7 @@ import {ref, watch} from 'vue';
 
 const props = defineProps({
   visible: Boolean,
+  blocked: Boolean,
 });
 
 const emit = defineEmits<{
@@ -17,11 +18,13 @@ const isDragging = ref(false);
 const isAnimating = ref(false);
 
 function close() {
-  emit('update:visible', false);
+  if (!props.blocked) {
+    emit('update:visible', false);
+  }
 }
 
 function handleTouchStart(event: TouchEvent) {
-  if (event.touches.length > 0) {
+  if (event.touches.length > 0 && !props.blocked) {
     isDragging.value = true;
     isAnimating.value = false;
     initialY.value = event.touches[0].clientY;
@@ -33,7 +36,7 @@ function handleTouchStart(event: TouchEvent) {
 }
 
 function handleTouchMove(event: TouchEvent) {
-  if (isDragging.value && event.touches.length > 0) {
+  if (isDragging.value && event.touches.length > 0 && !props.blocked) {
     const touchY = event.touches[0].clientY;
     translateY.value = Math.max(0, touchY - initialY.value);
     if (bottomSheetRef.value) {
@@ -43,6 +46,10 @@ function handleTouchMove(event: TouchEvent) {
 }
 
 function handleTouchEnd() {
+  if (props.blocked) {
+    return;
+  }
+
   isDragging.value = false;
   isAnimating.value = true;
 

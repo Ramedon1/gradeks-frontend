@@ -74,7 +74,7 @@ const props = defineProps({
 }
 
 .panel-content {
-  padding: 10px 12px;
+  padding: 20px 12px;
 }
 
 .accordion {

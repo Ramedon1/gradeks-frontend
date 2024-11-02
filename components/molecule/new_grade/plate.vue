@@ -47,11 +47,11 @@ const {
 
 .plate {
   display: flex;
-  width: 150px;
+  width: 170px;
   background-color: #EDF1EF;
   border-radius: 10px;
-  height: 126.333px;
-  padding: 8px;
+  height: 150.333px;
+  padding: 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;

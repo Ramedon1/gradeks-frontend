@@ -11,6 +11,7 @@ import {Vue3Lottie} from "vue3-lottie";
 import Loading from "@/public/animations/loading-gray.json";
 import Unauthorized from "~/pages/unauthorized.vue";
 import Blocked from "~/pages/blocked.vue";
+import ToastContainer from '~/components/organism/notification/toast_manager.vue';
 
 const route = useRoute();
 const hideNavbar = computed(() => {
@@ -25,6 +26,7 @@ const hideNavbar = computed(() => {
       <!--      <div class="logo-container">-->
       <!--        <AtomUiLogo/>-->
       <!--      </div>-->
+      <ToastContainer/>
       <NuxtPage/>
     </div>
     <div v-else>
