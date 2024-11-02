@@ -107,6 +107,7 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
   font-family: PFEncoreSansPro-Regular, serif;
   text-decoration: underline;
   opacity: 0.5;
+  color: black;
 }
 .instruction:visited {
   color: #000000;
