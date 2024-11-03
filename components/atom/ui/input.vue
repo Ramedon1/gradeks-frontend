@@ -6,14 +6,10 @@ const props = defineProps({
 });
 
 const pasteFromClipboard = async () => {
-  try {
-    const text = await navigator.clipboard.readText();
-    const inputElement = document.getElementById(props.id) as HTMLInputElement;
-    if (inputElement) {
-      inputElement.value = text;
-    }
-  } catch (err) {
-
+  const text = await navigator.clipboard.readText();
+  const inputElement = document.getElementById(props.id) as HTMLInputElement;
+  if (inputElement) {
+    inputElement.value = text;
   }
 };
 </script>
@@ -60,6 +56,7 @@ const pasteFromClipboard = async () => {
   position: absolute;
   right: 10px;
   height: 100%;
+  user-select: none;
   padding: 0 12px;
   margin: 0;
   border-radius: 8px;
