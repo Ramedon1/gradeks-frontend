@@ -23,12 +23,11 @@ const hideNavbar = computed(() => {
 });
 
 const theme = getSettings('theme');
-console.log(themeParams);
 
 
 if (theme === 'telegram') {
   if (themeParams.value.hint_color) {
-    applyTheme(theme);
+    applyTheme('telegram');
   } else {
     applyTheme('white');
   }

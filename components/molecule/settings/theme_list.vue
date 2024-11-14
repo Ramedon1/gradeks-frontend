@@ -26,7 +26,6 @@ const selectTheme = (theme: string) => {
 };
 
 watch(() => selectedTheme.value, (newVal) => {
-  console.log('selectedTheme', newVal);
   if (newVal === 'telegram') {
     if (themeParams.value.hint_color) {
       applyTheme(`${newVal}`);
