@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import getGradeColor from '@/assets/js/functions.js';
+import {getGradeColor} from '@/assets/js/functions.js';
 
 const props = defineProps({
   type_grade: String,

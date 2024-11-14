@@ -1,35 +1,37 @@
-<script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useDiaryState } from '~/state/diary';
+<script lang="ts" setup>
+import { ref, watch, onMounted } from 'vue';
 
 const props = defineProps({
   switchState: Boolean,
+  activateFunction: Function,
+  deactivateFunction: Function,
 });
-const { activateDistribution, deactivateDistribution } = useDiaryState();
 
 const debouncedSwitchState = ref(props.switchState);
 let debounceTimeout: ReturnType<typeof setTimeout> | null = null;
 
-watch(() => props.switchState, (newVal) => {
 
+watch(() => props.switchState, (newVal) => {
   if (debounceTimeout) {
     clearTimeout(debounceTimeout);
   }
 
   debounceTimeout = setTimeout(() => {
     debouncedSwitchState.value = newVal;
-    if (newVal == true) {
-      activateDistribution();
+    if (newVal === true) {
+      props.activateFunction && props.activateFunction();
     } else {
-      deactivateDistribution();
+      props.deactivateFunction && props.deactivateFunction();
     }
-  }, 300);
+  }, 500);
 });
 </script>
 
+
+
 <template>
   <label class="switch">
-    <input type="checkbox" v-model="props.switchState" :disabled="debouncedSwitchState !== props.switchState">
+    <input v-model="props.switchState" :disabled="debouncedSwitchState !== props.switchState" type="checkbox">
     <span class="slider round"></span>
   </label>
 </template>
@@ -73,11 +75,11 @@ watch(() => props.switchState, (newVal) => {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: var(--theme-accent-text-color-blue);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px var(--theme-accent-text-color-blue);
 }
 
 input:checked + .slider:before {

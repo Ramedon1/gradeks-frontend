@@ -1,6 +1,7 @@
 import {mockTelegramEnv, parseInitData, retrieveLaunchParams} from "@telegram-apps/sdk";
 import {useAuthStore, type UserLoginInterface} from "../state/auth";
 import {useDiaryState} from "../state/diary";
+import {getSettings, initializeDefaults} from "~/composables/useLocalStorage";
 
 const initDataRawMocked = "user=%7B%22id%22%3A646667177%2C%22first_name%22%3A%22Ramedon%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22ramedon%22%2C%22language_code%22%3A%22ru%22%2C%22is_premium%22%3Atrue%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1721852541&hash=c20ac1ed9427e3ebae1c03ca2b01d518482289fa1ecfc0721690bb9df480b80c"
 
@@ -20,7 +21,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
                 sectionBgColor: '#17212b',
                 sectionHeaderTextColor: '#6ab3f3',
                 subtitleTextColor: '#708499',
-                textColor: '#f5f5f5',
+                textColor: '#000000',
             },
             initData: parseInitData(initDataRawMocked),
             initDataRaw: initDataRawMocked,
@@ -35,7 +36,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
     const { authenticated, error, loginData } = storeToRefs(useAuthStore());
 
-    const { loadAllDiary, getNewGrades } = useDiaryState()
+    const { loadAllDiary } = useDiaryState()
     const { access_token } = storeToRefs(useDiaryState())
 
     const login = async () => {
@@ -47,7 +48,11 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
         access_token.value = loginData.value?.access_token || null
 
-        await loadAllDiary()
+
+        await initializeDefaults()
+
+        const period_name = await getSettings('filter') || 'quarter';
+        await loadAllDiary(period_name);
     };
 
     // Пытаемся авторизоваться, если это не страница ошибки и мы ещё не авторизованы

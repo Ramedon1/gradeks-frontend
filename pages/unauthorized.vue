@@ -41,19 +41,21 @@ function redirect() {
 <style scoped>
 .button-reload {
   backdrop-filter: blur(20px);
-  background-color: #303030;
+  background-color: var(--theme-accent-text-color-gray);
   padding: 8px 20px;
   border-radius: 15px;
 }
 .unauthorized-subtext {
   font-family: "PFEncoreSansPro-Regular", serif;
   font-size: 16px;
+  color: var(--theme-subtitle-text-color-black);
   margin: 0 0 12px;
 }
 
 .unauthorized-text {
   font-family: "PFEncoreSansPro-Black", serif;
   font-size: 20px;
+  color: var(--theme-text-color-black);
   margin: 30px 0 10px;
 }
 

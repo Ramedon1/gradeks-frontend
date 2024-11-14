@@ -9,7 +9,7 @@
 <style scoped>
 .praise {
   margin: 0;
-  color: rgba(17, 36, 28, 0.80);
+  color: var(--theme-subtitle-text-color-green);
   font-family: "PFEncoreSansPro-Regular", serif;
   font-size: 18px;
   font-weight: 500;

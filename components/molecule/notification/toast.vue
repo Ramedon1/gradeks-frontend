@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {Vue3Lottie} from 'vue3-lottie'
 
 import approveJSON from '~/public/animations/approve.json'
@@ -33,11 +33,11 @@ const animationData = {
   <div class="toast" @click="remove">
     <Vue3Lottie
         v-if="animationData[type]"
-        class="lottie"
         :animation-data="animationData[type].data"
         :height="animationData[type].height"
-        :width="animationData[type].width"
         :loop="false"
+        :width="animationData[type].width"
+        class="lottie"
     />
     <slot/>
   </div>
@@ -56,7 +56,7 @@ const animationData = {
   color: white;
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
-  background-color: #11241c;
+  background-color: var(--theme-button-text-color-green);
   cursor: pointer;
   z-index: 1002;
   width: 250px;

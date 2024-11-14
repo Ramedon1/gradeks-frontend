@@ -26,6 +26,7 @@ import DuckDev from "~/public/animations/duck-block.json";
 .blocked-hide {
   font-family: "PFEncoreSansPro-Regular", serif;
   font-size: 10px;
+  color: var(--theme-hint-color-black);
   opacity: 0.4;
   margin: 0 0 12px;
 }
@@ -33,6 +34,7 @@ import DuckDev from "~/public/animations/duck-block.json";
 .blocked-subtext {
   font-family: "PFEncoreSansPro-Regular", serif;
   font-size: 16px;
+  color: var(--theme-subtitle-text-color-black);
   margin: 0 0 12px;
 }
 
@@ -40,6 +42,7 @@ import DuckDev from "~/public/animations/duck-block.json";
   font-family: "PFEncoreSansPro-Black", serif;
   font-size: 20px;
   margin: 30px 0 10px;
+  color: var(--theme-text-color-black);
 }
 
 .texts {

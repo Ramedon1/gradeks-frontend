@@ -14,7 +14,7 @@ const props = defineProps({
   bottom: -10px;
   width: 7px;
   height: 7px;
-  background-color: #134f3b;
+  background-color: var(--theme-accent-text-color-dot);
   border-radius: 50%;
   transition: left 0.5s ease;
   pointer-events: none;

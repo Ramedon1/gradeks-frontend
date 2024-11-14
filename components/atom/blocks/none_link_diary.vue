@@ -32,13 +32,14 @@ import duckJSON from "public/animations/duck-link.json";
 }
 .none-link-text {
   max-width: 300px;
+  color: var(--theme-subtitle-text-color-gray);
   text-align: center;
   font-family: "PFEncoreSansPro-Regular", serif;
   font-size: 15px;
   margin-top: 0;
 }
 .none-link-text-main {
-  color: #000000;
+  color: var(--theme-text-color-black);
   font-family: "PFEncoreSansPro-Medium", serif;
   font-size: 23px;
   font-weight: 500;

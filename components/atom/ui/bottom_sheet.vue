@@ -110,7 +110,7 @@ watch(() => props.visible, (newVal) => {
   margin-left: auto;
   flex-direction: column;
   border-radius: 1.5rem 1.5rem 0 0;
-  background-color: #fff;
+  background-color: var(--theme-section-bg-color-white);
   transition: transform 0.3s ease;
   will-change: transform;
 }

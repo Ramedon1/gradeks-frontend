@@ -8,6 +8,7 @@
 <style scoped>
 .author {
   display: flex;
+  color: var(--theme-hint-color-green);
   flex-direction: column;
   text-align: center;
   opacity: 0.7;

@@ -9,6 +9,6 @@
   position: absolute;
   top: 16px;
   border-radius: 50px;
-  background: #D7E6DF;
+  background: var(--theme-section-separator-color-mint) ;
 }
 </style>

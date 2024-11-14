@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
+import { useWebAppTheme } from 'vue-tg';
 
 const isActive = ref(false);
 const panel = ref(null);
+const { themeParams } = useWebAppTheme();
 
 const toggleAccordion = () => {
   const el = panel.value;
@@ -32,10 +34,26 @@ const props = defineProps({
       grade: Number,
       date: String
     }],
-    new_type_grade: Number,
-    old_type_grade: Number
   }]
 });
+
+function lightenColor(color, percent) {
+  const num = parseInt(color.replace("#", ""), 16);
+  const amt = Math.round(2.55 * percent);
+  const R = (num >> 16) + amt;
+  const G = ((num >> 8) & 0x00ff) + amt;
+  const B = (num & 0x0000ff) + amt;
+
+  return (
+      "#" +
+      (0x1000000 +
+          (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+          (G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
+          (B < 255 ? (B < 1 ? 0 : B) : 255))
+          .toString(16)
+          .slice(1)
+  );
+}
 
 </script>
 
@@ -45,7 +63,11 @@ const props = defineProps({
       <span class="quarter-name">{{ props.quarter_name }}</span>
       <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
     </span>
-    <AtomQuarterGradesChevronArrow :isActive="isActive"/>
+    <AtomQuarterGradesChevronArrow
+        :color="themeParams.value ? lightenColor(themeParams.accent_text_color, 30) : '#EDF1EF'"
+        :isActive="isActive"
+    />
+
   </button>
 
   <div ref="panel" :class="['panel', { open: isActive }]">
@@ -83,7 +105,7 @@ const props = defineProps({
   flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
-  background: #11241c;
+  background: var(--theme-accent-text-color-deep-green);
   width: 100%;
   gap: 5px;
   text-align: left;
@@ -94,7 +116,7 @@ const props = defineProps({
 }
 
 .quarter-name {
-  color: #edf1ef;
+  color: var(--theme-button-text-color-white);
   font-family: "PFEncoreSansPro-Regular", serif;
   font-size: 17px;
   margin: 0 0 0 10px;

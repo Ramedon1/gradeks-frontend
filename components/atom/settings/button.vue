@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, defineAsyncComponent, watch } from 'vue';
+import {getIconColor} from "assets/js/functions";
 
 const { active: activeSwitch, toggle: toggleSwitch } = useSwitch();
 
@@ -9,6 +10,8 @@ const props = defineProps({
   switch: Boolean,
   href: String,
   redirect: String,
+  actionActive: Function,
+  actionDeactive: Function,
 });
 
 const state = computed(() => activeSwitch.value);
@@ -32,9 +35,6 @@ const iconComponent = computed(() => {
   );
 });
 
-function styleText() {
-  return props.iconName === 'trash' ? '#BA2532' : '#11241C';
-}
 
 function handleRedirect() {
   return props.redirect || props.href;
@@ -51,15 +51,17 @@ function handleClick(event: Event) {
 <template>
   <NuxtLink @click="handleClick" :to="handleRedirect()" class="button-container">
     <div class="info-container">
-      <component :is="iconComponent" v-if="props.iconName != null" />
-      <p :style="{ color: styleText() }" class="button-text">{{ text }}</p>
+      <component :is="iconComponent" :color="getIconColor('--theme-accent-text-color-deep-green')" v-if="props.iconName != null" />
+      <p class="button-text">{{ text }}</p>
     </div>
     <AtomUiSwitch
         v-if="props.switch !== null"
         :switch-state="state"
+        :deactivate-function="actionDeactive"
+        :activate-function="actionActive"
     />
     <div v-else>
-      <AtomIconsArrowRight />
+      <AtomIconsArrowRight :color="getIconColor('--theme-accent-text-color-deep-green')" />
     </div>
   </NuxtLink>
 </template>
@@ -75,7 +77,7 @@ function handleClick(event: Event) {
 .button-text {
   margin: 0;
   font-family: "PFEncoreSansPro-Regular", serif;
-  color: #11241C;
+  color: var(--theme-text-color-green);
   font-size: 16px;
 }
 
@@ -90,9 +92,21 @@ function handleClick(event: Event) {
   width: 100%;
 }
 
+@media (max-width: 480px) {
+  .button-text {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 320px) {
   .button-text {
     font-size: 13px;
+  }
+}
+
+@media (max-width: 280px) {
+  .button-text {
+    font-size: 12px;
   }
 }
 </style>

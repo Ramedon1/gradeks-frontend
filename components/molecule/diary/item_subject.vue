@@ -45,6 +45,8 @@ async function chooseGradeType() {
     } finally {
       closeBottomSheet();
     }
+  } else {
+    showToast('Нельзя поменять тип оценок на тот же самый', 'info');
   }
 }
 </script>
@@ -103,6 +105,7 @@ async function chooseGradeType() {
 
 .info-text-grade {
   text-align: center;
+  color: var(--theme-subtitle-text-color-gray);
 }
 
 .grade-type-explanation {

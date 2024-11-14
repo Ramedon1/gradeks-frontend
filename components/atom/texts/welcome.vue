@@ -12,7 +12,7 @@ const props = defineProps({
 <style scoped>
 .primary-text-greeting {
   margin: 0;
-  color: #11241C;
+  color: var(--theme-text-color-green);
   font-family: "PFEncoreSansPro-Black", serif;
   font-size: 26px;
   font-weight: 600;

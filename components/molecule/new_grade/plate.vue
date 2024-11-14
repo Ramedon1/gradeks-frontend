@@ -19,11 +19,12 @@ const {
   <div class="plate">
     <div class="header">
       <AtomPlateDate :date="card_info.date" class="date-grade"/>
-      <AtomPlateWeight @click="openBottomSheet" :weight="card_info.weight"/>
+      <AtomPlateWeight :weight="card_info.weight" @click="openBottomSheet"/>
       <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event">
         <AtomTextsHeaderBottomSheet header="Вес оценки"/>
         <p class="third-text" style="margin: 0; font-size: 15px; text-align: center">
-          Вес оценки - это коэффициент, который учитывает влияние оценки на итоговую оценку за четверть. Используется в системе СВ.
+          Вес оценки - это коэффициент, который учитывает влияние оценки на итоговую оценку за четверть. Используется в
+          системе СВ.
           Чем выше вес, тем больше оценка влияет на итоговую.
         </p>
       </AtomUiBottomSheet>
@@ -48,14 +49,13 @@ const {
 .plate {
   display: flex;
   width: 170px;
-  background-color: #EDF1EF;
+  background-color: var(--theme-secondary-bg-color-white);
   border-radius: 10px;
   height: 150.333px;
   padding: 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-
 }
 
 .spacer {

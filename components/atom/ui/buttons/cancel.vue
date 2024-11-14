@@ -7,6 +7,7 @@
 <style scoped>
 .cancel-text {
   font-size: 16px;
+  color: var(--theme-button-text-color-black);
 }
 
 .button-cancel-container {
@@ -17,7 +18,8 @@
   gap: 8px;
   cursor: pointer;
   border-radius: 10px;
-  background: #EDF1EF;
+  background: var(--theme-secondary-bg-color-white);
+  filter: brightness(2.5);
   flex: 1 0 0;
   align-self: stretch;
 }

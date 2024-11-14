@@ -7,7 +7,7 @@ const props = defineProps({
 
 <template>
   <div class="weight-container">
-    <p class="date-text">{{ props.weight}}</p>
+    <p class="weight-text">{{ props.weight}}</p>
   </div>
 </template>
 
@@ -20,10 +20,11 @@ const props = defineProps({
   align-items: flex-start;
   gap: 10px;
   border-radius: 4px;
-  background: #d7e0e6;
+  background: var(--theme-section-bg-color-light-blue);
 }
-.date-text {
-  color: rgba(17, 36, 28, 0.65);
+
+.weight-text {
+  color: var(--theme-subtitle-text-color-green);
   text-align: center;
   font-family: "date-grades", serif;
   font-size: 14px;

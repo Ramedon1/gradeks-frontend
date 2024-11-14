@@ -16,6 +16,7 @@ const props = defineProps({
 }
 
 .subject {
+  color: var(--theme-text-color-green);
   margin: 0 0 2%;
   display: -webkit-box;
   word-wrap: break-word;

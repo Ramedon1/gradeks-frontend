@@ -1,7 +1,10 @@
 <script lang="ts" setup>
+import {getIconColor} from "assets/js/functions";
+
 const props = defineProps({
   name: String,
 });
+
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const props = defineProps({
         <AtomTextsProfileName :name="props.name"/>
       </div>
       <MoleculeProfileEditProfile>
-        <AtomIconsPen/>
+        <AtomIconsPen :color="getIconColor('--theme-accent-text-color-deep-green')" />
       </MoleculeProfileEditProfile>
     </div>
   </div>
@@ -26,7 +29,7 @@ const props = defineProps({
   align-items: flex-start;
   gap: 10px;
   border-radius: 16px;
-  background: #EDF1EF;
+  background: var(--theme-secondary-bg-color-white);
 }
 
 .profile-info {

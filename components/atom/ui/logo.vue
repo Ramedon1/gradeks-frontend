@@ -1,4 +1,3 @@
-
 <template>
   <div class="badge">
     <AtomIconsLogo/>
@@ -16,11 +15,11 @@
   align-items: center;
   gap: 6px;
   border-radius: 103px;
-  background-color: #edf1ef;
+  background-color: var(--theme-secondary-bg-color-white);
 }
 
 .logo-text {
-  color: #000000;
+  color: var(--theme-text-color-black);
   font-family: "PFEncoreSansPro-Regular", serif;
   font-size: 15px;
   font-style: normal;

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue';
-import getGradeColor from "assets/js/functions";
+import {getGradeColor} from "assets/js/functions";
 
 const props = defineProps({
   new_type_grade: Number,

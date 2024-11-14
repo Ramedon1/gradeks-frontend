@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
-import getGradeColor from '@/assets/js/functions.js';
+import { ref, watch, watchEffect } from 'vue';
+import {getGradeColor} from '@/assets/js/functions.js';
+import { useWebAppTheme } from "vue-tg";
+
+const { themeParams } = useWebAppTheme();
 
 const props_grade_badge = defineProps({
   grade: Number,
@@ -22,15 +25,24 @@ watch(isExpanded, (newVal) => {
     coffGradeRef.value.style.left = newVal ? '105px' : '35px';
   }
 });
+
+watchEffect(() => {
+  if (themeParams && themeParams.value && themeParams.value.section_bg_color) {
+    coffGradeRef.value?.classList.add("bright");
+  } else {
+    coffGradeRef.value?.classList.remove("bright");
+  }
+});
 </script>
+
 
 <template>
   <div class="grade_badge-container">
-    <div class="coff-grade" ref="coffGradeRef">
+    <div ref="coffGradeRef" class="coff-grade">
       <p class="coff">{{ props_grade_badge.coff }}</p>
     </div>
     <transition name="slide">
-      <div class="grade_badge" @click="toggleExpand" ref="gradeBadgeRef">
+      <div ref="gradeBadgeRef" class="grade_badge" @click="toggleExpand">
         <transition name="fade">
           <p key="grade" :style="{ color: getGradeColor(props_grade_badge.grade) }" class="grade">
             {{ props_grade_badge.grade }}
@@ -49,6 +61,14 @@ watch(isExpanded, (newVal) => {
   cursor: pointer;
 }
 
+.coff-grade.bright {
+  filter: brightness(1.2);
+}
+
+.grade_badge.bright {
+  filter: brightness(1.2);
+}
+
 .coff-grade {
   display: flex;
   width: 23px;
@@ -63,7 +83,8 @@ watch(isExpanded, (newVal) => {
   flex-shrink: 0;
   border-radius: 3px;
   transition: left 0.5s ease;
-  background: rgba(17, 36, 28, 0.80);
+  z-index: 1;
+  background: var(--theme-hint-color-green);
 }
 
 .coff {
@@ -71,13 +92,13 @@ watch(isExpanded, (newVal) => {
   line-height: 10px;
   font-size: 12px;
   margin: 0;
-  color: #F4F8F6;
+  color: var(--theme-text-color-white);
   text-align: center;
 }
 
 .grade {
   font-family: "date-grades", serif;
-  color: #F4F8F6;
+  color: var(--theme-section-bg-color-light-white);
   line-height: 12px;
   text-align: center;
   margin: 0;
@@ -88,7 +109,7 @@ watch(isExpanded, (newVal) => {
   width: 50px;
   padding: 10px 0;
   border-radius: 8px;
-  background: #EDF1EF;
+  background: var(--theme-secondary-bg-color-white);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -96,7 +117,7 @@ watch(isExpanded, (newVal) => {
 }
 
 .slash-date {
-  color: #9D9D9D;
+  color: var(--theme-hint-color-gray);
 }
 
 /* Для контейнера анимация */

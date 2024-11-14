@@ -1,4 +1,12 @@
 import {defineStore} from 'pinia';
+import {setData} from "~/composables/useLocalStorage";
+import {addToast} from '@/composables/toast';
+
+globalThis.addToast = addToast;
+
+const showToast = (text: string, type: 'success' | 'error' | 'info') => {
+    globalThis.addToast(text, type);
+};
 
 export interface SpecDiaryInfo {
     diary_id: string;
@@ -53,11 +61,14 @@ export const useDiaryState = defineStore('diary', {
         access_token: null as string | null,
     }),
     actions: {
-        async loadAllDiary() {
+        async loadAllDiary(period_name: string) {
             try {
                 const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/user/me', {
-                    method: 'get',
-                    headers: {'Authorization': 'Bearer ' + this.access_token},
+                    method: 'post',
+                    headers: {'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json'},
+                    body: {
+                        filter: period_name
+                    },
                 });
 
                 if (data.value) {
@@ -77,6 +88,7 @@ export const useDiaryState = defineStore('diary', {
                 this.error = error?.message || 'Something went wrong. Please try again later.';
             }
         },
+
         async activateDistribution() {
             try {
                 const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/distribution/activate', {
@@ -104,31 +116,15 @@ export const useDiaryState = defineStore('diary', {
 
                 if (data.value) {
                     this.distribution = data.value.distribution_status;
-
+                    return { status: "ok" };
                 } else {
                     console.error(`API error: ${error.statusCode}`)
-                    this.error = data?.value?.detail || 'Unknown error occurred';
+                    const errorMessage = error?._object[error?._key]?.data?.detail || 'Unknown error occurred';
+                    return {status: "error", error: errorMessage};
                 }
             } catch (error: any) {
-                this.error = error?.message || 'Something went wrong. Please try again later.';
-            }
-        },
-        async getNewGrades() {
-            try {
-                const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/grade/new', {
-                    method: 'get',
-                    headers: {'Authorization': 'Bearer ' + this.access_token},
-                });
-
-                if (data.value) {
-                    this.new_grades = data.value;
-
-                } else {
-                    console.error(`API error: ${error.statusCode}`)
-                    this.error = data?.value?.detail || 'Unknown error occurred';
-                }
-            } catch (error: any) {
-                this.error = error?.message || 'Something went wrong. Please try again later.';
+                const errorMessage = error?._object[error?._key]?.data?.detail || 'Something went wrong. Please try again later.';
+                return {status: "error", error: errorMessage};
             }
         },
         async newGradeType(grade_type: string) {
@@ -178,6 +174,31 @@ export const useDiaryState = defineStore('diary', {
             } catch (error: any) {
                 const errorMessage = error?._object[error?._key]?.data?.detail || 'Something went wrong. Please try again later.';
                 return {status: "error", error: errorMessage};
+            }
+        },
+        async getGrades(period_name: string) {
+            try {
+                const { data, status, error }: any = await useFetch(`https://api.gradeks.xyz/grade/get`, {
+                    method: 'post',
+                    headers: { 'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json' },
+                    body: {
+                        filter: period_name
+                    }
+                });
+
+                if (data.value) {
+                    this.diary_info = data.value;
+                    setData('filter', period_name)
+                    showToast('Распределение оценок успешно изменено', 'success');
+                    return { status: "ok" };
+                } else {
+                    console.error(`API error: ${error?.statusCode}`);
+                    showToast('Ошибка, попробуйте позже', 'error');
+                    return {status: "error", error: error?.statusCode};
+                }
+            } catch (error: any) {
+                showToast('Ошибка, попробуйте позже', 'error');
+                return {status: "error", error: error?.message};
             }
         }
     }

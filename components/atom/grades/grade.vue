@@ -1,23 +1,11 @@
 <script lang="ts" setup>
+import {getGradeColor} from "assets/js/functions";
+
 const props = defineProps({
   new_grade: Number,
   old_grade: Number
 });
 
-const newGradeColor = computed(() => {
-  switch (props.new_grade) {
-    case 3:
-      return '#FC0';
-    case 2:
-      return '#D16262';
-    case 4:
-      return '#FF9500';
-    case 5:
-      return '#116A28';
-    default:
-      return '#9D9D9D';
-  }
-});
 </script>
 
 <template>
@@ -25,7 +13,7 @@ const newGradeColor = computed(() => {
     <span v-if="props.old_grade !== undefined" :style="{ color: '#9D9D9D' }">
       {{ props.old_grade }} →
     </span>
-    <span :style="{ color: newGradeColor }">
+    <span :style="{ color: getGradeColor(props.new_grade) }">
       {{ props.new_grade }}
     </span>
   </p>

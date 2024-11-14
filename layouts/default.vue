@@ -4,25 +4,44 @@ import {computed} from 'vue';
 import {useDiaryState} from "~/state/diary";
 import {storeToRefs} from "pinia";
 import {useAuthStore} from "~/state/auth";
-
-const {authenticated, error} = storeToRefs(useAuthStore());
-const {diary_loaded, is_active} = storeToRefs(useDiaryState());
 import {Vue3Lottie} from "vue3-lottie";
 import Loading from "@/public/animations/loading-gray.json";
 import Unauthorized from "~/pages/unauthorized.vue";
 import Blocked from "~/pages/blocked.vue";
 import ToastContainer from '~/components/organism/notification/toast_manager.vue';
+import {applyTheme} from "assets/js/functions";
+import {useWebAppTheme} from "vue-tg";
+
+const {authenticated, error} = storeToRefs(useAuthStore());
+const {diary_loaded, is_active} = storeToRefs(useDiaryState());
+const { themeParams } = useWebAppTheme();
 
 const route = useRoute();
 const hideNavbar = computed(() => {
   const pathsToHideNavbar = ['/report', '/rules', '/privacy-policy', '/deactivate'];
   return pathsToHideNavbar.includes(route.path);
 });
+
+const theme = getSettings('theme');
+console.log(themeParams);
+
+
+if (theme === 'telegram') {
+  if (themeParams.value.hint_color) {
+    applyTheme(theme);
+  } else {
+    applyTheme('white');
+  }
+} else {
+  applyTheme(theme);
+}
+
 </script>
+
 
 <template>
   <div id="container">
-    <div id="view" v-if="((authenticated || error.detail) && diary_loaded && is_active ) ">
+    <div v-if="((authenticated || error.detail) && diary_loaded && is_active ) " id="view">
       <!--      <div class="logo-container">-->
       <!--        <AtomUiLogo/>-->
       <!--      </div>-->
@@ -51,7 +70,6 @@ const hideNavbar = computed(() => {
 </template>
 
 <style scoped>
-
 .logo-container {
   display: flex;
   justify-content: center;
@@ -61,7 +79,7 @@ const hideNavbar = computed(() => {
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   height: 100vh;
-  background-color: white;
+  background-color: var(--theme-bg-color);
 }
 
 #container {
@@ -87,6 +105,7 @@ const hideNavbar = computed(() => {
 #nav {
   position: fixed;
   bottom: 0;
+  z-index: 5;
   left: 0;
   width: 100%;
 }

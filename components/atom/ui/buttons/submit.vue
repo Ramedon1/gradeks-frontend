@@ -19,8 +19,8 @@ const props = defineProps({
   height: 55px;
   padding: 8px 12px;
   border: none;
-  color: rgba(255, 255, 255, 0.84);
-  background-color: #134F3B;
+  color: var(--theme-button-text-color-white);
+  background-color: var(--theme-button-color);
   border-radius: 12px;
   font-size: 20px;
   outline: none;
@@ -36,13 +36,13 @@ const props = defineProps({
 
 @media (hover: hover) {
   .submit-button:hover {
-    background-color: #155942;
+    background-color: var(--theme-accent-text-color-green);
   }
 }
 
 @media (hover: none) {
   .submit-button:active {
-    background-color: #155942;
+    background-color: var(--theme-accent-text-color-green);
     transition: background-color 0.1s ease;
     outline: none;
   }

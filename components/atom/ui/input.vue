@@ -1,25 +1,46 @@
 <script lang="ts" setup>
+import {ref} from 'vue';
+import {addToast} from "~/composables/toast";
+import {useWebAppClipboard} from 'vue-tg';
+
+const {readTextFromClipboard} = useWebAppClipboard()
+
 const props = defineProps({
   id: String,
   name: String,
   placeholder: String,
 });
 
-const pasteFromClipboard = async () => {
-  const text = await navigator.clipboard.readText();
-  const inputElement = document.getElementById(props.id) as HTMLInputElement;
-  if (inputElement) {
-    inputElement.value = text;
-  }
+const inputValue = ref('');
+globalThis.addToast = addToast;
+
+const showToast = (text: string, type: 'success' | 'error' | 'info') => {
+  globalThis.addToast(text, type);
 };
+
+async function pasteFromClipboard() {
+  try {
+    const text = readTextFromClipboard;
+    inputValue.value = text;
+  } catch (err) {
+    showToast('Устройство не поддерживает вставку из буфера по кнопке', 'error');
+  }
+}
 </script>
 
 <template>
   <div class="input-container">
-    <input :id="props.id" :name="props.name" :placeholder="props.placeholder" class="input third-text"
-        required type="text" maxlength="100"
+    <input
+        :id="props.id"
+        v-model="inputValue"
+        :name="props.name"
+        :placeholder="props.placeholder"
+        class="input third-text"
+        maxlength="100"
+        required
+        type="text"
     />
-    <button @click="pasteFromClipboard" class="paste-button third-text">Вставить</button>
+    <button class="paste-button third-text" @click="pasteFromClipboard">Вставить</button>
   </div>
 </template>
 
@@ -37,15 +58,16 @@ const pasteFromClipboard = async () => {
   padding: 6px 90px 6px 12px;
   font-size: 15px;
   border-radius: 8px;
-  border: 1px solid #D7E6DF;
-  background: #F4F8F6;
-  color: #333;
+  border: 1px solid var(--theme-section-separator-color-mint);
+  background: var(--theme-secondary-bg-color-white);
+  color: var(--theme-text-color-gray);
   overflow-x: scroll;
   white-space: nowrap;
 }
 
 .input::placeholder {
-  color: #aaa;
+  opacity: 0.5;
+  color: var(--theme-hint-color-gray);
 }
 
 .input:focus {

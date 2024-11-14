@@ -18,7 +18,7 @@ const props = defineProps({
     </div>
     <div class="none-grade-texts">
       <p class="none-grade-text-main">{{ props.header_text }}</p>
-      <p class="none-grade-text">{{ props.subheader_text }}</p>
+      <p class="none-grade-text-subtitle">{{ props.subheader_text }}</p>
     </div>
   </div>
 
@@ -31,7 +31,8 @@ const props = defineProps({
   text-align: center;
   flex-direction: column;
 }
-.none-grade-text {
+.none-grade-text-subtitle {
+  color: var(--tg-theme-subtitle-text-color, #cfcfcf);
   max-width: 300px;
   text-align: center;
   font-family: "PFEncoreSansPro-Regular", serif;
@@ -39,7 +40,7 @@ const props = defineProps({
   margin-top: 0;
 }
 .none-grade-text-main {
-  color: #000000;
+  color: var(--theme-text-color-black);
   font-family: "PFEncoreSansPro-Medium", serif;
   font-size: 23px;
   font-weight: 500;

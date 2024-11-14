@@ -1,9 +1,12 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useWebAppTheme } from 'vue-tg'
+import {getIconColor} from "assets/js/functions.js";
 
 const activeDotPosition = ref(0);
 const buttonWidths = ref([]);
+const { themeParams } = useWebAppTheme();
 
 const route = useRoute();
 
@@ -35,12 +38,12 @@ watch(() => route.path, (newRoute) => {
     <div class="navbar-buttons">
       <AtomNavbarButton class="navbar-button" url_to="/" text_button="Главная">
         <template #default="{ isActive }">
-          <AtomIconsHome :isActive="isActive"/>
+          <AtomIconsHome :color="getIconColor('--theme-accent-text-color-deep-green')" :isActive="isActive"/>
         </template>
       </AtomNavbarButton>
       <AtomNavbarButton class="navbar-button" url_to="/diary" text_button="Успеваемость">
         <template #default="{ isActive }">
-          <AtomIconsDiary/>
+          <AtomIconsDiary :color="getIconColor('--theme-accent-text-color-deep-green')"/>
         </template>
       </AtomNavbarButton>
       <AtomNavbarButton class="navbar-button" url_to="/profile" text_button="Профиль">
@@ -58,9 +61,9 @@ watch(() => route.path, (newRoute) => {
   display: flex;
   flex-direction: row;
   height: 100%;
-  background-color: #F4F8F6;
+  background-color: var(--theme-section-bg-color-light-white);
   padding: 8px 20px 15px 20px;
-  border-top: 2px solid #EBF2EF;
+  border-top: 2px solid var(--theme-section-separator-color-minty);
   justify-content: center;
   align-items: center;
   flex-shrink: 0;

@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import {ref, computed, watch} from 'vue';
+import {computed, ref, watch} from 'vue';
 import {useDiaryState} from "~/state/diary";
 import {Vue3Lottie} from "vue3-lottie";
 import loading_animation from '~/public/animations/loading-gray.json';
 import {addToast} from '@/composables/toast';
 
-
-const {spec_diary, diary_info} = storeToRefs(useDiaryState());
+const {spec_diary} = storeToRefs(useDiaryState());
 const {connectDiary} = useDiaryState();
 const {
   isVisible: isBottomSheetVisible,
@@ -68,25 +67,26 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
     <div @click="openBottomSheet">
       <slot></slot>
     </div>
-    <AtomUiBottomSheet :visible="isBottomSheetVisible" :blocked="loading"
+    <AtomUiBottomSheet :blocked="loading" :visible="isBottomSheetVisible"
                        @update:visible="isBottomSheetVisible = $event">
       <div v-if="loading == false" class="container-loading">
-        <AtomTextsHeaderBottomSheet style="text-align: center; margin-bottom: 15px" header="Редактирование профиля"/>
-        <NuxtLink class="instruction" to="https://telegra.ph/Instrukciya-po-privyazke-ehlektronnogo-dnevnika-deeduorbru-k-Gradeks-11-02">
-          <p style="margin-bottom: 40px; margin-top: 20px" >Инструкция по привязке дневника к Gradeks</p>
+        <AtomTextsHeaderBottomSheet header="Редактирование профиля" style="text-align: center; margin-bottom: 15px"/>
+        <NuxtLink class="instruction" target="_blank"
+                  to="https://telegra.ph/Instrukciya-po-privyazke-ehlektronnogo-dnevnika-deeduorbru-k-Gradeks-11-02">
+          <p style="margin-bottom: 20px; margin-top: 20px">Инструкция по привязке дневника к Gradeks</p>
         </NuxtLink>
         <div class="edit-content-container">
           <AtomUiInput
               id="student_id"
-              :placeholder="diaryIdInputValue"
               v-model="urlInput"
+              :placeholder="diaryIdInputValue"
               @input="handleInputChange"
           />
           <AtomUiButtonsSubmit
+              :disabled="isButtonDisabled"
               class="button-save"
               text="Сохранить"
               @click="sendDiaryID(urlInput)"
-              :disabled="isButtonDisabled"
           />
         </div>
       </div>
@@ -106,16 +106,16 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
   text-align: center;
   font-family: PFEncoreSansPro-Regular, serif;
   text-decoration: underline;
-  opacity: 0.5;
-  color: black;
-}
-.instruction:visited {
-  color: #000000;
+  color: var(--theme-hint-color-black);
 }
 
+.instruction:visited {
+  color: var(--theme-hint-color-black);
+}
 
 .loading-text {
   text-align: center;
+  color: var(--theme-text-color-white);
   font-family: PFEncoreSansPro-Regular, serif;
   opacity: 0.4;
 }
@@ -134,7 +134,8 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
 }
 
 .button-save:disabled {
-  background-color: #d3d3d3;
+  background-color: var(--theme-button-color);
   cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>

@@ -10,6 +10,7 @@ const props = defineProps({
 
 <style scoped>
 .third-text {
+  color: var(--theme-hint-color-green);
   margin: 0;
   font-size: 14px;
 }

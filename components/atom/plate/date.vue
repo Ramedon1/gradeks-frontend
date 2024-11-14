@@ -18,7 +18,7 @@ const props = defineProps({
 }
 
 .date-text {
-  color: rgba(17, 36, 28, 0.65);
+  color: var(--theme-text-color-green);
   text-align: center;
   font-family: "date-grades", serif;
   font-size: 14px;
@@ -34,6 +34,6 @@ const props = defineProps({
   align-items: flex-start;
   gap: 10px;
   border-radius: 4px;
-  background: #D7E6DF;
+  background: var(--theme-accent-text-color-mint);
 }
 </style>
