@@ -13,37 +13,7 @@ const notifications = ref([
 ]);
 
 
-const new_grade_plane = [
-  {
-    date: '11-01',
-    coff: 2,
-    grade: 3,
-    old_grade: 2,
-    subject: 'Math'
-  },
-  {
-    date: '11-03',
-    coff: 1,
-    grade: 5,
-    old_grade: null,  // Use null to show how `old_grade` can be conditionally undefined
-    subject: 'Science'
-  },
-  {
-    date: '11-05',
-    coff: 6,
-    grade: 5,
-    old_grade: 3,
-    subject: 'History'
-  },
-  {
-    date: '11-07',
-    coff: 4,
-    grade: 4,
-    old_grade: null,  // Another example with old_grade as null
-    subject: 'English'
-  }
-];
-
+const new_grade_plane = ref(new_grades);
 </script>
 
 <template>
