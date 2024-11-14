@@ -53,10 +53,10 @@ const animationData = {
   padding: 10px 20px;
   margin: 2px 0;
   border-radius: 20px;
-  color: white;
+  color: var(--theme-text-color-white);
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
-  background-color: var(--theme-button-text-color-green);
+  background-color: var(--theme-accent-text-color-deep-green);
   cursor: pointer;
   z-index: 1002;
   width: 250px;
