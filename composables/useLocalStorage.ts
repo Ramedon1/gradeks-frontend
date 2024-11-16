@@ -1,3 +1,8 @@
+import {applyTheme} from "assets/js/functions";
+
+import {useWebAppTheme} from "vue-tg";
+const { themeParams } = useWebAppTheme();
+
 type StoredSettings = {
     settings: string;
     data: string;
@@ -26,7 +31,13 @@ const initializeDefaults = () => {
     const isFirstVisit = !localStorage.getItem('isInitialized');
     if (isFirstVisit) {
         setData('filter', 'quarter')
-        setData('theme', 'telegram')
+        if (themeParams.value.hint_color) {
+            setData('theme', 'telegram')
+            applyTheme('telegram')
+        } else {
+            setData('theme', 'light')
+            applyTheme('light')
+        }
         localStorage.setItem('isInitialized', 'true');
     }
 };
