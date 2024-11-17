@@ -2,6 +2,7 @@ import {mockTelegramEnv, parseInitData, retrieveLaunchParams} from "@telegram-ap
 import {useAuthStore, type UserLoginInterface} from "../state/auth";
 import {useDiaryState} from "../state/diary";
 import {getSettings, initializeDefaults} from "~/composables/useLocalStorage";
+import {applyTheme} from "assets/js/functions";
 
 const initDataRawMocked = "user=%7B%22id%22%3A646667177%2C%22first_name%22%3A%22Ramedon%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22ramedon%22%2C%22language_code%22%3A%22ru%22%2C%22is_premium%22%3Atrue%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1721852541&hash=c20ac1ed9427e3ebae1c03ca2b01d518482289fa1ecfc0721690bb9df480b80c"
 
@@ -49,9 +50,13 @@ export default defineNuxtRouteMiddleware((to, from) => {
         access_token.value = loginData.value?.access_token || null
 
 
-        await initializeDefaults()
+        initializeDefaults()
 
-        const period_name = await getSettings('filter') || 'quarter';
+        const theme = getSettings('theme');
+
+        applyTheme(theme);
+
+        const period_name = getSettings('filter') || 'quarter';
         await loadAllDiary(period_name);
     };
 
