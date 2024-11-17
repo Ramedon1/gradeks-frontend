@@ -33,10 +33,8 @@ const initializeDefaults = () => {
         setData('filter', 'quarter')
         if (themeParams.value.hint_color) {
             setData('theme', 'telegram')
-            applyTheme('telegram')
         } else {
             setData('theme', 'light')
-            applyTheme('light')
         }
         localStorage.setItem('isInitialized', 'true');
     }
