@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useAuthStore } from "~/state/auth";
-const { userInfo } = storeToRefs(useAuthStore());
+import {useAuthStore} from "~/state/auth";
 
 const props_avatar = defineProps({
   size: {
@@ -9,20 +8,13 @@ const props_avatar = defineProps({
   }
 });
 
-const avatarKey = `avatar_${userInfo.value.id}`;
-let cachedAvatar = localStorage.getItem(avatarKey);
-let timestamp = Date.now();
-let url = `https://api.gradeks.xyz/user/avatar/${userInfo.value.id}`;
+const {userInfo} = storeToRefs(useAuthStore());
 
-if (!cachedAvatar || !cachedAvatar.includes(userInfo.value.id)) {
-  cachedAvatar = `${url}?t=${timestamp}`;
-  localStorage.setItem(avatarKey, cachedAvatar);
-}
-
+const url = computed(() => `https://api.gradeks.xyz/user/avatar/${userInfo.value.id}?t=${Date.now()}`);
 </script>
 
 <template>
-  <img :src="cachedAvatar"
+  <img :src="url"
        alt="avatar" class="avatar"
        :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }">
 </template>
