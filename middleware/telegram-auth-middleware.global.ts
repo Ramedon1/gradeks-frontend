@@ -4,7 +4,7 @@ import {useDiaryState} from "../state/diary";
 import {getSettings, initializeDefaults} from "~/composables/useLocalStorage";
 import {applyTheme} from "assets/js/functions";
 
-const initDataRawMocked = "user=%7B%22id%22%3A646667177%2C%22first_name%22%3A%22Ramedon%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22ramedon%22%2C%22language_code%22%3A%22ru%22%2C%22is_premium%22%3Atrue%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1721852541&hash=c20ac1ed9427e3ebae1c03ca2b01d518482289fa1ecfc0721690bb9df480b80c"
+const initDataRawMocked = "user=%7B%22id%22%3A646667177%2C%22first_name%22%3A%22Ramedon%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22ramedon%22%2C%22language_code%22%3A%22ru%22%2C%22is_premium%22%3Atrue%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1721852541&hash=7e04be99a3bf48094cd7449477832f991f9bb09cc494032e6c8d0dc969f38626"
 
 export default defineNuxtRouteMiddleware((to, from) => {
     if (import.meta.env.VITE_DEBUG === 'true') {
