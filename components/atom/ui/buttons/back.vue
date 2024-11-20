@@ -10,7 +10,7 @@ const props = defineProps({
 
 <template>
   <NuxtLink :to="props.url_back">
-    <AtomIconsArrowBack :color="themeParams.buttonColor"/>
+    <AtomIconsArrowBack :color="themeParams.buttonColor()"/>
   </NuxtLink>
 </template>
 

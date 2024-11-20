@@ -25,7 +25,7 @@ watch(isExpanded, (newVal) => {
 });
 
 watchEffect(() => {
-  if (themeParams.isMounted() && themeParams.sectionBackgroundColor) {
+  if (themeParams.isMounted() && themeParams.sectionBackgroundColor()) {
     coffGradeRef.value?.classList.add("bright");
   } else {
     coffGradeRef.value?.classList.remove("bright");

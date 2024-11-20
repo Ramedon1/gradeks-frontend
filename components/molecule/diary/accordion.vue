@@ -63,7 +63,7 @@ function lightenColor(color, percent) {
       <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
     </span>
     <AtomQuarterGradesChevronArrow
-        :color="themeParams.isMounted() ? lightenColor(themeParams.accentTextColor, 30) : '#EDF1EF'"
+        :color="themeParams.isMounted() ? lightenColor(themeParams.accentTextColor(), 30) : '#EDF1EF'"
         :isActive="isActive"
     />
 
