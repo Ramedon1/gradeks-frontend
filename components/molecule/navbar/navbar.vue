@@ -1,12 +1,10 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useWebAppTheme } from 'vue-tg'
 import {getIconColor} from "assets/js/functions.js";
 
 const activeDotPosition = ref(0);
 const buttonWidths = ref([]);
-const { themeParams } = useWebAppTheme();
 
 const route = useRoute();
 

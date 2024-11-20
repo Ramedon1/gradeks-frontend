@@ -10,11 +10,10 @@ import Unauthorized from "~/pages/unauthorized.vue";
 import Blocked from "~/pages/blocked.vue";
 import ToastContainer from '~/components/organism/notification/toast_manager.vue';
 import {applyTheme} from "assets/js/functions";
-import {useWebAppTheme} from "vue-tg";
+import {themeParams} from "@telegram-apps/sdk";
 
 const {authenticated, error} = storeToRefs(useAuthStore());
 const {diary_loaded, is_active} = storeToRefs(useDiaryState());
-const { themeParams } = useWebAppTheme();
 
 const route = useRoute();
 const hideNavbar = computed(() => {
@@ -26,7 +25,7 @@ const theme = getSettings('theme');
 
 
 if (theme === 'telegram') {
-  if (themeParams.value.hint_color) {
+  if (themeParams.isMounted()) {
     applyTheme('telegram');
   } else {
     applyTheme('white');

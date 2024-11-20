@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
-import { useWebAppTheme } from 'vue-tg';
 
 const isActive = ref(false);
 const panel = ref(null);
-const { themeParams } = useWebAppTheme();
+import {themeParams} from "@telegram-apps/sdk";
 
 const toggleAccordion = () => {
   const el = panel.value;
@@ -64,7 +63,7 @@ function lightenColor(color, percent) {
       <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
     </span>
     <AtomQuarterGradesChevronArrow
-        :color="themeParams.value ? lightenColor(themeParams.accent_text_color, 30) : '#EDF1EF'"
+        :color="themeParams.isMounted() ? lightenColor(themeParams.accentTextColor, 30) : '#EDF1EF'"
         :isActive="isActive"
     />
 

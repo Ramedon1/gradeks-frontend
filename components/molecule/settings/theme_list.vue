@@ -2,9 +2,8 @@
 import { ref } from 'vue';
 import {applyTheme} from "assets/js/functions";
 import {addToast} from "~/composables/toast";
-import {useWebAppTheme} from "vue-tg";
 const selectedTheme = ref<string | null>(getSettings('theme'));
-const { themeParams } = useWebAppTheme();
+import {themeParams} from "@telegram-apps/sdk";
 
 globalThis.addToast = addToast;
 
@@ -27,7 +26,7 @@ const selectTheme = (theme: string) => {
 
 watch(() => selectedTheme.value, (newVal) => {
   if (newVal === 'telegram') {
-    if (themeParams.value.hint_color) {
+    if (themeParams.isMounted()) {
       applyTheme(`${newVal}`);
     } else {
       showToast('На твоем устройстве не поддерживается адаптивная тема', 'error');
@@ -54,7 +53,7 @@ watch(() => selectedTheme.value, (newVal) => {
     />
     <AtomUiThemeBlock
         @click="selectTheme('telegram')"
-        :style="themeParams.hint_color && getStyle('telegram')"
+        :style="themeParams.isMounted() && getStyle('telegram')"
         name="Адаптивная"
         theme="telegram"
     />

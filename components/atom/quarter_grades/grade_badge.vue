@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { ref, watch, watchEffect } from 'vue';
 import {getGradeColor} from '@/assets/js/functions.js';
-import { useWebAppTheme } from "vue-tg";
-
-const { themeParams } = useWebAppTheme();
+import {themeParams} from "@telegram-apps/sdk";
 
 const props_grade_badge = defineProps({
   grade: Number,
@@ -27,7 +25,7 @@ watch(isExpanded, (newVal) => {
 });
 
 watchEffect(() => {
-  if (themeParams && themeParams.value && themeParams.value.section_bg_color) {
+  if (themeParams.isMounted() && themeParams.sectionBackgroundColor) {
     coffGradeRef.value?.classList.add("bright");
   } else {
     coffGradeRef.value?.classList.remove("bright");

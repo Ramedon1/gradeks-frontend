@@ -1,7 +1,7 @@
 <template>
   <div class="author third-text">
     <p class="author">prod. by @ramedon</p>
-    <p class="author">Beta 1.0</p>
+    <p class="author">Beta 1.1</p>
   </div>
 </template>
 

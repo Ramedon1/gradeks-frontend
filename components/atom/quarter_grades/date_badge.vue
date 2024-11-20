@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import {watchEffect} from "vue";
-import {useWebAppTheme} from "vue-tg";
+import {themeParams} from "@telegram-apps/sdk";
 
-const {themeParams} = useWebAppTheme();
+
 const dateBadge = ref(null);
 
 const date = defineProps({
@@ -10,7 +10,7 @@ const date = defineProps({
 });
 
 watchEffect(() => {
-  if (themeParams && themeParams.value) {
+  if (themeParams.isMounted()) {
     dateBadge.value?.classList.add("bright");
   } else {
     dateBadge.value?.classList.remove("bright");
