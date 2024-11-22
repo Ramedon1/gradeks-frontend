@@ -10,14 +10,11 @@ const props_avatar = defineProps({
 });
 
 const {userInfo} = storeToRefs(useAuthStore());
-const handleImageClick = () => {
-  window.Telegram.WebApp.addToHomeScreen();
-}
 const url = computed(() => userInfo.value?.photo_url);
 </script>
 
 <template>
-  <img @click="handleImageClick()" :src="url"
+  <img :src="url"
        alt="avatar" class="avatar"
        :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }">
 </template>

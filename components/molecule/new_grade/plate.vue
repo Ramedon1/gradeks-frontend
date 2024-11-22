@@ -13,10 +13,14 @@ const {
   close: closeBottomSheet
 } = useBottomSheet()
 
+const handleImageClick = () => {
+  window.Telegram.WebApp.addToHomeScreen();
+}
+
 </script>
 
 <template>
-  <div class="plate">
+  <div @click="handleImageClick()" class="plate">
     <div class="header">
       <AtomPlateDate :date="card_info.date" class="date-grade"/>
       <AtomPlateWeight :weight="card_info.weight" @click="openBottomSheet"/>
