@@ -13,7 +13,7 @@ export default defineNuxtConfig({
             title: 'Gradeks',
             script: [
                 {
-                    src: "https://telegram.org/js/telegram-web-app.js",
+                    src: "https://telegram.org/js/telegram-web-app.js?56",
                     async: true,
                 },
             ],

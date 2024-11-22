@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useAuthStore} from "~/state/auth";
 
+
 const props_avatar = defineProps({
   size: {
     type: Number,
@@ -9,13 +10,14 @@ const props_avatar = defineProps({
 });
 
 const {userInfo} = storeToRefs(useAuthStore());
-
+const handleImageClick = () => {
+  window.Telegram.WebApp.addToHomeScreen();
+}
 const url = computed(() => userInfo.value?.photo_url);
-console.log('')
 </script>
 
 <template>
-  <img @click="window.Telegram.WebApp.addToHomeScreen();" :src="url"
+  <img @click="handleImageClick()" :src="url"
        alt="avatar" class="avatar"
        :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }">
 </template>
