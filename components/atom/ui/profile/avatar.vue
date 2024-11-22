@@ -11,6 +11,7 @@ const props_avatar = defineProps({
 const {userInfo} = storeToRefs(useAuthStore());
 
 const url = computed(() => userInfo.value?.photo_url);
+console.log('')
 </script>
 
 <template>
