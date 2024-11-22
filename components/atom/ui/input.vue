@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import {addToast} from "~/composables/toast";
-import {useWebAppClipboard} from 'vue-tg';
-
-const {readTextFromClipboard} = useWebAppClipboard()
+import {readTextFromClipboard} from '@telegram-apps/sdk';
 
 const props = defineProps({
   id: String,
@@ -19,10 +17,9 @@ const showToast = (text: string, type: 'success' | 'error' | 'info') => {
 };
 
 async function pasteFromClipboard() {
-  try {
-    const text = readTextFromClipboard;
-    inputValue.value = text;
-  } catch (err) {
+  if (readTextFromClipboard.isAvailable()) {
+    inputValue.value = await readTextFromClipboard();
+  } else {
     showToast('Устройство не поддерживает вставку из буфера по кнопке', 'error');
   }
 }

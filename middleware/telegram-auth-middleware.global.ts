@@ -4,7 +4,7 @@ import {useDiaryState} from "../state/diary";
 import {getSettings, initializeDefaults} from "~/composables/useLocalStorage";
 import {applyTheme} from "assets/js/functions";
 
-const initDataRawMocked = "user=%7B%22id%22%3A646667177%2C%22first_name%22%3A%22Ramedon%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22ramedon%22%2C%22language_code%22%3A%22ru%22%2C%22is_premium%22%3Atrue%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1721852541&hash=c20ac1ed9427e3ebae1c03ca2b01d518482289fa1ecfc0721690bb9df480b80c";
+const initDataRawMocked = "query_id=AAGpW4smAAAAAKlbiyYhEswT&user=%7B%22id%22%3A646667177%2C%22first_name%22%3A%22Ramedon%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22ramedon%22%2C%22language_code%22%3A%22ru%22%2C%22is_premium%22%3Atrue%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FjyMbRbhD4Sby1w6rVXT7N-ShSD36qph9lAogP4Tjev8.svg%22%7D&auth_date=1732279416&signature=-ikk8M1UbZ0uW7efuyt479jP7VlL4ohhm05AaUfKRNA36hjBqoGz0Ig3JR-UDMaum5sLkcUt2AnKIVJQjbL_Ag&hash=a54e020c04f5f30442f56b720c4c11cc361a47c1dbb015ab3c14f872b7be7533";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
     if (import.meta.env.VITE_DEBUG === "true") {
