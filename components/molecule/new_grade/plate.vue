@@ -14,7 +14,7 @@ const {
 } = useBottomSheet()
 
 const handleImageClick = () => {
-  window.Telegram.WebApp.addToHomeScreen();
+  return window.Telegram.WebApp.addToHomeScreen();
 }
 
 </script>
