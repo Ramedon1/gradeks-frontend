@@ -13,18 +13,12 @@ const {
   close: closeBottomSheet
 } = useBottomSheet();
 
-const addToHomeScreen = () => {
-  if (window.Telegram?.WebApp?.addToHomeScreen) {
-    window.Telegram.WebApp.addToHomeScreen();
-  } else {
-    console.error("Telegram WebApp SDK is not available");
-  }
-};
+
 </script>
 
 
 <template>
-  <div @click="addToHomeScreen()" class="plate">
+  <div class="plate">
     <div class="header">
       <AtomPlateDate :date="card_info.date" class="date-grade"/>
       <AtomPlateWeight :weight="card_info.weight" @click="openBottomSheet"/>
@@ -42,10 +36,6 @@ const addToHomeScreen = () => {
       <AtomPlateSubjectGrade :subject="card_info.subject"/>
       <AtomGradesGrade :new_grade="card_info.new_grade" :old_grade="card_info.old_grade"/>
     </div>
-    <!-- Add To Home Screen Button -->
-    <button @click="addToHomeScreen()" class="add-to-home-btn">
-      Add to Home Screen
-    </button>
   </div>
 </template>
 

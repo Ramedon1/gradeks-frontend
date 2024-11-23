@@ -19,6 +19,14 @@ if (type_period.value === 'semester') {
   type_period = false
 }
 
+const addToHomeScreen = () => {
+  if (window.Telegram?.WebApp?.addToHomeScreen) {
+    window.Telegram.WebApp.addToHomeScreen();
+  } else {
+    console.error("Telegram WebApp SDK is not available");
+  }
+};
+
 </script>
 
 <template>
@@ -33,6 +41,7 @@ if (type_period.value === 'semester') {
       <AtomTextsHeaderBottomSheet header="Настройка темы"/>
       <MoleculeSettingsThemeList style="margin-top: 20px"/>
     </AtomUiBottomSheet>
+    <AtomSettingsButton @click="addToHomeScreen()" :switch="null" icon-name="homescreen" text="Добавить на рабочий стол"/>
     <AtomSettingsButton :switch="null" icon-name="alert" redirect="https://t.me/gradeks_support_bot"
                         text="Сообщить о проблеме"/>
   </div>
