@@ -1,10 +1,15 @@
 <script lang="ts" setup>
 import {useDiaryState} from '~/state/diary';
 import {getSettings} from "~/composables/useLocalStorage";
+import {addToast} from "~/composables/toast";
 
 const {distribution} = storeToRefs(useDiaryState())
 const {activateDistribution, deactivateDistribution, getGrades} = useDiaryState();
 
+globalThis.addToast = addToast;
+const showToast = (text: string, type: 'success' | 'error' | 'info') => {
+  globalThis.addToast(text, type);
+};
 
 const {
   isVisible: isBottomSheetVisible,
@@ -20,13 +25,17 @@ if (type_period.value === 'semester') {
 }
 
 const addToHomeScreen = () => {
-  if (window.Telegram?.WebApp?.addToHomeScreen) {
+  const status = window.Telegram?.WebApp?.checkHomeScreenStatus();
+  if (status === 'missed') {
     window.Telegram.WebApp.addToHomeScreen();
+  } else if (status === 'added') {
+    showToast('Уже добавлено на рабочий стол', 'info');
+  } else if (status === 'unknown') {
+    showToast('Невозможно определить статус ярылка', 'error');
   } else {
-    console.error("Telegram WebApp SDK is not available");
+    showToast('Не поддерживается на данном устройстве', 'error');
   }
 };
-
 </script>
 
 <template>
