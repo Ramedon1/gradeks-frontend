@@ -89,6 +89,7 @@ if (theme === 'telegram') {
 }
 
 #view {
+  padding-top: var(--tg-content-safe-area-inset-top, 0px);
   padding: 4.5rem 1.25rem 1rem;
   flex-grow: 1;
   width: 100%;
