@@ -34,10 +34,12 @@ if (theme === 'telegram') {
   applyTheme(theme);
 }
 
+
 if (window.Telegram.WebApp.isFullscreen === false) {
-  const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
-  const adjustPadding = () => {
+  onMounted(() => {
+    const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
     const viewElement = document.getElementById('view');
+
     if (viewElement) {
       const currentPadding = window.getComputedStyle(viewElement).paddingTop;
       const currentPaddingValue = parseFloat(currentPadding) || 0;
@@ -48,17 +50,11 @@ if (window.Telegram.WebApp.isFullscreen === false) {
       console.log(currentPaddingValue);
       console.log((currentPaddingValue + safeInsetTop) + 'px');
     } else {
-      console.warn('Element with ID "view" not found.');
+      console.warn('Element with ID "view" not found after component mount.');
     }
-  };
-
-  // Delay adjustment until DOM is fully loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', adjustPadding);
-  } else {
-    adjustPadding();
-  }
+  });
 }
+
 
 </script>
 
