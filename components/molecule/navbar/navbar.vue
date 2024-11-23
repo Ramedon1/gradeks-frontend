@@ -2,6 +2,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import {getIconColor} from "assets/js/functions.js";
+import {hapticFeedbackCelection} from "assets/js/functions.js";
 
 const activeDotPosition = ref(0);
 const buttonWidths = ref([]);
@@ -29,22 +30,25 @@ watch(() => route.path, (newRoute) => {
   const activeIndex = routes.findIndex((r) => r === newRoute);
   calculateDotPosition(activeIndex);
 });
+
+
+
 </script>
 
 <template>
   <div class="navbar">
     <div class="navbar-buttons">
-      <AtomNavbarButton class="navbar-button" url_to="/" text_button="Главная">
+      <AtomNavbarButton @click="hapticFeedbackCelection()" class="navbar-button" url_to="/" text_button="Главная">
         <template #default="{ isActive }">
           <AtomIconsHome :color="getIconColor('--theme-accent-text-color-deep-green')" :isActive="isActive"/>
         </template>
       </AtomNavbarButton>
-      <AtomNavbarButton class="navbar-button" url_to="/diary" text_button="Успеваемость">
+      <AtomNavbarButton @click="hapticFeedbackCelection()" class="navbar-button" url_to="/diary" text_button="Успеваемость">
         <template #default="{ isActive }">
           <AtomIconsDiary :color="getIconColor('--theme-accent-text-color-deep-green')"/>
         </template>
       </AtomNavbarButton>
-      <AtomNavbarButton class="navbar-button" url_to="/profile" text_button="Профиль">
+      <AtomNavbarButton @click="hapticFeedbackCelection()" class="navbar-button" url_to="/profile" text_button="Профиль">
         <template #default="{ isActive }">
           <AtomUiProfileAvatar :size="30"/>
         </template>

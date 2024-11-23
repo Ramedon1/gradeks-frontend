@@ -31,5 +31,8 @@ function applyTheme(themeName) {
     }
 }
 
+function hapticFeedbackCelection() {
+    window.Telegram.WebApp.HapticFeedback.selectionChanged();
+}
 
-export {getGradeColor, getIconColor, applyTheme};
+export {getGradeColor, getIconColor, applyTheme, hapticFeedbackCelection};
