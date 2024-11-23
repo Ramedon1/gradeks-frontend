@@ -34,7 +34,7 @@ if (theme === 'telegram') {
   applyTheme(theme);
 }
 
-if (window.Telegram.WebApp.isFullscreen === true) {
+if (window.Telegram.WebApp.isFullscreen === false) {
   const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
   const viewElement = document.getElementById('view');
 
