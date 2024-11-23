@@ -36,15 +36,28 @@ if (theme === 'telegram') {
 
 if (window.Telegram.WebApp.isFullscreen === false) {
   const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
-  const viewElement = document.getElementById('view');
+  const adjustPadding = () => {
+    const viewElement = document.getElementById('view');
+    if (viewElement) {
+      const currentPadding = window.getComputedStyle(viewElement).paddingTop;
+      const currentPaddingValue = parseFloat(currentPadding) || 0;
 
-  const currentPadding = window.getComputedStyle(viewElement).paddingTop;
-  const currentPaddingValue = parseFloat(currentPadding) || 0;
+      viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
 
-  viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
-  console.log(safeInsetTop)
-  console.log(currentPaddingValue)
-  console.log((currentPaddingValue + safeInsetTop) + 'px')
+      console.log(safeInsetTop);
+      console.log(currentPaddingValue);
+      console.log((currentPaddingValue + safeInsetTop) + 'px');
+    } else {
+      console.warn('Element with ID "view" not found.');
+    }
+  };
+
+  // Delay adjustment until DOM is fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', adjustPadding);
+  } else {
+    adjustPadding();
+  }
 }
 
 </script>
