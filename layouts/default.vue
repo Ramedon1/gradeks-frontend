@@ -35,7 +35,7 @@ if (theme === 'telegram') {
 }
 
 if (window.Telegram.WebApp.isFullscreen === true) {
-  document.body.style.paddingTop = 32 + window.Telegram.WebApp.contentSafeAreaInset.top + 'px';
+  document.body.style.top = window.Telegram.WebApp.contentSafeAreaInset.top + 'px';
 }
 </script>
 
