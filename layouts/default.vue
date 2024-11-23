@@ -42,6 +42,9 @@ if (window.Telegram.WebApp.isFullscreen === true) {
   const currentPaddingValue = parseFloat(currentPadding) || 0;
 
   viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
+  console.log(safeInsetTop)
+  console.log(currentPaddingValue)
+  console.log((currentPaddingValue + safeInsetTop) + 'px')
 }
 
 </script>
