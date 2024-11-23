@@ -22,7 +22,7 @@ const Unauthorized = defineAsyncComponent(() => import("~/pages/unauthorized.vue
 }
 
 #view {
-  padding: 4.5rem 1.25rem 1rem;
+  padding: 72px 20px 16px;
   flex-grow: 1;
   width: 100%;
   min-width: 200px;
