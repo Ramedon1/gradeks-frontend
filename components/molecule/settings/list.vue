@@ -26,6 +26,7 @@ if (type_period.value === 'semester') {
 
 const addToHomeScreen = () => {
   const status = window.Telegram?.WebApp?.checkHomeScreenStatus();
+  console.log(status);
   if (status === 'missed') {
     window.Telegram.WebApp.addToHomeScreen();
   } else if (status === 'added') {
