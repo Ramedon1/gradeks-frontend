@@ -51,7 +51,6 @@ const addToHomeScreen = () => {
       <AtomTextsHeaderBottomSheet header="Настройка темы"/>
       <MoleculeSettingsThemeList style="margin-top: 20px"/>
     </AtomUiBottomSheet>
-    <AtomSettingsButton @click="addToHomeScreen()" :switch="null" icon-name="homescreen" text="Добавить на рабочий стол"/>
     <AtomSettingsButton :switch="null" icon-name="alert" redirect="https://t.me/gradeks_support_bot"
                         text="Сообщить о проблеме"/>
   </div>
