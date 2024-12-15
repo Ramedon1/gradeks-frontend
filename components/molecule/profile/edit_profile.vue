@@ -72,7 +72,7 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
       <div v-if="loading == false" class="container-loading">
         <AtomTextsHeaderBottomSheet header="Редактирование профиля" style="text-align: center; margin-bottom: 15px"/>
         <NuxtLink class="instruction" target="_blank"
-                  to="https://telegra.ph/Instrukciya-po-privyazke-ehlektronnogo-dnevnika-deeduorbru-k-Gradeks-11-02">
+                  to="https://telegra.ph/Instrukciya-po-privyazke-ehlektronnogo-dnevnika-deeduorbru-k-Gradeks-12-15">
           <p style="margin-bottom: 20px; margin-top: 20px">Инструкция по привязке дневника к Gradeks</p>
         </NuxtLink>
         <div class="edit-content-container">
