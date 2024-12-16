@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import {useDiaryState} from '~/state/diary';
+import {useAuthStore} from "~/state/auth";
 import {getSettings} from "~/composables/useLocalStorage";
 import {addToast} from "~/composables/toast";
 
-const {distribution} = storeToRefs(useDiaryState())
+const {distribution, referrals} = storeToRefs(useDiaryState())
+const {userInfo} = storeToRefs(useAuthStore());
 const {activateDistribution, deactivateDistribution, getGrades} = useDiaryState();
 
 globalThis.addToast = addToast;
@@ -41,6 +43,9 @@ const addToHomeScreen = () => {
 
 <template>
   <div class="settings-list">
+    <AtomUiProfileCounterBlock >
+      <AtomSettingsShareLink :friendsNum="referrals?.length" :user_id="userInfo.id"/>
+    </AtomUiProfileCounterBlock>
     <AtomSettingsButton :action-active="activateDistribution" :action-deactive="deactivateDistribution"
                         :switch="distribution" icon-name="bell" text="Оповещение о новых оценках"/>
     <AtomSettingsButton :action-active="() => getGrades('semester')"
