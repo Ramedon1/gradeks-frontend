@@ -15,7 +15,7 @@ const showToast = (text: string, type: 'success' | 'error' | 'info') => {
 };
 
 
-const link = computed(() => 'https://t.me/gradeksbot?startapp=r_' + props.user_id);
+const link = computed(() => 't.me/gradeksbot?startapp=r_' + props.user_id);
 
 function copyMe() {
   navigator.clipboard.writeText("https://" + link.value);
