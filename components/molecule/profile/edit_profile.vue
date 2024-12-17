@@ -26,7 +26,7 @@ const showToast = (text: string, type: 'success' | 'error' | 'info') => {
 
 
 const isUrlValid = computed(() => {
-  const urlPattern = /^https:\/\/de\.edu\.orb\.ru\/edv\/actions\/subjects\/\?participant=[\w\d]+&.+$/;
+  const urlPattern = /^https:\/\/de\.edu\.orb\.ru\/edv\/actions\/subjects\/\?participant=[\w\d]/;
   return urlPattern.test(urlInput.value) && (urlInput.value.match(/participant=([\w\d]+)/)?.[1] !== spec_diary.value.diary_id);
 });
 
