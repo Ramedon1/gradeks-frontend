@@ -26,7 +26,7 @@ console.log(gradeColor);
     />
     <AtomPlateWeight
         :weight="props.grade === 0 ? 'Зачёт' : (props.grade === 1 ? 'Не зачёт' : props.grade)"
-        :style="{ backgroundColor: hexToRgba(getGradeColor(props.grade), 0.4) }"
+        :style="{ backgroundColor: hexToRgba(getGradeColor(props.grade), 1) }"
     />
   </div>
 </template>
