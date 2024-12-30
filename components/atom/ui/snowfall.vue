@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 
@@ -14,10 +14,16 @@ const createSnowfall = () => {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  // Set canvas size to match the window size
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  // Function to update canvas size
+  const resizeCanvas = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
 
+  // Set initial canvas size
+  resizeCanvas();
+
+  // Snowflake array
   const snowflakes: Array<any> = [];
 
   // Snowflake class
@@ -32,7 +38,7 @@ const createSnowfall = () => {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
       this.radius = Math.random() * 4 + 1;
-      this.speed = Math.random() * 1 + 0.2;
+      this.speed = Math.random() * 1 + 0.5;
       this.opacity = Math.random() * 0.5 + 0.3;
     }
 
@@ -69,17 +75,19 @@ const createSnowfall = () => {
   };
 
   animateSnowfall();
+
+  // Resize canvas on window resize
+  window.addEventListener('resize', resizeCanvas);
 };
 
 onMounted(() => {
-  // Ensure the snowfall effect starts once the component is mounted
   createSnowfall();
 });
 </script>
 
 <style scoped>
 .snowfall-canvas {
-  position: absolute;
+  position: fixed; /* Fixed positioning ensures it stays in place even when scrolling */
   top: 0;
   left: 0;
   width: 100%;
