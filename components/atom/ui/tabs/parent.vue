@@ -3,7 +3,7 @@ import { provide, ref, onMounted, nextTick, watch, onUnmounted } from 'vue';
 
 const tabs = ref([
   { label: 'Текущие' },
-  { label: 'Годовые' },
+  { label: 'Итоговые' },
 ]);
 
 const activeTab = ref(0);
