@@ -14,19 +14,15 @@ const createSnowfall = () => {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  // Function to update canvas size
   const resizeCanvas = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   };
 
-  // Set initial canvas size
   resizeCanvas();
 
-  // Snowflake array
   const snowflakes: Array<any> = [];
 
-  // Snowflake class
   class Snowflake {
     x: number;
     y: number;
@@ -58,12 +54,10 @@ const createSnowfall = () => {
     }
   }
 
-  // Initialize snowflakes
   for (let i = 0; i < 100; i++) {
     snowflakes.push(new Snowflake());
   }
 
-  // Animation loop
   const animateSnowfall = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
     snowflakes.forEach(snowflake => {
@@ -76,7 +70,6 @@ const createSnowfall = () => {
 
   animateSnowfall();
 
-  // Resize canvas on window resize
   window.addEventListener('resize', resizeCanvas);
 };
 
@@ -87,12 +80,12 @@ onMounted(() => {
 
 <style scoped>
 .snowfall-canvas {
-  position: fixed; /* Fixed positioning ensures it stays in place even when scrolling */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* So the snowfall doesn't block other content */
-  z-index: -1; /* Ensure the canvas stays behind other content */
+  pointer-events: none;
+  z-index: -1;
 }
 </style>
