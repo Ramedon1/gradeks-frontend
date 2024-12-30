@@ -5,6 +5,7 @@ const card_info = defineProps({
   new_grade: Number,
   weight: Number,
   old_grade: Number,
+  is_final: Boolean
 });
 
 const {
@@ -19,9 +20,17 @@ const {
 
 <template>
   <div class="plate">
-    <div class="header">
+    <div
+        v-if="card_info.is_final"
+        class="final-header"
+        style="gap: 5px; flex-direction: column; display: flex; justify-content: space-between;">
+      <AtomPlateDate class="date-grade" date="Итоговая оценка"
+                     style="background-color: var(--theme-accent-text-color-light-green)"/>
       <AtomPlateDate :date="card_info.date" class="date-grade"/>
-      <AtomPlateWeight :weight="card_info.weight" @click="openBottomSheet"/>
+    </div>
+    <div class="header">
+      <AtomPlateDate v-if="card_info.is_final === false" :date="card_info.date" class="date-grade"/>
+      <AtomPlateWeight v-if="card_info.is_final === false" :weight="card_info.weight" @click="openBottomSheet"/>
       <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event">
         <AtomTextsHeaderBottomSheet header="Вес оценки"/>
         <p class="third-text" style="margin: 0; font-size: 15px; text-align: center">
@@ -40,6 +49,7 @@ const {
 </template>
 
 <style scoped>
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -65,11 +75,6 @@ const {
 }
 
 @media (max-width: 374px) {
-  .plate {
-    width: 100px;
-    height: 196.333px;
-  }
-
   .grade-change {
     width: 80%;
   }

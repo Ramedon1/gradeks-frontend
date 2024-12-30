@@ -1,12 +1,24 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 const props = defineProps({
-  date: String
+  date: String,
+});
+
+const fontFamily = computed(() => {
+  return props.date.includes("-") ? "date-grades" : "PFEncoreSansPro-Medium";
+});
+
+const textColorClass = computed(() => {
+  return props.date.includes("Итоговая") ? "final-text" : "default";
 });
 </script>
 
 <template>
   <div class="date">
-    <p class="date-text">{{ props.date }}</p>
+    <p class="date-text" :style="{ fontFamily }" :class="textColorClass">
+      {{ props.date }}
+    </p>
   </div>
 </template>
 
@@ -18,12 +30,19 @@ const props = defineProps({
 }
 
 .date-text {
-  color: var(--theme-text-color-green);
   text-align: center;
-  font-family: "date-grades", serif;
+  font-family: "PFEncoreSansPro-Medium", serif;
   font-size: 14px;
   margin: 0;
   line-height: 20px;
+}
+
+.final-text {
+  color: #11241C;
+}
+
+.default {
+  color: var(--theme-text-color-green);
 }
 
 .date {

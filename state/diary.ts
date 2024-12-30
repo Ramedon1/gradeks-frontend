@@ -9,8 +9,19 @@ const showToast = (text: string, type: 'success' | 'error' | 'info') => {
 };
 
 export interface SpecDiaryInfo {
+    subject: string;
+    grade: boolean;
+}
+
+export interface InfoFinallyGrade {
     diary_id: string;
     diary_link: boolean;
+}
+
+
+export interface FinallyGrade {
+    quarter_name: string;
+    info_grades: InfoFinallyGrade[] | null;
 }
 
 
@@ -55,6 +66,7 @@ export const useDiaryState = defineStore('diary', {
         distribution: null as boolean | null,
         referrals: null as ReferralInfo[] | null,
         new_grades: null as NewGrade[] | null,
+        final_grades: null as FinallyGrade[] | null,
         is_active: null as boolean | null,
         diary_loaded: false,
         error: null as string | null,
@@ -79,6 +91,7 @@ export const useDiaryState = defineStore('diary', {
                     this.referrals = data.value.referrals;
                     this.is_active = data.value.is_active;
                     this.new_grades = data.value.new_grades;
+                    this.final_grades = data.value.final_grades;
 
                 } else {
                     console.error(`API error: ${error.statusCode}`)
@@ -116,7 +129,7 @@ export const useDiaryState = defineStore('diary', {
 
                 if (data.value) {
                     this.distribution = data.value.distribution_status;
-                    return { status: "ok" };
+                    return {status: "ok"};
                 } else {
                     console.error(`API error: ${error.statusCode}`)
                     const errorMessage = error?._object[error?._key]?.data?.detail || 'Unknown error occurred';
@@ -129,9 +142,9 @@ export const useDiaryState = defineStore('diary', {
         },
         async newGradeType(grade_type: string) {
             try {
-                const { data, status, error }: any = await useFetch(`https://api.gradeks.xyz/grade/change/${grade_type}`, {
+                const {data, status, error}: any = await useFetch(`https://api.gradeks.xyz/grade/change/${grade_type}`, {
                     method: 'post',
-                    headers: { 'Authorization': 'Bearer ' + this.access_token },
+                    headers: {'Authorization': 'Bearer ' + this.access_token},
                 });
 
                 if (data.value) {
@@ -140,7 +153,7 @@ export const useDiaryState = defineStore('diary', {
                             diary.type_grade = data.value.grade_type;
                         });
 
-                        return { status: "ok" };
+                        return {status: "ok"};
                     }
                 } else {
                     console.error(`API error: ${error?.statusCode}`);
@@ -154,9 +167,9 @@ export const useDiaryState = defineStore('diary', {
         },
         async connectDiary(diary_id: string) {
             try {
-                const { data, status, error }: any = await useFetch(`https://api.gradeks.xyz/user/link`, {
+                const {data, status, error}: any = await useFetch(`https://api.gradeks.xyz/user/link`, {
                     method: 'post',
-                    headers: { 'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json' },
+                    headers: {'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json'},
                     body: {
                         diary_id: diary_id
                     }
@@ -165,7 +178,7 @@ export const useDiaryState = defineStore('diary', {
                     this.spec_diary = data.value.spec_diary;
                     this.diary_info = data.value.diary_info;
 
-                    return { status: "ok" };
+                    return {status: "ok"};
                 } else {
                     console.error(`API error: ${error?.statusCode}`);
                     const errorMessage = error?._object[error?._key]?.data?.detail || 'Unknown error occurred';
@@ -178,9 +191,9 @@ export const useDiaryState = defineStore('diary', {
         },
         async getGrades(period_name: string) {
             try {
-                const { data, status, error }: any = await useFetch(`https://api.gradeks.xyz/grade/get`, {
+                const {data, status, error}: any = await useFetch(`https://api.gradeks.xyz/grade/get`, {
                     method: 'post',
-                    headers: { 'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json' },
+                    headers: {'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json'},
                     body: {
                         filter: period_name
                     }
@@ -190,7 +203,7 @@ export const useDiaryState = defineStore('diary', {
                     this.diary_info = data.value;
                     setData('filter', period_name)
                     showToast('Распределение оценок успешно изменено', 'success');
-                    return { status: "ok" };
+                    return {status: "ok"};
                 } else {
                     console.error(`API error: ${error?.statusCode}`);
                     showToast('Ошибка, попробуйте позже', 'error');

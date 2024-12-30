@@ -2,22 +2,30 @@
 import {ref} from 'vue';
 import { useDiaryState } from '~/state/diary';
 
-const { diary_info, spec_diary } = storeToRefs(useDiaryState());
+const { diary_info, spec_diary, final_grades } = storeToRefs(useDiaryState());
 
 const notifications = ref([
   {headline: 'New Message', message: 'You have received a new message.'},
   {headline: 'Update Available', message: 'A new update is available for download.'}
 ]);
 
-const data = ref(diary_info.value);
-
+const quarter_grades = ref(diary_info.value);
+const finals_grades = ref(final_grades.value);
 </script>
 
 
 <template>
   <div v-if="spec_diary?.diary_link != false" class="diary-content">
     <OrganismDiaryTopBar :notifications="notifications"/>
-    <OrganismDiaryQuarterGrades :quarters="data"/>
+    <AtomUiTabsParent>
+      <AtomUiTabsChild :index="0">
+        <OrganismDiaryQuarterGrades :quarters="quarter_grades"/>
+      </AtomUiTabsChild>
+      <AtomUiTabsChild :index="1">
+        <OrganismDiaryFinalGrades :final_grades="finals_grades"/>
+      </AtomUiTabsChild>
+    </AtomUiTabsParent>
+
   </div>
   <div v-else class="none-content">
     <div class="none-connect">

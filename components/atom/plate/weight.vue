@@ -1,13 +1,22 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+import { computed } from "vue";
+
 const props = defineProps({
-  weight: Number,
+  weight: {
+    type: [Number, String],
+    required: true,
+  },
+});
+
+const fontFamily = computed(() => {
+  return Number.isInteger(Number(props.weight)) ? "date-grades" : "PFEncoreSansPro-Medium";
 });
 
 </script>
 
 <template>
   <div class="weight-container">
-    <p class="weight-text">{{ props.weight}}</p>
+    <p class="weight-text" :style="{ fontFamily }">{{ props.weight }}</p>
   </div>
 </template>
 
@@ -31,5 +40,4 @@ const props = defineProps({
   margin: 0;
   line-height: 20px;
 }
-
 </style>

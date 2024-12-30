@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import {ref} from 'vue';
+import { ref, computed } from 'vue';
 
 const isActive = ref(false);
 const panel = ref(null);
-import {themeParams} from "@telegram-apps/sdk";
+import { themeParams } from "@telegram-apps/sdk";
 
 const toggleAccordion = () => {
   const el = panel.value;
@@ -23,17 +23,12 @@ const toggleAccordion = () => {
 };
 
 const props = defineProps({
-  quarter_date: String,
-  quarter_name: String,
-  type_grade: String,
-  subjects: [{
-    subject_name: String,
-    grades: [{
-      coff: Number,
-      grade: Number,
-      date: String
-    }],
-  }]
+  name: String,
+  date: String,
+});
+
+const accordionPadding = computed(() => {
+  return props.date ? '12px' : '17px';
 });
 
 function lightenColor(color, percent) {
@@ -53,34 +48,24 @@ function lightenColor(color, percent) {
           .slice(1)
   );
 }
-
 </script>
 
 <template>
   <button :class="['accordion', { active: isActive, 'padding-active': isActive }]" @click="toggleAccordion">
     <span class="container">
-      <span class="quarter-name">{{ props.quarter_name }}</span>
-      <AtomQuarterGradesDateBadge :date="props.quarter_date"/>
+      <span class="quarter-name">{{ props.name }}</span>
+      <AtomQuarterGradesDateBadge v-if="props.date" :date="props.date" />
     </span>
     <AtomQuarterGradesChevronArrow
         :color="themeParams.isMounted() ? lightenColor(themeParams.accentTextColor(), 30) : '#EDF1EF'"
         :isActive="isActive"
     />
-
   </button>
 
   <div ref="panel" :class="['panel', { open: isActive }]">
     <transition name="fade">
       <div v-if="isActive" class="panel-content">
-        <OrganismDiaryPanel
-            v-for="(subject, index) in props.subjects"
-            :key="index"
-            :grades="subject.grades"
-            :new_type_grade="subject.new_type_grade"
-            :old_type_grade="subject.old_type_grade"
-            :subject_name="subject.subject_name"
-            :type_grade="props.type_grade"
-        />
+        <slot />
       </div>
     </transition>
   </div>
@@ -100,7 +85,7 @@ function lightenColor(color, percent) {
 
 .accordion {
   display: flex;
-  padding: 12px;
+  padding: v-bind(accordionPadding); /* Apply computed padding here */
   flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;

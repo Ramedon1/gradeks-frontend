@@ -45,10 +45,6 @@ if (window.Telegram.WebApp.isFullscreen === false) {
       const currentPaddingValue = parseFloat(currentPadding) || 0;
 
       viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
-
-      console.log(safeInsetTop);
-      console.log(currentPaddingValue);
-      console.log((currentPaddingValue + safeInsetTop) + 'px');
     } else {
       console.warn('Element with ID "view" not found after component mount.');
     }

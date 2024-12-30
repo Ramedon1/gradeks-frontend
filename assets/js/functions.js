@@ -1,8 +1,12 @@
 const getGradeColor = (grade) => {
     if (grade >= 5) return '#0ca139';
     if (grade >= 4) return '#ff9600';
-    if (grade >= 3) return '#FC0';
+    if (grade >= 3) return '#FFCC00FF';
     if (grade >= 2) return '#ff4d4d';
+    if (grade >= 1) return '#ff4d4d';
+    if (grade >= 0) return '#0ca139';
+    if (grade === 'Зачёт') return '#0ca139';
+    if (grade === 'Незачёт') return '#ff4d4d';
     return '#000';
 };
 

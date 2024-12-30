@@ -15,6 +15,7 @@ const props = defineProps({
         :new_grade="grade.grade"
         :old_grade="grade.old_grade !== null ? grade.old_grade : undefined"
         :subject="grade.subject"
+        :is_final="grade.is_final"
     />
   </div>
 </template>
