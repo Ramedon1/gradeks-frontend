@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed} from "vue";
+import { computed } from 'vue'
 
 const props = defineProps({
   subject_name: String,
@@ -13,28 +13,18 @@ const props = defineProps({
   }]
 });
 
-const sortedGrades = computed(() =>
-    [...props.grades].sort((a, b) =>
-        new Date(a.date).getTime() - new Date(b.date).getTime()
-    )
+const last_grade = computed<number>(() =>
+    props.grades.length
+        ? props.grades[props.grades.length - 1].grade
+        : 0
 )
 
-const lastGrade = computed(() =>
-    sortedGrades.value.length
-        ? sortedGrades.value[sortedGrades.value.length - 1]
-        : null
+const prelast_grade = computed<number>(() =>
+    props.grades.length > 1
+        ? props.grades[props.grades.length - 2].grade
+        : 0
 )
 
-const penultimateGrade = computed(() =>
-    sortedGrades.value.length > 1
-        ? sortedGrades.value[sortedGrades.value.length - 2]
-        : null
-)
-
-const last_grade = computed(() => penultimateGrade.value?.grade ?? 0)
-const prelast_grade = computed(() => lastGrade.value?.grade ?? 0)
-
-console.log(last_grade.value, prelast_grade.value)
 </script>
 
 <template>
