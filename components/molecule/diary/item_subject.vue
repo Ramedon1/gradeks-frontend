@@ -10,6 +10,8 @@ const props = defineProps({
   type_grade: String,
   new_type_grade: Number,
   old_type_grade: Number,
+  last_grade: Number,
+  prelast_grade: Number
 });
 
 const {
@@ -54,7 +56,7 @@ async function chooseGradeType() {
 <template>
   <div class="item_subject">
     <AtomQuarterGradesSubjectName :subject="props.subject"/>
-    <AtomQuarterGradesAverageGrade :new_type_grade="props.new_type_grade" :old_type_grade="props.old_type_grade"
+    <AtomQuarterGradesAverageGrade :prelast_grade="props.prelast_grade" :last_grade="props.last_grade" :new_type_grade="props.new_type_grade" :old_type_grade="props.old_type_grade"
                                    :type_grade="props.type_grade"
                                    @click="openBottomSheet"/>
     <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event">
