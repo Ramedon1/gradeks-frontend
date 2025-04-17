@@ -63,8 +63,8 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
 </script>
 
 <template>
-  <div class="edit-profile-container">
-    <div @click="openBottomSheet">
+  <div style="display: flex; margin-top: auto; margin-bottom: auto" class="edit-profile-container">
+    <div style="display: flex" @click="openBottomSheet">
       <slot></slot>
     </div>
     <AtomUiBottomSheet :blocked="loading" :visible="isBottomSheetVisible"
@@ -128,10 +128,6 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
   align-items: center;
 }
 
-.edit-profile-container {
-  margin-top: 5px;
-  margin-right: 5px;
-}
 
 .button-save:disabled {
   background-color: var(--theme-button-color);
