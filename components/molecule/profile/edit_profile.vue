@@ -64,12 +64,12 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
 
 <template>
   <div style="display: flex; margin-top: auto; margin-bottom: auto" class="edit-profile-container">
-    <div style="display: flex" @click="openBottomSheet">
+    <div style="display: flex; cursor: pointer;" @click="openBottomSheet">
       <slot></slot>
     </div>
     <AtomUiBottomSheet :blocked="loading" :visible="isBottomSheetVisible"
                        @update:visible="isBottomSheetVisible = $event">
-      <div v-if="loading == false" class="container-loading">
+      <div v-if="!loading" class="container-loading">
         <AtomTextsHeaderBottomSheet header="Редактирование профиля" style="text-align: center; margin-bottom: 15px"/>
         <NuxtLink class="instruction" target="_blank"
                   to="https://telegra.ph/Instrukciya-po-privyazke-ehlektronnogo-dnevnika-deeduorbru-k-Gradeks-12-15">

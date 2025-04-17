@@ -4,7 +4,7 @@ import {useAuthStore} from "~/state/auth";
 import {getSettings} from "~/composables/useLocalStorage";
 import {addToast} from "~/composables/toast";
 
-const {distribution, referrals} = storeToRefs(useDiaryState())
+const {distribution, refferals} = storeToRefs(useDiaryState())
 const {userInfo} = storeToRefs(useAuthStore());
 const {activateDistribution, deactivateDistribution, getGrades} = useDiaryState();
 
@@ -20,11 +20,7 @@ const {
 } = useBottomSheet()
 
 let type_period = ref(await getSettings('filter'));
-if (type_period.value === 'semester') {
-  type_period = true
-} else {
-  type_period = false
-}
+type_period = type_period.value === 'semester';
 
 const addToHomeScreen = () => {
   const status = window.Telegram?.WebApp?.checkHomeScreenStatus();
@@ -42,9 +38,6 @@ const addToHomeScreen = () => {
 
 <template>
   <div class="settings-list">
-    <AtomUiProfileCounterBlock >
-      <AtomSettingsShareLink :friendsNum="referrals?.length" :user_id="userInfo.id"/>
-    </AtomUiProfileCounterBlock>
     <AtomSettingsButton :action-active="activateDistribution" :action-deactive="deactivateDistribution"
                         :switch="distribution" icon-name="bell" text="Оповещение о новых оценках"/>
     <AtomSettingsButton :action-active="() => getGrades('semester')"

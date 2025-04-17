@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import {getIconColor} from "assets/js/functions";
+import {useDiaryState} from "~/state/diary";
+
+const {referrals} = storeToRefs(useDiaryState())
 
 const props = defineProps({
   name: String,
@@ -8,15 +11,18 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="profile-container" >
+  <div class="profile-container">
     <div class="profile-content">
       <div class="profile-info">
         <AtomUiProfileAvatar :size="150"/>
         <div class="name-container">
-          <AtomTextsProfileName :name="props.name"/>
-          <MoleculeProfileEditProfile>
-            <AtomIconsPen :color="getIconColor('--theme-accent-text-color-deep-green')" />
-          </MoleculeProfileEditProfile>
+          <div class="profile-data">
+            <AtomTextsProfileName :name="props.name"/>
+            <MoleculeProfileEditProfile>
+              <AtomIconsPen :color="getIconColor('--theme-accent-text-color-deep-green')"/>
+            </MoleculeProfileEditProfile>
+          </div>
+          <p class="counter-text">Ты пригласил/a {{ referrals?.length }} друзей</p>
         </div>
       </div>
     </div>
@@ -24,10 +30,27 @@ const props = defineProps({
 </template>
 
 <style scoped>
+.counter-text {
+  font-size: 15px;
+  margin: 0;
+  font-family: "PFEncoreSansPro-Regular", serif;
+  color: var(--theme-text-color-green);
+  text-align: center;
+}
+
+
+.profile-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+}
+
 .name-container {
   display: flex;
   gap: 8px;
   margin-left: auto;
+  flex-direction: column;
   margin-right: auto;
 }
 
