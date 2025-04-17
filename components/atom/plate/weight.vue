@@ -6,17 +6,25 @@ const props = defineProps({
     type: [Number, String],
     required: true,
   },
+  textColor: {
+    type: String,
+    default: "var(--theme-subtitle-text-color-green)",
+  },
 });
 
 const fontFamily = computed(() => {
   return Number.isInteger(Number(props.weight)) ? "date-grades" : "PFEncoreSansPro-Medium";
 });
-
 </script>
 
 <template>
   <div class="weight-container">
-    <p class="weight-text" :style="{ fontFamily }">{{ props.weight }}</p>
+    <p
+        class="weight-text"
+        :style="{ color: props.textColor, fontFamily }"
+    >
+    {{ props.weight }}
+    </p>
   </div>
 </template>
 
@@ -33,11 +41,10 @@ const fontFamily = computed(() => {
 }
 
 .weight-text {
-  color: var(--theme-subtitle-text-color-green);
   text-align: center;
-  font-family: "date-grades", serif;
   font-size: 14px;
   margin: 0;
   line-height: 20px;
+  color: var(--theme-subtitle-text-color-green);
 }
 </style>

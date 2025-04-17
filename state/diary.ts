@@ -111,12 +111,14 @@ export const useDiaryState = defineStore('diary', {
 
                 if (data.value) {
                     this.distribution = data.value.distribution_status;
-
+                    showToast('Статус оповещений изменен', 'success');
                 } else {
                     console.error(`API error: ${error.statusCode}`)
+                    showToast('Ошибка, попробуйте позже', 'error');
                     this.error = data?.value?.detail || 'Unknown error occurred';
                 }
             } catch (error: any) {
+                showToast('Ошибка, попробуйте позже', 'error');
                 this.error = error?.message || 'Something went wrong. Please try again later.';
             }
         },
@@ -129,14 +131,17 @@ export const useDiaryState = defineStore('diary', {
 
                 if (data.value) {
                     this.distribution = data.value.distribution_status;
+                    showToast('Статус оповещений изменен', 'success');
                     return {status: "ok"};
                 } else {
                     console.error(`API error: ${error.statusCode}`)
+                    showToast('Ошибка, попробуйте позже', 'error');
                     const errorMessage = error?._object[error?._key]?.data?.detail || 'Unknown error occurred';
                     return {status: "error", error: errorMessage};
                 }
             } catch (error: any) {
                 const errorMessage = error?._object[error?._key]?.data?.detail || 'Something went wrong. Please try again later.';
+                showToast('Ошибка, попробуйте позже', 'error');
                 return {status: "error", error: errorMessage};
             }
         },

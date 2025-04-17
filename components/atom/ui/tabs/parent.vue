@@ -3,7 +3,7 @@ import { provide, ref, onMounted, nextTick, watch, onUnmounted } from 'vue';
 
 const tabs = ref([
   { label: 'Текущие' },
-  { label: 'Годовые' },
+  { label: 'Итоговые' },
 ]);
 
 const activeTab = ref(0);
@@ -110,12 +110,12 @@ provide('activateTab', activateTab);
 }
 
 .tab.active {
-  color: var(--theme-text-color-green);
+  color: var(--theme-button-text-color-white);
 }
 
 .indicator {
   position: absolute;
-  background-color: var(--theme-accent-text-color-blue);
+  background-color: var(--theme-accent-text-color-deep-green);
   transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
   z-index: 0;
   margin-bottom: 5px;

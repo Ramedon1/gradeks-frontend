@@ -34,5 +34,9 @@ const filteredGrades = computed(() => {
 </template>
 
 <style scoped>
-
+.final-grades-container {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+}
 </style>

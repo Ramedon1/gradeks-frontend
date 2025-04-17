@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { getGradeColor } from "assets/js/functions";
 
-// Function to convert hex color to RGBA
 function hexToRgba(hex: string, alpha: number): string {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -14,9 +14,7 @@ const props = defineProps({
   grade: Number,
 });
 
-const gradeColor = getGradeColor(props.grade);
-
-console.log(gradeColor);
+const gradeColor = '#fff';
 </script>
 
 <template>
@@ -26,7 +24,8 @@ console.log(gradeColor);
     />
     <AtomPlateWeight
         :weight="props.grade === 0 ? 'Зачёт' : (props.grade === 1 ? 'Не зачёт' : props.grade)"
-        :style="{ backgroundColor: hexToRgba(getGradeColor(props.grade), 0.4) }"
+        :textColor="gradeColor"
+        :style="{ backgroundColor: hexToRgba(getGradeColor(props.grade), 1) }"
     />
   </div>
 </template>
