@@ -57,7 +57,7 @@ if (window.Telegram.WebApp.isFullscreen === false) {
 
 <template>
   <div id="container">
-    <AtomUiSnowfall />
+    <AtomBackgroundsLeaffall/>
     <div v-if="((authenticated || error.detail) && diary_loaded && is_active ) " id="view">
       <!--      <div class="logo-container">-->
       <!--        <AtomUiLogo/>-->
@@ -87,10 +87,6 @@ if (window.Telegram.WebApp.isFullscreen === false) {
 </template>
 
 <style scoped>
-.logo-container {
-  display: flex;
-  justify-content: center;
-}
 
 :global(body) {
   margin: 0;

@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref} from 'vue';
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 
@@ -34,7 +34,7 @@ const createSnowfall = () => {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
       this.radius = Math.random() * 4 + 1;
-      this.speed = Math.random() * 1 + 0.5;
+      this.speed = Math.random() + 0.5;
       this.opacity = Math.random() * 0.5 + 0.3;
     }
 
