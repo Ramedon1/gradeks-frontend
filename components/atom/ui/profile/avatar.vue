@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {useAuthStore} from "~/state/auth";
 
 
@@ -14,9 +14,11 @@ const url = computed(() => userInfo.value?.photo_url);
 </script>
 
 <template>
-  <img :src="url"
-       alt="avatar" class="avatar"
-       :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }">
+  <NuxtImg :src="url"
+           :style="{ width: props_avatar.size + 'px', height: props_avatar.size + 'px' }" alt="avatar"
+           class="avatar"
+           loading="lazy" preload
+  />
 </template>
 
 <style scoped>

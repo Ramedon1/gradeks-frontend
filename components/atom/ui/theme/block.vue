@@ -8,6 +8,7 @@ const props = defineProps<{ theme: string, name: string }>();
         :src="`img/${props.theme}_theme.png`"
         class="block-img"
         sizes="md:100px sm:100px xs:70px"
+        loading="lazy" preload
     />
     <p class="name">{{ props.name }}</p>
   </div>
