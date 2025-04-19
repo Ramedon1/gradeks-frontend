@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Doughnut } from 'vue-chartjs'
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 import type { ChartData, ChartOptions, Plugin } from 'chart.js'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { getGradeColor, getIconColor } from 'assets/js/functions'

@@ -61,9 +61,8 @@ const createLeafFall = () => {
       this.radiusY = this.radiusX * (Math.random() * 0.6 + 0.4);
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * -canvas.height;
-      // рандомные скорости
       this.vx = (Math.random() - 0.5) * 1.5;     // -0.75…+0.75 px/frame
-      this.vy = Math.random() * 1 + 0.5;         // 0.5…1.5 px/frame
+      this.vy = Math.random() + 0.5;         // 0.5…1.5 px/frame
       this.angle = Math.random() * Math.PI * 2;
       this.angularSpeed = (Math.random() - 0.5) * 0.04; // быстрей вращаются
       this.color = colors[Math.floor(Math.random() * colors.length)];
@@ -99,7 +98,7 @@ const createLeafFall = () => {
   }
 
   const leaves: Leaf[] = [];
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 30; i++) {
     leaves.push(new LeafImpl());
   }
 

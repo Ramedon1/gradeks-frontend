@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, withDefaults, defineProps } from 'vue'
+import { computed, defineProps } from 'vue'
 import { Line } from 'vue-chartjs'
 import {
   CategoryScale,
