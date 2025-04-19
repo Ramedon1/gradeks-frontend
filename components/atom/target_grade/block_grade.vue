@@ -10,7 +10,7 @@ const props = defineProps({
 
 onMounted(() => {
   const rootStyles = getComputedStyle(document.documentElement);
-  const hexColor = rootStyles.getPropertyValue('--theme-text-color-green').trim();
+  const hexColor = rootStyles.getPropertyValue('--theme-button-text-color-white').trim();
 
   const rgbaColor = hexToRgba(hexColor, 0.1);
 

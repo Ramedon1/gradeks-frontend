@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, withDefaults, defineProps } from 'vue'
+import { computed } from 'vue'
 import { Line } from 'vue-chartjs'
 import {
   CategoryScale,
@@ -8,7 +8,8 @@ import {
   LineElement,
   PointElement,
 } from 'chart.js'
-import { getGradeColor } from 'assets/js/functions.js'
+
+import { getGradeColor } from 'assets/js/functions.js';
 
 interface Props {
   grade: number
@@ -21,6 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   grades: () => [],
 })
 
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -28,13 +30,9 @@ ChartJS.register(
     LineElement
 )
 
-const themeWhite = window
-    .getComputedStyle(document.documentElement)
-    .getPropertyValue('--theme-text-color-white')
-    .trim()
 
 const chartData = computed(() => ({
-  labels: props.dates,
+  labels: props.dates, // например, если это данные по оси X
   datasets: [
     {
       data: props.grades,
@@ -60,51 +58,43 @@ const chartOptions = {
         color: '#EAEAEA',
         borderDash: [5, 5],
       },
-      ticks: {
-        color: themeWhite,
-      },
     },
     y: {
       min: 1,
       max: 6,
+      ticks: {stepSize: 1},
       grid: {
         display: true,
         color: '#EAEAEA',
         borderDash: [5, 5],
       },
-      ticks: {
-        stepSize: 1,
-        color: themeWhite,
-      },
       title: {
         display: true,
         text: 'Средняя оценка',
-        padding: { bottom: 10 },
-        color: themeWhite,
+        padding: {bottom: 10},
       },
     },
   },
   plugins: {
-    tooltip: { enabled: false },
-    legend: {
-      display: false,
-      labels: {
-        color: themeWhite,
-      },
-    },
+    tooltip: {enabled: false},
+    legend: {display: false},
   },
   animation: false,
 }
 </script>
 
+
 <template>
   <div class="chart-container">
     <div style="display: flex; align-items: center; gap: 2px">
-      <div class="chart-title third-text">Динамика</div>
-      <AtomIconsChart style="margin-bottom: 10px" />
+      <div class="chart-title third-text ">Динамика</div>
+      <AtomIconsChart style="margin-bottom: 10px"/>
     </div>
     <div class="chart-content">
-      <Line :data="chartData" :options="chartOptions" />
+      <Line
+          :data="chartData"
+          :options="chartOptions"
+      />
     </div>
   </div>
 </template>
