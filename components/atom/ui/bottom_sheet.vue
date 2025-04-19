@@ -1,21 +1,20 @@
 <script lang="ts" setup>
-import {ref, watch} from 'vue';
+import {onBeforeUnmount, ref, watch} from 'vue';
 
 const props = defineProps({
   visible: Boolean,
   blocked: Boolean,
 });
-
 const emit = defineEmits<{
   (e: 'update:visible', value: boolean): void;
 }>();
 
 const bottomSheetRef = ref<HTMLElement | null>(null);
+const contentRef = ref<HTMLElement | null>(null);
+
 const initialY = ref(0);
-const currentY = ref(0);
 const translateY = ref(0);
 const isDragging = ref(false);
-const isAnimating = ref(false);
 
 function close() {
   if (!props.blocked) {
@@ -23,97 +22,108 @@ function close() {
   }
 }
 
-function handleTouchStart(event: TouchEvent) {
-  if (event.touches.length > 0 && !props.blocked) {
-    isDragging.value = true;
-    isAnimating.value = false;
-    initialY.value = event.touches[0].clientY;
-    currentY.value = initialY.value;
-    if (bottomSheetRef.value) {
-      bottomSheetRef.value.style.transition = 'none';
-    }
-  }
+function handleTouchStart(e: TouchEvent) {
+  if (props.blocked || !e.touches.length) return;
+  if (contentRef.value?.scrollTop! > 0) return;
+
+  isDragging.value = true;
+  initialY.value = e.touches[0].clientY;
+  bottomSheetRef.value!.style.transition = 'none';
 }
 
-function handleTouchMove(event: TouchEvent) {
-  if (isDragging.value && event.touches.length > 0 && !props.blocked) {
-    const touchY = event.touches[0].clientY;
-    translateY.value = Math.max(0, touchY - initialY.value);
-    if (bottomSheetRef.value) {
-      bottomSheetRef.value.style.transform = `translateY(${translateY.value}px)`;
-    }
-  }
+function handleTouchMove(e: TouchEvent) {
+  if (!isDragging.value || props.blocked || !e.touches.length) return;
+  const delta = e.touches[0].clientY - initialY.value;
+  translateY.value = Math.max(0, delta);
+  bottomSheetRef.value!.style.transform = `translateY(${translateY.value}px)`;
 }
 
 function handleTouchEnd() {
-  if (props.blocked) {
-    return;
-  }
-
+  if (props.blocked) return;
   isDragging.value = false;
-  isAnimating.value = true;
-
-  if (bottomSheetRef.value) {
-    bottomSheetRef.value.style.transition = 'transform 0.5s ease';
-  }
+  bottomSheetRef.value!.style.transition = 'transform 0.5s ease';
 
   if (translateY.value > 180) {
-    requestAnimationFrame(() => {
-      close();
-    });
+    requestAnimationFrame(close);
   } else {
     requestAnimationFrame(() => {
-      if (bottomSheetRef.value) {
-        bottomSheetRef.value.style.transform = 'translateY(0)';
-      }
+      bottomSheetRef.value!.style.transform = 'translateY(0)';
     });
   }
-
   translateY.value = 0;
 }
 
-watch(() => props.visible, (newVal) => {
-  if (!newVal && bottomSheetRef.value) {
+watch(() => props.visible, visible => {
+  document.body.style.overflow = visible ? 'hidden' : '';
+  if (!visible && bottomSheetRef.value) {
     bottomSheetRef.value.style.transform = 'translateY(100%)';
   }
 });
+
+onBeforeUnmount(() => {
+  document.body.style.overflow = '';
+});
 </script>
+
 
 <template>
   <transition name="bottom-sheet-fade">
     <div v-if="visible" class="bottom-sheet-overlay" @click="close">
       <transition name="bottom-sheet-slide">
-        <div v-if="visible" ref="bottomSheetRef" class="bottom-sheet" @touchend="handleTouchEnd"
-             @touchmove="handleTouchMove" @touchstart="handleTouchStart" @click.stop>
-          <!-- Indicator -->
+        <div
+            v-if="visible"
+            ref="bottomSheetRef"
+            class="bottom-sheet"
+            @touchend="handleTouchEnd"
+            @touchmove="handleTouchMove"
+            @touchstart="handleTouchStart"
+            @click.stop
+        >
           <div class="indicator">
             <AtomIconsIndicator/>
           </div>
-          <!-- Card Content -->
-          <slot></slot>
+
+          <div ref="contentRef" class="bottom-sheet-content">
+            <slot/>
+          </div>
         </div>
       </transition>
     </div>
   </transition>
 </template>
 
+
 <style scoped>
+.bottom-sheet-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .bottom-sheet {
   position: relative;
   display: flex;
-  width: 100%;
-  padding: 35px 25px 40px 25px;
-  margin-top: 6rem;
-  min-width: 200px;
-  max-width: 600px;
-  margin-right: auto;
-  margin-left: auto;
   flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 6rem auto 0;
+  padding: 0;
   border-radius: 1.5rem 1.5rem 0 0;
   background-color: var(--theme-section-bg-color-white);
   transition: transform 0.3s ease;
   will-change: transform;
+  max-height: calc(100vh - 4rem);
 }
+
+.bottom-sheet-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 35px 25px 40px;
+}
+
 
 .bottom-sheet-overlay {
   visibility: visible;

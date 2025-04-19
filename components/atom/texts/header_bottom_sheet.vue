@@ -11,6 +11,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
+
 .container-header {
   display: flex;
   height: 36px;
@@ -21,8 +22,11 @@ const props = defineProps({
   align-self: stretch;
 }
 
+
 .header-text {
   margin: 0;
+  text-align: center;
   font-size: 24px;
 }
+
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import {computed} from 'vue'
 
 const props = defineProps({
   subject_name: String,
@@ -29,6 +29,7 @@ const prelast_grade = computed<number>(() =>
 
 <template>
   <MoleculeDiaryItemSubject
+      :grades="props.grades"
       :last_grade="last_grade"
       :new_type_grade="props.new_type_grade"
       :old_type_grade="props.old_type_grade"

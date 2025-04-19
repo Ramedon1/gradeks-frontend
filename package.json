@@ -13,9 +13,12 @@
   "dependencies": {
     "@nuxt/image": "^1.8.1",
     "@telegram-apps/sdk": "^2.6.2",
+    "chart.js": "^4.4.9",
     "nuxt": "^3.13.0",
+    "nuxt-aos": "^1.2.5",
     "pinia": "^2.2.2",
     "vue": "latest",
+    "vue-chartjs": "^5.3.2",
     "vue-router": "latest",
     "vue3-lottie": "^3.3.1"
   },

@@ -11,7 +11,12 @@ const props = defineProps({
   new_type_grade: Number,
   old_type_grade: Number,
   last_grade: Number,
-  prelast_grade: Number
+  prelast_grade: Number,
+  grades: [{
+    coff: Number,
+    grade: Number,
+    date: String
+  }]
 });
 
 const {
@@ -51,14 +56,25 @@ async function chooseGradeType() {
     showToast('Нельзя поменять тип оценок на тот же самый', 'info');
   }
 }
+
+const currentGrade = computed(() => {
+  return props.type_grade === 'old' ? props.old_type_grade : props.new_type_grade;
+});
+
+
 </script>
 
 <template>
   <div class="item_subject">
-    <AtomQuarterGradesSubjectName :subject="props.subject"/>
-    <AtomQuarterGradesAverageGrade :prelast_grade="props.prelast_grade" :last_grade="props.last_grade" :new_type_grade="props.new_type_grade" :old_type_grade="props.old_type_grade"
-                                   :type_grade="props.type_grade"
-                                   @click="openBottomSheet"/>
+    <AtomQuarterGradesSubjectName class="subject-name" :subject="props.subject"/>
+
+    <div class="contain">
+      <MoleculeStatisticSubject :current="currentGrade" :grades="props.grades" :subject="props.subject"/>
+      <AtomQuarterGradesAverageGrade :last_grade="props.last_grade" :new_type_grade="props.new_type_grade"
+                                     :old_type_grade="props.old_type_grade" :prelast_grade="props.prelast_grade"
+                                     :type_grade="props.type_grade"
+                                     @click="openBottomSheet"/>
+    </div>
     <AtomUiBottomSheet :visible="isBottomSheetVisible" @update:visible="isBottomSheetVisible = $event">
       <div class="grade-type-explanation">
         <AtomTextsHeaderText class="header" text="Тип оценивания"/>
@@ -71,8 +87,8 @@ async function chooseGradeType() {
           <MoleculeGradesTypeGrade
               :new_type_grade="props.new_type_grade"
               :old_type_grade="props.old_type_grade"
-              @gradeSelected="handleGradeSelected"
-              :type_grade="props.type_grade"/>
+              :type_grade="props.type_grade"
+              @gradeSelected="handleGradeSelected"/>
         </div>
         <div class="buttons-container">
           <AtomUiButtonsCancel @click="closeBottomSheet"/>
@@ -84,6 +100,20 @@ async function chooseGradeType() {
 </template>
 
 <style scoped>
+@media (max-width: 321px) {
+  .subject-name {
+    font-size: 14px;
+  }
+
+}
+
+.contain {
+  display: flex;
+  gap: 4px;
+  flex-direction: row;
+  align-items: center;
+}
+
 .item_subject {
   display: flex;
   height: 28px;

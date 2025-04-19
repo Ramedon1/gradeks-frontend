@@ -2,7 +2,7 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: { enabled: true },
     ssr: false,
-    modules: ['@pinia/nuxt', '@nuxt/image'],
+    modules: ['@pinia/nuxt', '@nuxt/image', 'nuxt-aos'],
     css: [
         '@/assets/css/fonts.css',
         '@/assets/css/themes.css',
@@ -22,5 +22,8 @@ export default defineNuxtConfig({
         build: {
             chunkSizeWarningLimit: 10000,
         },
+    },
+    aos: {
+        once: true,
     },
 });
