@@ -5,11 +5,11 @@ const props = defineProps({
     default: '#11241C',
   },
   width: {
-    type: Number,
+    type: String,
     default: '16px',
   },
   height: {
-    type: Number,
+    type: String,
     default: '17px',
   },
 });

@@ -101,5 +101,6 @@ const topSuggestions = computed<Suggestion[]>(() =>
 
 .required-grades {
   font-size: 14px;
+  margin-bottom: 20px;
 }
 </style>
