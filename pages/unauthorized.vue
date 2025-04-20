@@ -26,7 +26,7 @@ function redirect() {
     <p class="unauthorized-text">
       {{props.error_name}}
     </p>
-    <p v-if="props.error_solution" class="unauthorized-subtext">
+    <p class="unauthorized-subtext">
       {{props.error_solution}}
     </p>
     <NuxtLink :to="redirect()">
