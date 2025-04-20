@@ -6,6 +6,15 @@ export const useTelegramViewport = () => {
   const viewportHeight = ref(0);
   const isExpanded = ref(false);
 
+  const checkLaunchParams = () => {
+    const urlParams = new URLSearchParams(window.location.hash.slice(1));
+    return {
+      fullscreen: urlParams.get('tgWebAppFullscreen') === '1',
+      version: urlParams.get('tgWebAppVersion'),
+      platform: urlParams.get('tgWebAppPlatform')
+    };
+  };
+
   // Функция для обновления состояния viewport
   const updateViewportState = () => {
     const webapp = window.Telegram?.WebApp;
@@ -14,11 +23,12 @@ export const useTelegramViewport = () => {
     viewportHeight.value = webapp.viewportHeight;
     isExpanded.value = webapp.isExpanded;
 
-    // Считаем приложение в полноэкранном режиме, если оно развернуто
-    // и занимает почти всю высоту экрана
-    const screenHeight = window.innerHeight;
-    isFullscreenMode.value = isExpanded.value &&
-        (viewportHeight.value / screenHeight > 0.9);
+    // Проверяем параметры запуска для определения полноэкранного режима
+    const { fullscreen } = checkLaunchParams();
+    isFullscreenMode.value = fullscreen || (
+        isExpanded.value && viewportHeight.value > 0 &&
+        (viewportHeight.value / window.innerHeight > 0.9)
+    );
   };
 
   const initializeViewport = async () => {
@@ -29,7 +39,10 @@ export const useTelegramViewport = () => {
         return false;
       }
 
-      // Signal that the app is ready
+      // Проверяем параметры запуска
+      const { version, platform } = checkLaunchParams();
+      console.log('Launch params:', { version, platform });
+
       webapp.ready();
 
       // Enable closing confirmation
@@ -40,11 +53,6 @@ export const useTelegramViewport = () => {
 
       // Wait for expansion
       await new Promise(resolve => setTimeout(resolve, 100));
-
-      // Request fullscreen if version supports it
-      if (webapp.isVersionAtLeast('8.0')) {
-        webapp.requestFullscreen();
-      }
 
       // Update state after all operations
       updateViewportState();
@@ -82,6 +90,9 @@ export const useTelegramViewport = () => {
       return false;
     }
   };
+
+  // Инициализируем состояние при создании composable
+  updateViewportState();
 
   return {
     initializeViewport,
