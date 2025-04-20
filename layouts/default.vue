@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {useRoute} from 'vue-router';
-import {computed} from 'vue';
+import {computed, ref, onMounted} from 'vue';
 import {useDiaryState} from "~/state/diary";
 import {storeToRefs} from "pinia";
 import {useAuthStore} from "~/state/auth";
@@ -21,53 +21,69 @@ const hideNavbar = computed(() => {
   return pathsToHideNavbar.includes(route.path);
 });
 
-const theme = getSettings('theme');
+const isOutsideTelegram = ref(false);
 
-
-if (theme === 'telegram') {
-  if (themeParams.isMounted()) {
-    applyTheme('telegram');
-  } else {
-    applyTheme('white');
-  }
-} else {
-  applyTheme(theme);
-}
-
-
-if (window.Telegram.WebApp.isFullscreen === false) {
-  onMounted(() => {
-    const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
-    const viewElement = document.getElementById('view');
-
-    if (viewElement) {
-      const currentPadding = window.getComputedStyle(viewElement).paddingTop;
-      const currentPaddingValue = parseFloat(currentPadding) || 0;
-
-      viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
-    } else {
-      console.warn('Element with ID "view" not found after component mount.');
+onMounted(() => {
+  try {
+    // Проверяем доступность основных объектов Telegram API
+    if (!window.Telegram || !window.Telegram.WebApp || !window.Telegram.WebApp.initData) {
+      isOutsideTelegram.value = true;
+      return;
     }
-  });
-}
+    
+    if (!window.Telegram.WebApp.initData.length) {
+      isOutsideTelegram.value = true;
+      return;
+    }
 
+    const theme = getSettings('theme');
 
+    if (theme === 'telegram') {
+      if (themeParams.isMounted()) {
+        applyTheme('telegram');
+      } else {
+        applyTheme('white');
+      }
+    } else {
+      applyTheme(theme);
+    }
+
+    if (window.Telegram.WebApp.isFullscreen === false) {
+      const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
+      const viewElement = document.getElementById('view');
+
+      if (viewElement) {
+        const currentPadding = window.getComputedStyle(viewElement).paddingTop;
+        const currentPaddingValue = parseFloat(currentPadding) || 0;
+
+        viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
+      } else {
+        console.warn('Element with ID "view" not found after component mount.');
+      }
+    }
+  } catch (e) {
+    console.error('Ошибка инициализации Telegram WebApp:', e);
+    isOutsideTelegram.value = true;
+  }
+});
 </script>
-
 
 <template>
   <div id="container">
     <AtomBackgroundsLeaffall/>
-    <div v-if="((authenticated || error.detail) && diary_loaded && is_active ) " id="view">
-      <!--      <div class="logo-container">-->
-      <!--        <AtomUiLogo/>-->
-      <!--      </div>-->
+    
+    <!-- Показываем сообщение, если приложение запущено вне Telegram -->
+    <div v-if="isOutsideTelegram" id="view">
+      <Unauthorized error_name="Открыть Gradeks можно только в Telegram"/>
+    </div>
+    
+    <div v-else-if="((authenticated || error.detail) && diary_loaded && is_active )" id="view">
       <ToastContainer/>
       <NuxtPage/>
     </div>
     <div v-else>
       <template v-if="route.path === '/unauthorized'">
-        <Unauthorized error_name="Ой, что то пошло не так"
+        <Unauthorized error_name="Ой, что-то пошло не так"
                       error_solution="Попробуйте чуть позже, или обратитесь к разработчику"/>
       </template>
       <template v-else-if="is_active === false">
@@ -80,7 +96,7 @@ if (window.Telegram.WebApp.isFullscreen === false) {
         />
       </div>
     </div>
-    <div v-if="!hideNavbar && ((authenticated || error.detail) && diary_loaded)" id="nav">
+    <div v-if="!hideNavbar && !isOutsideTelegram && ((authenticated || error.detail) && diary_loaded)" id="nav">
       <MoleculeNavbar/>
     </div>
   </div>
