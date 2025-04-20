@@ -14,7 +14,8 @@ export default defineNuxtConfig({
             script: [
                 {
                     src: "https://telegram.org/js/telegram-web-app.js",
-                    tagPriority: 0
+                    tagPriority: 0,
+                    defer: true,
                 },
             ],
         },

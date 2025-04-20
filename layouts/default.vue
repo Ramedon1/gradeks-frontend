@@ -23,6 +23,12 @@ const hideNavbar = computed(() => {
 
 const theme = getSettings('theme');
 
+useHead({
+  script: [{
+    src: 'https://telegram.org/js/telegram-web-app.js',
+    defer: true,
+  }]})
+
 
 if (theme === 'telegram') {
   if (themeParams.isMounted()) {
@@ -33,8 +39,6 @@ if (theme === 'telegram') {
 } else {
   applyTheme(theme);
 }
-
-
 
 
 </script>
