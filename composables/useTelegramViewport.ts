@@ -1,6 +1,24 @@
 import { init, viewport } from '@telegram-apps/sdk';
 
 export const useTelegramViewport = () => {
+  const waitForFullscreen = () => {
+    return new Promise((resolve) => {
+      let attempts = 0;
+      const maxAttempts = 10;
+
+      const checkFullscreen = () => {
+        if (window.Telegram?.WebApp?.isFullscreen || attempts >= maxAttempts) {
+          resolve(window.Telegram?.WebApp?.isFullscreen || false);
+          return;
+        }
+        attempts++;
+        setTimeout(checkFullscreen, 100);
+      };
+
+      checkFullscreen();
+    });
+  };
+
   const initializeViewport = async () => {
     try {
       // First try the direct WebApp API
@@ -9,7 +27,25 @@ export const useTelegramViewport = () => {
         window.Telegram.WebApp.expand();
 
         if (window.Telegram.WebApp.isVersionAtLeast('8.0')) {
+          // Add event listener for fullscreen changes
+          window.Telegram.WebApp.onEvent('fullscreenChanged', () => {
+            console.log('Fullscreen state changed:', window.Telegram.WebApp.isFullscreen);
+          });
+
+          window.Telegram.WebApp.onEvent('viewportChanged', (event) => {
+            console.log('Viewport changed, isStateStable:', event.isStateStable);
+          });
+
+          // Request fullscreen and wait for confirmation
           window.Telegram.WebApp.requestFullscreen();
+          const isFullscreen = await waitForFullscreen();
+          console.log('Fullscreen state after wait:', isFullscreen);
+
+          // If not fullscreen, try requesting again after a short delay
+          if (!isFullscreen) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+            window.Telegram.WebApp.requestFullscreen();
+          }
         }
       }
 
@@ -17,7 +53,6 @@ export const useTelegramViewport = () => {
       try {
         init();
 
-        // Only proceed with SDK methods if they're available
         if (viewport?.mount?.isAvailable && viewport.mount.isAvailable()) {
           await viewport.mount();
           viewport.expand();
@@ -28,7 +63,6 @@ export const useTelegramViewport = () => {
         }
       } catch (sdkError) {
         console.warn('SDK initialization failed:', sdkError);
-        // Continue since we already tried the direct WebApp API
       }
 
       return true;
