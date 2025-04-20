@@ -1,16 +1,26 @@
-/*
-✨ CoonDev • http://dev.coonlink.fun/ 
-
- ▄█▄    ████▄ ████▄    ▄   ██▄   ▄███▄      ▄  
- █▀ ▀▄  █   █ █   █     █  █  █  █▀   ▀      █ 
- █   ▀  █   █ █   █ ██   █ █   █ ██▄▄   █     █
- █▄  ▄▀ ▀████ ▀████ █ █  █ █  █  █▄   ▄▀ █    █
- ▀███▀              █  █ █ ███▀  ▀███▀    █  █ 
-                    █   ██                 █▐  
-                                           ▐   
-*/
+import { ref, readonly } from 'vue';
 
 export const useTelegramViewport = () => {
+  // Используем ref для отслеживания состояния
+  const isFullscreenMode = ref(false);
+  const viewportHeight = ref(0);
+  const isExpanded = ref(false);
+
+  // Функция для обновления состояния viewport
+  const updateViewportState = () => {
+    const webapp = window.Telegram?.WebApp;
+    if (!webapp) return;
+
+    viewportHeight.value = webapp.viewportHeight;
+    isExpanded.value = webapp.isExpanded;
+
+    // Считаем приложение в полноэкранном режиме, если оно развернуто
+    // и занимает почти всю высоту экрана
+    const screenHeight = window.innerHeight;
+    isFullscreenMode.value = isExpanded.value &&
+        (viewportHeight.value / screenHeight > 0.9);
+  };
+
   const initializeViewport = async () => {
     try {
       const webapp = window.Telegram?.WebApp;
@@ -36,6 +46,16 @@ export const useTelegramViewport = () => {
         webapp.requestFullscreen();
       }
 
+      // Update state after all operations
+      updateViewportState();
+
+      // Add viewport change listener
+      webapp.onEvent('viewportChanged', (event) => {
+        if (event.isStateStable) {
+          updateViewportState();
+        }
+      });
+
       return true;
     } catch (error) {
       console.error('Error initializing Telegram viewport:', error);
@@ -52,6 +72,7 @@ export const useTelegramViewport = () => {
 
       if (webapp.isVersionAtLeast('8.0')) {
         webapp.exitFullscreen();
+        isFullscreenMode.value = false;
         return true;
       }
 
@@ -64,6 +85,9 @@ export const useTelegramViewport = () => {
 
   return {
     initializeViewport,
-    exitFullscreen
+    exitFullscreen,
+    isFullscreenMode: readonly(isFullscreenMode),
+    viewportHeight: readonly(viewportHeight),
+    isExpanded: readonly(isExpanded)
   };
-}; 
+};
