@@ -40,15 +40,7 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async authenticateUser({telegram_data, version, platform}: UserLoginInterface) {
             try {
-                this.loading = true;
-                
-                if (!telegram_data) {
-                    console.error('Telegram data is missing');
-                    this.error.detail = 'Telegram data is missing';
-                    return;
-                }
-
-                const {data, status, error}: any = await useFetch('...', {
+                const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/user/login', {
                     method: 'post',
                     headers: {'Content-Type': 'application/json'},
                     body: {
@@ -62,7 +54,9 @@ export const useAuthStore = defineStore('auth', {
 
                 if (data.value) {
                     this.authenticated = true;
+
                     this.loginData = data.value;
+
                     this.serverStartTime = data.value.server_time;
                     this.clientStartTime = performance.now();
 
@@ -76,10 +70,7 @@ export const useAuthStore = defineStore('auth', {
                     this.error.detail = data?.value?.detail || 'Unknown error occurred';
                 }
             } catch (error: any) {
-                console.error('Authentication error:', error);
                 this.error.detail = error?.message || 'Something went wrong. Please try again later.';
-            } finally {
-                this.loading = false;
             }
         },
         logoutUser() {

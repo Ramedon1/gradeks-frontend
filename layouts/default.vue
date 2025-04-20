@@ -35,21 +35,6 @@ if (theme === 'telegram') {
 }
 
 
-if (window.Telegram.WebApp.isFullscreen === false) {
-  onMounted(() => {
-    const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
-    const viewElement = document.getElementById('view');
-
-    if (viewElement) {
-      const currentPadding = window.getComputedStyle(viewElement).paddingTop;
-      const currentPaddingValue = parseFloat(currentPadding) || 0;
-
-      viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
-    } else {
-      console.warn('Element with ID "view" not found after component mount.');
-    }
-  });
-}
 
 
 </script>

@@ -3,30 +3,32 @@ import { init, viewport } from '@telegram-apps/sdk';
 export const useTelegramViewport = () => {
   const initializeViewport = async () => {
     try {
-      init();
-
-      // Signal that the app is ready to be displayed
+      // First try the direct WebApp API
       if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.ready();
-      }
-
-      // Mount viewport if available
-      if (viewport.mount.isAvailable()) {
-        await viewport.mount();
-        viewport.expand();
-      }
-
-      // Request fullscreen if available (Bot API 8.0+)
-      if (viewport.requestFullscreen.isAvailable()) {
-        await viewport.requestFullscreen();
-      }
-
-      // Fallback for older versions using WebApp directly
-      if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.expand();
+
         if (window.Telegram.WebApp.isVersionAtLeast('8.0')) {
           window.Telegram.WebApp.requestFullscreen();
         }
+      }
+
+      // Then try the SDK approach as backup
+      try {
+        init();
+
+        // Only proceed with SDK methods if they're available
+        if (viewport?.mount?.isAvailable && viewport.mount.isAvailable()) {
+          await viewport.mount();
+          viewport.expand();
+        }
+
+        if (viewport?.requestFullscreen?.isAvailable && viewport.requestFullscreen.isAvailable()) {
+          await viewport.requestFullscreen();
+        }
+      } catch (sdkError) {
+        console.warn('SDK initialization failed:', sdkError);
+        // Continue since we already tried the direct WebApp API
       }
 
       return true;
@@ -38,14 +40,25 @@ export const useTelegramViewport = () => {
 
   const exitFullscreen = async () => {
     try {
-      if (viewport.exitFullscreen.isAvailable()) {
-        await viewport.exitFullscreen();
-        return true;
-      } else if (window.Telegram?.WebApp?.isVersionAtLeast('8.0')) {
-        window.Telegram.WebApp.exitFullscreen();
-        return true;
+      let success = false;
+
+      // Try SDK first
+      try {
+        if (viewport?.exitFullscreen?.isAvailable && viewport.exitFullscreen.isAvailable()) {
+          await viewport.exitFullscreen();
+          success = true;
+        }
+      } catch (sdkError) {
+        console.warn('SDK exitFullscreen failed:', sdkError);
       }
-      return false;
+
+      // Fallback to direct WebApp API
+      if (!success && window.Telegram?.WebApp?.isVersionAtLeast('8.0')) {
+        window.Telegram.WebApp.exitFullscreen();
+        success = true;
+      }
+
+      return success;
     } catch (error) {
       console.error('Error exiting fullscreen:', error);
       return false;
@@ -56,4 +69,4 @@ export const useTelegramViewport = () => {
     initializeViewport,
     exitFullscreen
   };
-}; 
+};
