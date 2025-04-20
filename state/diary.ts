@@ -75,6 +75,12 @@ export const useDiaryState = defineStore('diary', {
     actions: {
         async loadAllDiary(period_name: string) {
             try {
+                if (!this.access_token) {
+                    console.error('Access token is missing');
+                    this.error = 'Access token is missing';
+                    return;
+                }
+
                 const {data, status, error}: any = await useFetch('https://api.gradeks.xyz/user/me', {
                     method: 'post',
                     headers: {'Authorization': 'Bearer ' + this.access_token, 'Content-Type': 'application/json'},
