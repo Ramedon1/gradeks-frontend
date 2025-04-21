@@ -63,7 +63,7 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
 </script>
 
 <template>
-  <div style="display: flex; margin-top: auto; margin-bottom: auto" class="edit-profile-container">
+  <div style="" class="edit-profile-container">
     <div style="display: flex; cursor: pointer;" @click="openBottomSheet">
       <slot></slot>
     </div>
@@ -111,6 +111,11 @@ const diaryIdInputValue = computed(() => spec_diary.value.diary_id ? `https://de
 
 .instruction:visited {
   color: var(--theme-hint-color-black);
+}
+
+.edit-profile-container {
+  margin-top: 5px;
+  margin-right: 5px;
 }
 
 .loading-text {

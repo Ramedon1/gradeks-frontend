@@ -1,14 +1,24 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+
+import {adjustColorBrightness} from "assets/js/functions";
+import {ref} from 'vue';
+
 const props = defineProps({
   id: String,
   name: String,
   text: String,
 });
+
+const rootStyles = getComputedStyle(document.documentElement);
+const buttonColor = rootStyles.getPropertyValue('--theme-button-color').trim();
+const darkerButtonColor = ref(adjustColorBrightness(buttonColor, +2));
+
+
 </script>
 
 <template>
-  <button class="submit-button third-text" type="submit"
-          :id="props.id" :name="props.name">
+  <button :id="props.id" :name="props.name"
+          class="submit-button third-text" type="submit">
     {{ props.text }}
   </button>
 </template>
@@ -28,6 +38,7 @@ const props = defineProps({
   cursor: pointer;
 }
 
+
 @media (max-width: 381px) {
   .submit-button {
     font-size: 17px;
@@ -36,13 +47,13 @@ const props = defineProps({
 
 @media (hover: hover) {
   .submit-button:hover {
-    background-color: var(--theme-accent-text-color-green);
+    background-color: v-bind(darkerButtonColor);
   }
 }
 
 @media (hover: none) {
   .submit-button:active {
-    background-color: var(--theme-accent-text-color-green);
+    background-color: v-bind(darkerButtonColor);
     transition: background-color 0.1s ease;
     outline: none;
   }
