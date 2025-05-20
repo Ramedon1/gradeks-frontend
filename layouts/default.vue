@@ -23,6 +23,12 @@ const hideNavbar = computed(() => {
 
 const theme = getSettings('theme');
 
+useHead({
+  script: [{
+    src: 'https://telegram.org/js/telegram-web-app.js',
+    defer: true,
+  }]})
+
 
 if (theme === 'telegram') {
   if (themeParams.isMounted()) {
@@ -32,23 +38,6 @@ if (theme === 'telegram') {
   }
 } else {
   applyTheme(theme);
-}
-
-
-if (window.Telegram.WebApp.isFullscreen === false) {
-  onMounted(() => {
-    const safeInsetTop = window.Telegram.WebApp.contentSafeAreaInset.top || 0;
-    const viewElement = document.getElementById('view');
-
-    if (viewElement) {
-      const currentPadding = window.getComputedStyle(viewElement).paddingTop;
-      const currentPaddingValue = parseFloat(currentPadding) || 0;
-
-      viewElement.style.paddingTop = (currentPaddingValue + safeInsetTop) + 'px';
-    } else {
-      console.warn('Element with ID "view" not found after component mount.');
-    }
-  });
 }
 
 

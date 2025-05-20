@@ -49,6 +49,7 @@ export const useAuthStore = defineStore('auth', {
                         platform,
                     },
                 });
+                
                 this.loading = status;
 
                 if (data.value) {

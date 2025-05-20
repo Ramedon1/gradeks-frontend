@@ -13,7 +13,9 @@ export default defineNuxtConfig({
             title: 'Gradeks',
             script: [
                 {
-                    src: "https://telegram.org/js/telegram-web-app.js?56",
+                    src: "https://telegram.org/js/telegram-web-app.js",
+                    tagPriority: 0,
+                    defer: true,
                 },
             ],
         },
